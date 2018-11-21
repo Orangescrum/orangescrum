@@ -747,7 +747,8 @@ class FormatComponent extends Component
 	{
 		$value = str_replace("�","\"",$value);
 		$value = str_replace("�","\"",$value);
-		$value = preg_replace('/[^(\x20-\x7F)\x0A]*/','', $value);
+		if (mb_strlen($value, "UTF-8") == strlen($value))
+			$value = preg_replace('/[^(\x20-\x7F)\x0A]*/','', $value);
 		$value = stripslashes($value);
 		$value = html_entity_decode($value, ENT_QUOTES);
 		$trans = get_html_translation_table(HTML_ENTITIES, ENT_QUOTES);
@@ -915,7 +916,7 @@ function shortLength($value, $len)
 		$value_format = $this->formatText($value);
 		$value_raw = html_entity_decode($value_format, ENT_QUOTES);
 		if(strlen($value_raw) > $len){
-			$value_strip = substr($value_raw,0,$len);
+			$value_strip = mb_substr($value_raw,0,$len, 'UTF-8');
 			$value_strip = $this->formatText($value_strip);
 			$lengthvalue = "<span title='".$value_format."' >".$value_strip."...</span>";
 		}else{
@@ -1323,8 +1324,8 @@ function convert_ascii($string){
 	$search[]  = chr(226).chr(128).chr(166);
 	$replace[] = '...';
 	
-	$search[]  = chr(150);
-	$replace[] = "-";
+	// $search[]  = chr(150);
+	// $replace[] = "-";
 	
 	// Apply Replacements
 	$string = str_replace($search, $replace, $string);
@@ -1332,6 +1333,13 @@ function convert_ascii($string){
 	// Remove any non-ASCII Characters
 	//$string = preg_replace("/[^\x01-\x7F]/","", $string);
 	return $string; 
+}
+function ucfirst($value)
+{
+	if (mb_strlen($value, "UTF-8") == strlen($value))
+		return ucfirst($value);
+	else 
+		return $value;
 }
 function getSqlFields($arr, $prj_unq_id) {
     $qry = '';

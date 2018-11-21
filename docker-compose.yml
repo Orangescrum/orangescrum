@@ -1,0 +1,21 @@
+version: "3"
+services: 
+  orangescrum:
+    build: .
+    links: 
+      - mysql:mysql
+    ports: 
+      - 80:80
+    restart: always
+  mysql:
+    image: mysql
+    restart: always
+    environment: 
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+      MYSQL_DATABASE: 'orangescrum'
+    volumes: 
+      - ./database.sql:/docker-entrypoint-initdb.d/dump.sql
+      - ./data/mysql:/var/lib/mysql
+    command: mysqld --sql-mode=""
+
+  
