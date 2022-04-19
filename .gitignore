@@ -1,1 +1,7 @@
-
+Thumbs.db
+tmp/
+app/tmp/*
+app/tmp/logs/*
+app/tmp/cache/*
+nbproject/*
+app/webroot/cache/*
