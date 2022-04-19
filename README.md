@@ -13,7 +13,7 @@ New features, enhancements, and updates released on a regular basis.
 
 Pull requests and bug reports are always welcome!
 
-Visit our website  [https://www.orangescrum.com/](https://www.orangescrum.com/)  to get a free trial of the premium service.
+Visit our [website](https://www.orangescrum.com/)  to get a free trial of the premium service.
 
 ## [](https://github.com/Orangescrum/orangescrum/blob/main/README.md#features)Features
 
@@ -74,7 +74,7 @@ Users can check the new releases at:  [https://www.orangescrum.com/open-source/r
 
 ## [](https://github.com/Orangescrum/orangescrum/blob/main/README.md#community)Community
 
-Need help to set up Orangescrum? Want to know more about cool enhancements? Feel free to visit our community support. You can also subscribe to our newsletter to get any important announcements and releases.  [https://www.orangescrum.com/blog/](https://orangescrum.com/blog/)
+Need help to set up Orangescrum? Want to know more about cool enhancements? Feel free to visit our [community support](https://groups.google.com/g/orangescrum-community-support). You can also subscribe to our [newsletter](https://orangescrum.com/blog/) to get any important announcements and releases. 
 
 ## [](https://github.com/Orangescrum/orangescrum/blob/main/README.md#report-bugs)Report bugs
 
@@ -86,7 +86,7 @@ Get in touch with us here. We are available for any type of support, queries or 
 
 -   Orangescrum Helpdesk  [https://www.helpdesk.orangescrum.com/](https://helpdesk.orangescrum.com/)
 -   Contact Us  [https://www.orangescrum.com/contact/](https://orangescrum.com/contact-support/)
--   Community Forum [https://www.orangescrum.com/contact/](https://orangescrum.com/contact-support/)
+-   Community Forum [https://groups.google.com/g/orangescrum-community-support](https://groups.google.com/g/orangescrum-community-support)
 
 ## [](https://github.com/Orangescrum/orangescrum/blob/main/README.md#about)About
 
