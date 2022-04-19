@@ -1,0 +1,227 @@
+.addon_bg{
+	 background: transparent url("/img/sup-bg.jpg") no-repeat fixed center bottom / cover ;
+    padding-top: 80px;;
+}
+.plugin .box-marketplace {
+    height: 100%;
+}
+.box.box-marketplace {
+    padding-bottom: 60px;
+    position: relative;
+}
+.box {
+    background-clip: padding-box;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-shadow: 0 1px 1px rgba(204, 204, 204, 0.5);
+    box-sizing: border-box;
+    margin: 0 0 30px;
+    transition: border 0.15s ease-in-out 0s;
+}
+.text-center {
+    text-align: center;
+	background:#fff;
+}
+.plugin{box-sizing: border-box; height:390px;position:relative;}
+.box header {
+    margin: 20px 15px 10px;
+}
+.icon-create-logtime{background:url(../img/time-icon.png) no-repeat;display: block;left: 77px;position: absolute;height:23px; width:22px;top:33px;}
+article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
+    display: block;
+}
+.opensource h1, h2.addon_description{
+	color:#fff;
+	margin:0px;
+}
+.opensource h1{
+	font-family:"RobotoCondensed-Regular";
+	font-size:30px;
+}
+h2.addon_description{
+	font-family:"myriadpro-Regular";
+	font-size:20px;
+}
+.box.box-marketplace header h4 {
+    max-height: 50px;
+    overflow: hidden;
+}
+.box.box-md header h4 {
+    font-family: "Muli-regular";
+	color:#314046;
+    font-size: 20px;
+    line-height: 26px;
+    margin-bottom: 10px;
+    margin-top: 30px;
+}
+.box.box-md header h4 > a {
+    color: #0d0d0d;
+	text-decoration:none;
+}
+.box.box-md.box-marketplace.text-center header h4 img{
+	margin-top: 2px;
+	cursor:pointer;
+}
+.plugin h4 a {
+    word-break: break-all;
+    word-wrap: break-word;
+}
+button, button:focus, a, a:focus, a:visited, a:hover {
+    box-shadow: none;
+    outline: 0 none;
+	text-decoration:none;
+	color:#fff;
+}
+.box.box-marketplace section {
+    margin-bottom: 20px;
+}
+.box.box-md section {
+    font-size: 18px;
+    margin-bottom: 45px;
+}
+.box section {
+    margin: 0 15px 35px;
+}
+.box.box-marketplace section p {
+    color: #808080;
+    font-family: "Muli-regular";
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 22px;
+    min-height: 95px;
+	text-align:justify;
+}
+.box section p {
+    padding: 0 15px;
+}
+small {
+    font-size: 85%;
+}
+.box.box-marketplace section ul {
+    padding: 0;
+}
+.box ul {
+    font-family: Verdana,sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 24px;
+    list-style-type: none;
+    margin: 0;
+}
+
+.box.box-marketplace section ul li::before {
+    display: none;
+}
+.box ul.inline li::before {
+    color: #1e93d1;
+}
+.box ul li::before {
+    color: #333;
+    content: "· ";
+}
+.plugin .box-marketplace .plugin-overview li {
+    display: block;
+    text-align: center;
+}
+.box.box-marketplace section ul li {
+    color: #808080;
+    font-family: Verdana,sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 18px;
+    list-style-type: none;
+}
+.box.box-md ul li {
+    text-align: left;
+}
+.box ul.inline li {
+    display: inline;
+}
+.box ul li {
+    margin: 0 0 2px;
+    padding-right: 4px;
+}
+.box.box-marketplace footer {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    width: 100%;
+}
+.box footer {
+    border-top: 1px solid #f0f0f0;
+}
+.box.box-marketplace footer a {
+    padding: 8px 12px;
+}
+.box.box-md footer a {
+    display: block;
+    font-size: 18px;
+    padding: 15px 8px;
+}
+.box footer .btn {
+    display: block;
+    margin: 8px;
+}
+.btn.btn-primary.active {
+    background-color: #ea801a;
+	color:#fff;
+    border: 0 none;
+}
+.btn.btn-primary.disable{
+	cursor:not-allowed;
+}
+.btn.btn-primary.disable:hover{
+	background-color: #eee;
+	color:#ccc;
+    border: 0 none;
+}
+.btn.btn-primary{
+    background-color: #eee;
+	color:#ccc;
+    border: 0 none;
+}
+.btn.btn-small {
+    float: none;
+    padding: 8px 12px;
+}
+.txtcentr{text-align: center}
+.btn {
+    background-clip: padding-box;
+    background-color: #999;
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.15) 0px, rgba(255, 255, 255, 0) 100%);
+    background-repeat: repeat-x;
+    border: 0 none;
+    border-radius: 3px;
+    box-shadow: 0 1px 1px rgba(13, 13, 13, 0.3), 0 -1px 0 rgba(13, 13, 13, 0.1) inset;
+    color: #fff;
+    cursor: pointer;
+    font-family: ""Helvetica Neue",Helvetica,Arial,sans-serif";
+    font-size: 18px;
+    line-height: 20px;
+    margin: 0 5px 5px 0;
+    outline: 0 none;
+    white-space: normal;
+}
+.box a.btn:hover {
+    color: #fff;
+    text-decoration: none;
+}
+.btn.btn-primary:active, .btn.btn-primary:hover {
+    background-color: #EA801A;
+    color: white;
+}
+.popup_overlay {background: #000405;height: 100%;left: 0;opacity: 0.21;position: fixed;top: 0;width: 100%;z-index: 99999;display: none;}
+    .popup_bg {position: fixed;left: 0;right: 0;top: 70px;margin: 0 auto;min-height: 200px;height: auto;padding: 1px 1px 20px;background: url(../img/rht_con_bg.png) repeat;border: 1px solid #ccc;border-radius: 2px;z-index: 999999;width: 540px;box-shadow: 0px 0px 8px #666;display: none;}
+    .popup_title {background: url("../img/popup_bg_title.jpg") repeat-x 0px 0px;padding: 6px 10px 0;font-size: 18px;color: #5191bd;height: 39px;}
+    .close_popup {color: #F00;font-size: 0px;font-weight: bold;background: url("../img/images/popup_close.png") no-repeat 0px 0px;width: 10px;height: 10px;cursor: pointer;margin-top: 7px;text-indent: 2000px;}
+    #thnxmsg{display: none;font-weight: bold;color: #34AF33;font-size:16px;text-align: center;}
+.cb20{clear:both;margin-bottom:20px;}
+.cb15{clear:both;height:20px;}
+.label1 {font-size:16px;text-align: right;width: 25%;float: left;padding-top: 6px;}
+.field {padding-left: 20px;text-align: left;float: left;}
+.textbox{box-shadow: none;color: #333333;font-size: 17px;padding: 5px;font-family:"OPENSANS-REGULAR";height:37px;}
+.textareabox{resize:none;margin: 0;background: none repeat scroll 0 0 #FFFFFF;border: 1px solid #AAAAAA;border-radius: 5px 5px 5px 5px;box-shadow: none;font-size: 17px;height:100px;width: 360px;padding: 5px;font-family:"OPENSANS-REGULAR";}
+.btn.btn_blue.btn_orng{background:#F1841B;font-size:18px;font-weight:bold;}
+.btn.btn_blue.btn_orng:hover{background:#ea801a;}
+.metadata{bottom: 73px;left: 50%;margin-left: -60px;position: absolute;}
+#submit_button span {cursor:pointer;}

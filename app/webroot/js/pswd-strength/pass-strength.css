@@ -1,0 +1,38 @@
+.strength_wrapper {/*display: inline-block;*/position: relative; text-align: left;}
+.strength_input{width:100%;background: transparent;padding-right:45px !important;outline: none; border: none;box-shadow: none;}
+/*.strength_meter {position: absolute;left: 0px;top: 0px;width: 100%;z-index: -1; overflow: hidden;}*/
+.strength_meter {left: 0px;top: 0px;width: 100%;z-index: -1; overflow: hidden;}
+.button_strength {text-decoration: none;color: #4d4d4d;font-size:0px;
+       display: inline-block;position: absolute;width: 22px;height:20px;right: 15px;top: 12.5px;background:url(../../img/show-hide-password.png) no-repeat repeat -23px -22px;background-size: 45px auto;opacity: 0.6;}
+.button_strength:hover{background-position:-23px 0px;opacity:1}
+.button_strength.show{background-position:0px 0px;opacity:1}
+.button_strength.show:hover{background-position:-23px -22px;opacity:1}
+.strength_meter div {width: 0%;height: 2px;
+    -webkit-transition: all .3s ease-in-out;-moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;-ms-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;}
+.strength_meter div p {position: absolute;right: 10px;color: #4d4d4d;font-size: 13px; padding-right: 30px;   line-height: 16px;}
+.veryweak {background-color: #FF7979;width: 25% !important;}
+.weak {background-color: #FDA068;width: 50% !important;}
+.medium {background-color: #FFE560;width: 75% !important;}
+.strong {background-color: #9BF47D;width: 100% !important;}
+
+/* Styles for verification */
+.pswd_info {font-size:13px;line-height:22px;color:#555;font-weight:400;padding:15px;border:1px solid #e8e9ea;background:#fff;border-radius:15px;width:230px;height:auto;text-align:left;position:absolute;top: 52px;right: 0;display:none;z-index: 1000;}
+.pswd_info:before,
+.pswd_info:after {position: absolute;bottom: 100%;content: '';}
+.pswd_info:before {right: 15px;border-right: 12px solid transparent;
+    border-bottom: 12px solid #e8e9ea;border-left: 12px solid transparent;}
+.pswd_info:after {right: 17px;border-right: 10px solid transparent;
+    border-bottom: 10px solid #fff;border-left: 10px solid transparent;}
+.pswd_info h4 {margin:0 0 10px 0;padding:0;font-weight:600;font-size: 13px;}
+.pswd_info ul {padding: 0; margin: 0;list-style-type: none;}
+.pswd_info ul li {visibility: visible !important;
+    height: 20px !important;min-height: 20px !important;
+	line-height:24px;font-size: 11px;font-weight: 500;color: #555;
+    padding-left: 24px !important;}
+.pswd_info .invalid {
+	background:url(images/invalid.png) no-repeat 0 6px;
+	color:#ec3f41;background-size: 12px auto;}
+.pswd_info .valid {background:url(images/valid.png) no-repeat 0 6px;   
+	color:#3a7d34;background-size: 12px auto;}

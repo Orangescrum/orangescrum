@@ -1,0 +1,66 @@
+Taskgroup,task#,Parent,Title,Description,Istype,Attachment,Created Date,Start Date,Due Date,Estimated,Status,Type,Assigned To,Task Date,spent,Is Billable
+0,1,0,Specifications Outline (Sample),,1,,17-04-2019,22-04-2019,23-04-2019,8,5,2,0,23-04-2019,6,0
+0,2,0,Stakeholders Meeting Internally  (Sample),,1,,17-04-2019,23-04-2019,23-04-2019,2,5,2,0,23-04-2019,3,0
+0,3,0,Strategy and Project Launch Meeting (Sample),,1,,17-04-2019,23-04-2019,23-04-2019,3,5,2,1,23-04-2019,2,1
+1,4,0,"Establish Tasks, Responsible Parties, Task Group and Deliverables (Sample)",,1,,17-04-2019,23-04-2019,24-04-2019,4,5,2,2,24-04-2019,5,1
+1,5,0,"Setting Up Project in Project Management System (Design, Dev, SEO, Social Media, Mobile App’s, etc – depending on level of services subscribed to)  (Sample)",,1,,17-04-2019,24-04-2019,24-04-2019,4,3,2,3,24-04-2019,4,1
+2,6,0,Blog Roll and Blog Post Design V1 (Sample),,1,OS-Blog-HomePage.png,17-04-2019,24-04-2019,25-04-2019,8,3,2,1,25-04-2019,10,1
+2,7,0,"Blog Roll and Blog Post Design Reviews and Rounds of Revisions * V2, V3 (Sample)",,1,,17-04-2019,25-04-2019,26-04-2019,4,3,2,2,26-04-2019,3,1
+2,8,0,Home Page Design V1 (Sample),,1,Homepage-mock.png,17-04-2019,26-04-2019,29-04-2019,12,3,2,1,29-04-2019,14,1
+2,9,0,"Home Page Design Reviews and Rounds of Revisions* V2, V3 (Sample)",,1,,17-04-2019,30-04-2019,30-04-2019,6,3,2,3,30-04-2019,8,1
+2,10,0,Interior Page Design (About Us and Contact Us) V1 (Sample),,1,,17-04-2019,01-05-2019,01-05-2019,8,3,2,2,01-05-2019,10,1
+2,11,0,"Interior Page Design Reviews and Rounds of Revisions* V2, V3 (Sample)",,1,OS-Inner-page.png,17-04-2019,02-05-2019,02-05-2019,4,3,2,3,02-05-2019,6,1
+2,12,0,A Strategy Session and Design Brief (Sample),,1,,17-04-2019,02-05-2019,03-05-2019,8,3,2,0,03-05-2019,6,1
+2,13,0,Installation Checklist (Sample),,1,,17-04-2019,03-05-2019,06-05-2019,4,5,2,1,06-05-2019,5,1
+2,14,0,Design the layout (Sample),,1,,17-04-2019,06-05-2019,07-05-2019,12,2,2,2,07-05-2019,12,1
+2,15,0,Fav icon (Sample),,1,,17-04-2019,07-05-2019,07-05-2019,1,3,2,3,07-05-2019,1,1
+2,16,0,Logo Design (Sample),,1,orangescrum-logo.png,17-04-2019,08-05-2019,09-05-2019,15,3,2,0,09-05-2019,12,1
+2,17,0,Maintainnance work (Sample),,1,,17-04-2019,09-05-2019,10-05-2019,4,2,2,1,10-05-2019,5,1
+3,18,0,Designing Global Style Sheets (CSS) Based on agreed to design styling (for one browser – Chrome and desktops) (Sample),,1,,17-04-2019,10-05-2019,13-05-2019,12,2,2,2,13-05-2019,2,1
+3,19,0,Home Page Development and Coding (Sample),,1,,17-04-2019,13-05-2019,15-05-2019,16,5,2,3,15-05-2019,14,1
+3,20,0,Inner Page Development and Coding (Sample),,1,,17-04-2019,15-05-2019,20-05-2019,32,5,2,0,20-05-2019,40,1
+3,21,0,Slice all of your PSD Designs (PSD = Photoshop Designs) (Sample),,1,,17-04-2019,20-05-2019,22-05-2019,12,5,2,1,22-05-2019,10,1
+3,22,0,"Install Database, WP, Etc. (Sample)",,1,,17-04-2019,23-05-2019,23-05-2019,2,5,2,2,23-05-2019,4,1
+4,23,0,Review Site Settings (Sample),,1,,17-04-2019,23-05-2019,23-05-2019,2,2,2,0,23-05-2019,4,1
+4,24,0,Site Review (Sample),,1,,17-04-2019,24-05-2019,27-05-2019,16,2,2,1,27-05-2019,18,1
+4,25,0,Testing overall part (Sample),,1,,17-04-2019,27-05-2019,04-06-2019,40,2,2,2,04-06-2019,35,1
+4,26,25,Test Footer (Sample),,1,,17-04-2019,04-06-2019,05-06-2019,6,2,5,1,05-06-2019,8,1
+4,27,25,Test Forms (Sample),,1,,17-04-2019,06-06-2019,07-06-2019,8,2,5,1,07-06-2019,8,1
+4,28,25,Test Functionality (Sample),,1,,17-04-2019,10-06-2019,10-06-2019,6,2,5,1,10-06-2019,10,1
+4,29,25,Test Header (Sample),,1,,17-04-2019,11-06-2019,11-06-2019,4,2,5,1,11-06-2019,6,1
+4,30,25,Test Links (Sample),,1,,17-04-2019,12-06-2019,12-06-2019,8,1,5,1,12-06-2019,0,
+4,31,25,Test Social Links (Sample),,1,,17-04-2019,13-06-2019,13-06-2019,8,1,5,1,13-06-2019,0,
+5,32,0,"Redesign the website for all browsers (IE, Firefox, Safari, etc.) (Sample)",,1,,17-04-2019,17-06-2019,18-06-2019,16,1,2,2,18-06-2019,0,
+5,33,0,"Redesign the website for Responsiveness (Mobile Devises, Tablets, etc) (Sample)",,1,,17-04-2019,19-06-2019,21-06-2019,24,1,2,2,21-06-2019,0,
+6,34,0,Content Creation (Sample),,1,,17-04-2019,24-06-2019,24-06-2019,8,1,2,2,24-06-2019,0,
+6,35,0,Graphics Creation (Sample),,1,,17-04-2019,25-06-2019,26-06-2019,12,1,2,2,26-06-2019,0,
+6,36,0,Marketing (Sample),,1,,17-04-2019,27-06-2019,01-07-2019,24,1,2,2,01-07-2019,0,
+6,37,36,Marketing Calendar (Sample),,1,,17-04-2019,02-07-2019,02-07-2019,4,1,2,2,02-07-2019,0,
+6,38,36,Marketing Images Designed for Social Promotions of the New Website Launch (Sample),,1,,17-04-2019,03-07-2019,04-07-2019,12,1,2,2,04-07-2019,0,
+6,39,36,Social Marketing Promotions (Sample),,1,,17-04-2019,05-07-2019,05-07-2019,8,1,2,2,05-07-2019,0,
+6,40,0,Promotion (Sample),,1,,17-04-2019,08-07-2019,08-07-2019,6,1,2,2,08-07-2019,0,
+6,41,0,Reporting (Sample),,1,,17-04-2019,09-07-2019,10-07-2019,12,1,2,2,10-07-2019,0,
+7,42,0,Change DNS Links (Sample),,1,,17-04-2019,11-07-2019,11-07-2019,1,1,2,2,11-07-2019,0,
+7,43,0,Client Training (Sample),,1,,17-04-2019,11-07-2019,12-07-2019,8,1,2,2,12-07-2019,0,
+7,45,0,Move Files into Live Server Environment (Sample),,1,,17-04-2019,15-07-2019,15-07-2019,4,1,9,3,15-07-2019,0,
+7,46,0,Prep Server for Go Live (Sample),,1,,17-04-2019,16-07-2019,16-07-2019,4,1,2,3,16-07-2019,0,
+8,47,0,Enhancing Security for Forms as Requested (Sample),,1,,17-04-2019,17-07-2019,17-07-2019,6,1,2,3,17-07-2019,0,
+8,48,0,Final Site Cross Browser Audit (Sample),,1,,17-04-2019,18-07-2019,18-07-2019,8,1,2,3,18-07-2019,0,
+8,49,0,Forms Testing (Sample),,1,,17-04-2019,19-07-2019,19-07-2019,2,1,5,3,19-07-2019,0,
+8,50,0,Full Site Errors Report and Corrections (Sample),,1,,17-04-2019,22-07-2019,23-07-2019,12,1,2,3,23-07-2019,0,
+8,51,0,Mobile Responsive Audit (Sample),,1,,17-04-2019,24-07-2019,24-07-2019,4,1,2,3,24-07-2019,0,
+8,52,0,"Promote Site Launch on (Social Media, Blogs, Email Newsletters, etc) (Sample)",,1,,17-04-2019,25-07-2019,25-07-2019,8,1,2,3,25-07-2019,0,
+8,53,0,"Provide Hosting, Support, Upgrades as Needed, Maintenance (Sample)",,1,,17-04-2019,26-07-2019,29-07-2019,16,1,2,3,29-07-2019,0,
+8,54,0,Submission of Site to Search Engines (Sample),,1,,17-04-2019,30-07-2019,30-07-2019,8,1,2,3,30-07-2019,0,
+8,55,0,Webmaster Reviews (Sample),,1,,17-04-2019,31-07-2019,31-07-2019,2,1,2,3,31-07-2019,0,
+9,56,0,Image Optimization (Sample),,1,,17-04-2019,31-07-2019,31-07-2019,3,1,2,3,31-07-2019,0,
+9,57,0,On Page SEO (Sample),,1,,17-04-2019,01-08-2019,01-08-2019,8,1,2,3,01-08-2019,0,
+9,58,0,URL Optimization (Sample),,1,,17-04-2019,02-08-2019,02-08-2019,4,1,2,3,02-08-2019,0,
+2,6,0,Blog Roll and Blog Post Design V1 (Sample),"Important Note - Make the design very simple and high readable
+Use maximum 3 colours
+Use vector icons, if required",2,,23-04-2019,,,0,1,2,3,,,
+0,2,0,Stakeholders Meeting Internally,"Agenda-
+Finalyze the scope
+Milestone defined
+Delivery date finalize",2,,24-04-2019,,,0,1,2,3,,,
+2,6,0,Blog Roll and Blog Post Design V1,"Ok, sure",2,,23-04-2019,,,0,1,2,3,,,

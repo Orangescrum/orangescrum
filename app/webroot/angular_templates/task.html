@@ -1,0 +1,597 @@
+<style>
+    @-webkit-keyframes placeHolderShimmer {0% {background-position: -468px 0}100% {background-position: 468px 0}}
+    @keyframes placeHolderShimmer {0% {background-position: -468px 0}100% {background-position: 468px 0}}
+    .timeline-wrapper {background-color: #e9eaed;color: #141823;padding: 20px;border-bottom: 1px solid #ccc;}
+    .timeline-item {background: #fff;border: 1px solid;border-color: #e5e6e9 #dfe0e4 #d0d1d5;border-radius: 3px;padding: 12px;margin: 0 auto;max-width: 472px;min-height: 200px;}
+    .animated-background {-webkit-animation-duration: 1s;animation-duration: 1s;-webkit-animation-fill-mode: forwards;animation-fill-mode: forwards;-webkit-animation-iteration-count: infinite;animation-iteration-count: infinite;-webkit-animation-name: placeHolderShimmer;animation-name: placeHolderShimmer;-webkit-animation-timing-function: linear;animation-timing-function: linear;background: #f6f7f8;background: #eeeeee;background: -webkit-gradient(linear, left top, right top, color-stop(8%, #eeeeee), color-stop(18%, #dddddd), color-stop(33%, #eeeeee));background: -webkit-linear-gradient(left, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);-webkit-background-size: 800px 104px;background-size: 800px 104px;height: 50px;position: relative;}
+    .background-masker {background: #fff;position: absolute;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;}	
+    .outlined .background-masker {border: 1px solid #ddd;}
+    .outlined:hover .background-masker {border: none;}
+    .outlined:hover .background-masker:hover { border: 1px solid #ccc; z-index: 1;}
+    .background-masker.header-top,.background-masker.header-bottom,.background-masker.subheader-bottom {top: 0;left: 40px;right: 0;height: 10px;}
+    .background-masker.header-left,.background-masker.subheader-left,.background-masker.header-right,.background-masker.subheader-right {top: 10px;left: 40px;height: 8px;width: 10px;}
+    .background-masker.header-bottom {top: 18px;height: 6px;}
+    .background-masker.subheader-left,.background-masker.subheader-right {top: 24px;height: 6px;}
+    .background-masker.subheader-right {left: 230px;}
+    .background-masker.subheader-bottom {top: 30px;height: 10px;}
+    .background-masker.content-top{top: 40px;left: 0;right: 0;height: 6px;}
+    .background-masker.content-top {height: 20px;}
+    .tmpl-tab{padding:2px 5px; margin-left:10px; font-size:12px; line-height:24px;color:#727270; background:#E4E4E4;}
+    .tmpl-tab:hover,.tmpl-tab.active{color:#2d6dc4; text-decoration: none;}
+    .overflow_table{overflow-x:auto}
+    .overflow_table > table{white-space: nowrap;}
+    .overflow_table > table tr td.dotted_width{max-width:200px;overflow:hidden;text-overflow:ellipsis}
+    .message-width{max-width: 350px;white-space: nowrap;overflow: hidden; text-overflow: ellipsis;}
+	.task_listing table.table th a.sortcaseno{min-width: 30px;display: block;}
+</style>
+<div id="caseViewSpanUnclick" class="task_section" style="display: block;">
+    <div id="caseViewDetails" style="display:none"></div>
+    <div id="caseViewSpan_angular" style="display: block;">
+          <div class="task_listing">
+            <div id="widgethideshow" class="fl task-list-progress-bar fix-status-widget" style="display: block;"> 
+                <span id="task_count_of" style="float:left;display:block;"></span>
+                <span id="task_view_types" style="float:right;display:block;margin-top:-4px">
+                    <ul class="new_icon_on_list_top">       
+                        <li>        
+                            <a class="" href="{{HTTP_ROOT}}dashboard#calendar" onclick="trackEventLeadTracker('Top Right Change View','Calendar View','');return calendarView('calendar');">         
+                                <span title="Calendar" rel="tooltip"><i class="material-icons">&#xE916;</i></span> 
+                            </a>
+                        </li>
+                        <li>
+                            <a class="" href="{{HTTP_ROOT}}dashboard#kanban" onclick="trackEventLeadTracker('Top Right Change View','kanban View','');return checkHashLoad('kanban');"> 
+                                <span id="kbview_btn" class="" title="Kanban" rel="tooltip"><i class="material-icons">&#xE8F0;</i></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="" href="{{HTTP_ROOT}}dashboard#taskgroup" onclick="trackEventLeadTracker('Top Right Change View','Task Group View','');"> 
+                                <span title="Task Group" rel="tooltip"><i class="material-icons">&#xE065;</i></span> 
+                            </a>
+                        </li>
+                        <li>
+                            <a class="" href="javascript:void(0);" ng-click="fetchTask('','',1);">
+                                    <span title="Reload" rel="tooltip"><i class="material-icons">&#xE5D5;</i></span>
+                            </a>
+                        </li>
+                    </ul>
+                </span>
+                <div class="nav_hide_fields">
+                    <i class="material-icons non_visible_icon">&#xE8F5;</i>
+                    Hide Fields
+                    <div class="fileds_dropdown">
+                        <!--<div class="form-group label-floating is-empty">
+                            <label class="control-label" for="find_fld">
+                                Find Fields</label>
+                            <input class="form-control" id="find_fld" type="text">
+                            <span class="material-input"></span>
+                        </div>-->
+                        <ul>
+                            <li>        
+                                <label class="switch">
+                                    <input type="checkbox" ng-model="tb.title" ng-click="setLocalStorage('title', tb.title);">
+                                    <span class="slider round"></span>
+                                </label>
+                                Title
+                            </li>
+                            <li>        
+                                <label class="switch">
+                                    <input type="checkbox" ng-model="tb.message" ng-click="setLocalStorage('message', tb.message);">
+                                    <span class="slider round"></span>
+                                </label>
+                                Message
+                            </li>
+                            <li>
+                                <label class="switch">
+                                    <input type="checkbox" ng-model="tb.assign" ng-click="setLocalStorage('assign', tb.assign);">
+                                    <span class="slider round"></span>
+                                </label>
+                                Assigned to
+                            </li>
+                            <li>
+                                <label class="switch">
+                                    <input type="checkbox" ng-model="tb.priority" ng-click="setLocalStorage('priority', tb.priority);">
+                                    <span class="slider round"></span>
+                                </label>
+                                Priority
+                            </li>
+                            <li>
+                                <label class="switch">
+                                    <input type="checkbox" ng-model="tb.updates"  ng-click="setLocalStorage('updates', tb.updates);">
+                                    <span class="slider round"></span>
+                                </label>
+                                Updated
+                            </li>
+                            <li>
+                                <label class="switch">
+                                    <input type="checkbox" ng-model="tb.gantt_start_date"  ng-click="setLocalStorage('gantt_start_date', tb.gantt_start_date);">
+                                    <span class="slider round"></span>
+                                </label>
+                                Start Date
+                            </li>
+                            <li>
+                                <label class="switch">
+                                    <input type="checkbox" ng-model="tb.est_hrs"  ng-click="setLocalStorage('est_hrs', tb.est_hrs);">
+                                    <span class="slider round"></span>
+                                </label>
+                                Est Hr
+                            </li>
+                            <li>
+                                <label class="switch">
+                                    <input type="checkbox" ng-model="tb.client_status"  ng-click="setLocalStorage('client_status', tb.client_status);">
+                                    <span class="slider round"></span>
+                                </label>
+                                Client Access
+                            </li>
+                            <li>
+                                <label class="switch">
+                                    <input type="checkbox" ng-model="tb.status" ng-click="setLocalStorage('status', tb.status);">
+                                    <span class="slider round"></span>
+                                </label>
+                                Status
+                            </li>
+                            <li>
+                                <label class="switch">
+                                    <input type="checkbox" ng-model="tb.duedate" ng-click="setLocalStorage('duedate', tb.duedate);">
+                                    <span class="slider round"></span>
+                                </label>
+                                Due Date
+                            </li>
+                        </ul>
+                        <div class="hs_all"> 
+                            <span ng-click="showAllColumn();" style="float:left">Show all</span>
+							<span ng-click="defaultColumn();" style="float:right">Set Default</span>
+							<div class="cb"></div>
+                        </div>
+                    </div>
+                </div>
+                <span id="ajaxCaseStatus" style="float:right;"></span>
+                <div class="cb"></div>
+            </div>
+            <div class="cb"></div>
+            <div class="task-m-overflow overflow_table">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th class="porl checkbox_th">
+                    <div class="pr">
+                        <div class="checkbox">
+                            <label>
+                                  <input type="checkbox" value="" class="chkAllTsk" id="chkAllTsk">
+                            </label>
+                          </div>
+                        <div class="drop_th_ttl"> 
+                            <span class="dropdown custom_th_drdown">                                         
+                                <a class="dropdown-toggle mass_action_dpdwn" data-toggle="" href="javascript:void(0);">
+                                    <i title="Choose at least one task" rel="tooltip" class="material-icons custom-dropdown">&#xE5C5;</i> 
+                                </a> 
+                                <ul class="dropdown-menu" id="dropdown_menu_chk">  
+                                    <li> 
+                                        <a href="javascript:void(0);" ng-click="multipleCaseAction('caseNew')"><i class="material-icons">&#xE166;</i>New</a>
+                                    </li> 
+                                    <li>     
+                                        <a href="javascript:void(0);" ng-click="multipleCaseAction('caseStart')"><i class="material-icons">&#xE039;</i>Start</a> 
+                                    </li>
+                                    <li>   
+                                        <a href="javascript:void(0);" ng-click="multipleCaseAction('caseResolve')"><i class="material-icons">&#xE889;</i>Resolve</a> 
+                                    </li>                                         
+                                    <li>                                                 
+                                        <a href="javascript:void(0);" ng-click="multipleCaseAction('caseId')"><i class="material-icons">&#xE5CD;</i>Close</a>
+                                    </li>                                                                                           
+                                    <li ng-if="SES_TYPE==1 || SES_TYPE==2">                                                 
+                                        <a href="javascript:void(0);" ng-click="archiveCase('all')"><i class="material-icons">&#xE149;</i>Archive</a> 
+                                    </li>           
+                                    <li ng-if="SES_TYPE==1 || SES_TYPE==2">                                                 
+                                        <a href="javascript:void(0);" ng-click="ajaxassignAllTaskToUser('movetop');"><i class="material-icons">&#xE7FD;</i>Assign task(s) to user</a>  
+                                    </li>                                         
+                                    <li id="mvTaskToProj" ng-if="SES_TYPE==1 || SES_TYPE==2">    
+                                        <a href="javascript:void(0);" ng-click="mvtoProject(' ',' ','movetop')"><i class="material-icons">&#xE8D4;</i>Move to project</a>     
+                                    </li>                                        
+                                    <li id="cpTaskToProj" ng-if="SES_TYPE==1 || SES_TYPE==2">     
+                                        <a href="javascript:void(0);" ng-click="cptoProject(' ',' ','movetop')"><i class="material-icons">&#xE14D;</i>Copy to Project</a>  
+                                    </li>                                         
+                                    <li id="crtProjTmpl" ng-if="SES_TYPE==1 || SES_TYPE==2">                                                        
+                                        <a href="javascript:void(0);" ng-click="createPojectTemplate(' ',' ','movetop')"><i class="material-icons">&#xE8F1;</i>Create Project Template</a>
+                                    </li>                                                                                 
+                                </ul>                                 
+                            </span> 
+                        </div>
+                    </div>
+                    </th>
+                    <th class="caseno_th"> 
+                        <a href="javascript:void(0);" title="Task#" ng-click="ajaxSorting('caseno', totalItems, $event);" class="sortcaseno">#
+                            <span class="sorting_arw">
+                                <span ng-if="res.csNum">
+                                    <i ng-if="res.csNum == 'asc'" class="material-icons tsk_asc">&#xE5CE;</i>
+                                    <i ng-if="res.csNum != 'asc'" class="material-icons tsk_desc">&#xE5CF;</i>
+                                </span>
+                                <span ng-if="!res.csNum"><i class="material-icons">&#xE164;</i></span>
+                            </span>
+                        </a> 
+                    </th>
+                    <th ng-if="tb.title" class="casetitle_th"> 
+                        <a class="sorttitle" href="javascript:void(0);" title="Title" ng-click="ajaxSorting('title', totalItems, $event);">Title
+                            <span class="sorting_arw">
+                                <span ng-if="res.csTtl">
+                                    <i ng-if="res.csTtl == 'asc'" class="material-icons tsk_asc">&#xE5CE;</i>
+                                    <i ng-if="res.csTtl != 'asc'" class="material-icons tsk_desc">&#xE5CF;</i>
+                                </span>
+                                <span ng-if="!res.csTtl"><i class="material-icons">&#xE164;</i></span>
+                            </span>
+                        </a> 
+                    </th>
+                    <th></th>
+                    <th ng-if="tb.message">Message</th>
+                    <th class="width_assign" ng-if="tb.assign"> 
+                        <a class="sortcaseAt" href="javascript:void(0);" title="Assigned to" ng-click="ajaxSorting('caseAt', totalItems, $event);">Assigned to
+                            <span class="sorting_arw">
+                                <span ng-if="res.csAtSrt">
+                                    <i ng-if="res.csAtSrt == 'asc'" class="material-icons tsk_asc">&#xE5CE;</i>
+                                    <i ng-if="res.csAtSrt != 'asc'" class="material-icons tsk_desc">&#xE5CF;</i>
+                                </span>
+                                <span ng-if="!res.csAtSrt"><i class="material-icons">&#xE164;</i></span>
+                            </span>
+                        </a> 
+                    </th>
+                    <th class="width_priority text-left" ng-if="tb.priority"> 
+                        <a class="sortpriority" href="javascript:void(0);" title="Priority" ng-click="ajaxSorting('priority', totalItems, $event);">Priority
+                            <span class="sorting_arw">
+                                <span ng-if="res.csPriSrt">
+                                    <i ng-if="res.csPriSrt == 'asc'" class="material-icons tsk_asc">&#xE5CE;</i>
+                                    <i ng-if="res.csPriSrt != 'asc'" class="material-icons tsk_desc">&#xE5CF;</i>
+                                </span>
+                                <span ng-if="!res.csPriSrt"><i class="material-icons">&#xE164;</i></span>
+                            </span>
+                        </a> 
+                    </th>
+                    <th class="width_update text-left" ng-if="tb.updates"> 
+                        <a class="sortupdated" href="javascript:void(0);" title="Updated" ng-click="ajaxSorting('updated', totalItems, $event);">Updated
+                            <span class="sorting_arw">
+                                <span ng-if="res.csUpdatSrt">
+                                    <i ng-if="res.csUpdatSrt == 'asc'" class="material-icons tsk_asc">&#xE5CE;</i>
+                                    <i ng-if="res.csUpdatSrt != 'asc'" class="material-icons tsk_desc">&#xE5CF;</i>
+                                </span>
+                                <span ng-if="!res.csUpdatSrt"><i class="material-icons">&#xE164;</i></span>
+                            </span>
+                        </a>
+                    </th>
+                    <th class="width_update text-left" ng-if="tb.gantt_start_date">Start Date</th>
+                    <th class="width_update text-left" ng-if="tb.est_hrs">Est Hr</th>
+                    <th class="width_update text-left" ng-if="tb.client_status">Client Access</th>
+                    <th class="width_status text-left" ng-if="tb.status"> Status </th>
+                    <th class="tsk_due_dt" ng-if="tb.duedate"> 
+                        <a class="sortduedate" href="javascript:void(0);" title="Due Date" ng-click="ajaxSorting('duedate', totalItems, $event);">Due Date
+                            <span class="sorting_arw">
+                                <span ng-if="res.csDuDt">
+                                    <i ng-if="res.csDuDt == 'asc'" class="material-icons tsk_asc">&#xE5CE;</i>
+                                    <i ng-if="res.csDuDt != 'asc'" class="material-icons tsk_desc">&#xE5CF;</i>
+                                </span>
+                                <span ng-if="!res.csDuDt"><i class="material-icons">&#xE164;</i></span>
+                            </span>
+                        </a>
+                    </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="qtask quicktsk_tr_lnk">
+                            <td colspan="10">
+                                <div class="new_qktask_mc">
+                                    <div class="new_grp_tsk" id="new_task_label" style="width: 130px;">
+                                        <a href="javascript:void(0)" class="cmn-bxs-btn"><i class="material-icons">&#xE145;</i>Quick Task</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="quicktsk_tr">
+                            <td colspan="5">
+                            <div class="form-group label-floating">
+                              <div class="input-group">
+                                    <label class="control-label" for="addon3a">Task Title</label>
+                                    <input class="form-control" type="text" ng-model="qkname" maxlength="240" id="inline_qktask_angular" ng-keypress="($event.charCode==13)? AddQuickTask() : return" ng-blur="blurqktask();">
+                                    <span class="input-group-btn">
+                                      <button type="button" class="btn btn-fab btn-fab-mini quick-send-icon" ng-click="setSessionStorage('Task List Quick Task', 'Create Task'); AddQuickTask(); trackEventWithIntercom('quick task' ,'' );" title="Post Task">
+                                            <i class="material-icons qk_send_icon_angular" style="{{(qkname)?'color:#2983FD':'color:#BDBDBD'}}">send</i>
+                                      </button>
+                                    </span>
+                              </div>
+                            </div>
+                            </td>
+                           <td colspan="8"></td>
+                        </tr>
+                        <!--#########################################
+                            ############# Repeat start ##############
+                            ######################################### -->
+                        <tr ng-show="!res" class="timeline-wrapper" ng-repeat="all in [1,2,3,4,5]" >
+                            <td class="timeline-item" colspan="13">
+                              <div class="animated-background facebook">
+                                <div class="background-masker header-top"></div>
+                                <div class="background-masker header-left"></div>
+                                <div class="background-masker header-bottom"></div>
+                                <div class="background-masker subheader-left"></div>
+                                <div class="background-masker subheader-bottom"></div>
+                                <div class="background-masker content-top"></div>
+                              </div>
+                            </td>
+                        </tr>
+                        <tr class="empty_task_tr" ng-show="res.caseCount == 0">
+                               <td colspan="13" align="center">No Tasks</td>
+                        </tr>
+                         <tr class="list-dt-row" dir-paginate-start="caseValue in res.caseAll | itemsPerPage:30" total-items="totalItems" ng-show="caseValue.Easycase.newActuldt && caseValue.Easycase.newActuldt!=0" >
+                            <td colspan="13" align="left" class="curr_day" ng-if="res.projUniq !='all' || res.groupby =='milestone'">
+                                <div ng-class="(($index+1)!=1 && !caseValue.Easycase.pjname)?'dt_cmn_mc y_day':'dt_cmn_mc'"> <span>{{caseValue.Easycase.newActuldt}}</span></div>
+                            </td>
+                            <td colspan="13" align="left" class="curr_day tkt_pjname" ng-if="res.projUniq=='all' && res.groupby !='milestone'">
+								<div ng-class="(($index+1)!=1)?'y_day':''"><span>{{caseValue.Easycase.pjname}}</span></div>
+							</td>
+                        </tr>  
+						 <!--#########################################
+                            ############# Repeat End   ##############
+                            ######################################### -->  
+                        <tr class="row_tr tr_all trans_row"  dir-paginate-end="caseValue in res.caseAll | itemsPerPage:30 track by caseValue.Easycase.id" total-items="totalItems" id="curRow{{caseValue.Easycase.id}}" on-finish-render="checkboxInitialize();">                                                   
+                            <td class="check_list_task tsk_fst_td pr_{{getPriority(caseValue.Easycase.priority)}}">                                
+                                 <div class="checkbox">
+                                    <label>   
+                                      <input type="checkbox" style="cursor:pointer" data_uniq_id="{{caseValue.Easycase.uniq_id}}" id="actionChk{{$index+1}}" value="{{caseValue.Easycase.id + '|'+ caseValue.Easycase.case_no + '| '+ getCld(caseValue.Easycase) }}" ng-disabled="getCld(caseValue.Easycase) != caseValue.Easycase.uniq_id" ng-checked="getCld(caseValue.Easycase) != caseValue.Easycase.uniq_id" class="fl mglt chkOneTsk"><span class="checkbox-material"><span class="check"></span></span>
+                                    </label>
+                                </div>
+                                <input type="hidden" id="actionCls{{$index+1}}" value="{{caseValue.Easycase.legend}}" disabled="disabled" size="2" /> 
+                            </td>
+                            <td class="text-left count-plist-drop pr">{{caseValue.Easycase.case_no}}
+                                <div class="check-drop-icon">
+                                    <div class="dropdown">
+                                        <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0);" data-target="#"><i class="material-icons">&#xE5D4;</i> </a>
+                                        <ul class="dropdown-menu">
+                                            <li ng-if="caseValue.Easycase.isactive == 1" ng-click="actiononTask(caseValue.Easycase.id,caseValue.Easycase.case_no,caseValue.Easycase.uniq_id,'new',$index);" id="new{{caseValue.Easycase.id}}" style="{{(caseValue.Easycase.legend != 1 && caseValue.Easycase.type_id != 10)?'display:block':'display:none'}}"><a href="javascript:void(0);"><i class="material-icons">&#xE166;</i>New</a></li>
+                                            <li ng-if="caseValue.Easycase.isactive == 1" ng-click="actiononTask(caseValue.Easycase.id,caseValue.Easycase.case_no,caseValue.Easycase.uniq_id,'start',$index);" id="start{{caseValue.Easycase.id}}" style="{{((caseValue.Easycase.legend != 2 && caseValue.Easycase.legend != 4) && caseValue.Easycase.type_id != 10)?'display:block':'display:none'}}"><a href="javascript:void(0);"><i class="material-icons">&#xE039;</i>{{(caseValue.Easycase.legend == 1)?'Start':'In Progress'}}</a></li>
+                                            <li ng-if="caseValue.Easycase.isactive == 1" ng-click="actiononTask(caseValue.Easycase.id,caseValue.Easycase.case_no,caseValue.Easycase.uniq_id,'resolve',$index);" id="resolve{{caseValue.Easycase.id}}" style="{{((caseValue.Easycase.legend != 5) && caseValue.Easycase.type_id != 10)?'display:block':'display:none'}}"><a href="javascript:void(0);"><i class="material-icons">&#xE889;</i>Resolve</a></li>
+                                            <li ng-if="caseValue.Easycase.isactive == 1" ng-click="actiononTask(caseValue.Easycase.id,caseValue.Easycase.case_no,caseValue.Easycase.uniq_id,'close',$index);" id="close{{caseValue.Easycase.id}}" style="{{((caseValue.Easycase.legend != 3) && caseValue.Easycase.type_id != 10)?'display:block':'display:none'}}"><a href="javascript:void(0);"><i class="material-icons">&#xE876;</i>Close</a></li>
+                                            
+                                            <li ng-if="USER_SUB_NOW != CURRENT_EXPIRED_PLAN" ng-click="setSessionStorage('Task List Page', 'Time Log');createlog(caseValue.Easycase.id,caseValue.Easycase.title,$index);"><a href="javascript:void(0);"><i class="material-icons">&#xE192;</i>Time Entry</a></li>
+                                            <li ng-if="USER_SUB_NOW != CURRENT_EXPIRED_PLAN && caseValue.Easycase.legend !=3 && caseValue.Easycase.legend != 10" ng-click="setSessionStorage('Task List Page','Start Timer');startTimer(caseValue.Easycase.id,caseValue.Easycase.title, caseValue.Easycase.uniq_id ,caseValue.Easycase.pjUniqid,caseValue.Easycase.pjname); trackEventWithIntercom('timer','');"><a href="javascript:void(0);"><i class="material-icons">&#xE425;</i>Start Timer</a></li>
+                                            <li ng-if="caseValue.Easycase.isactive == 1" id="act_reply{{$index+1}}" data-task="{{caseValue.Easycase.uniq_id}}" page-refer-val="Task List Page"><a href="javascript:void(0);" id="reopen{{caseValue.Easycase.id}}" style="{{(caseValue.Easycase.legend == 3)?'display:block':'display:none'}}"><div class="act_icon act_reply_task fl" title="Re-open"></div><i class="material-icons">&#xE898;</i> Re-open</a>
+                                                <a href="javascript:void(0);" id="reply{{caseValue.Easycase.id}}" style="{{(caseValue.Easycase.legend != 3)?'display:block':'display:none'}}"><i class="material-icons">&#xE15E;</i>Reply</a></li>
+                                            <li ng-if="showQuickActiononList(caseValue.Easycase) == 1"  ng-click="editask(caseValue.Easycase.uniq_id,caseValue.Easycase.pjUniqid,caseValue.Easycase.pjname,$index);" id="edit{{caseValue.Easycase.id}}" style="{{(showQuickActiononList(caseValue.Easycase))?'display:block':'display:none'}}"><a href="javascript:void(0);"><i class="material-icons">&#xE254;</i>Edit</a></li>
+                                            <li ng-if="showQuickActiononList(caseValue.Easycase) == 1" ng-click="copytask(caseValue.Easycase.uniq_id,caseValue.Easycase.id,caseValue.Easycase.case_no,caseValue.Easycase.project_id,caseValue.Easycase.pjname,$index);" id="copy{{caseValue.Easycase.id}}" style="{{(showQuickActiononList(caseValue.Easycase))?'display:block':'display:none'}}"><a href="javascript:void(0);"><i class="material-icons">&#xE14D;</i>Copy</a></li>
+                                            <li ng-if="(SES_TYPE == 1 || SES_TYPE == 2) || ((caseValue.Easycase.legend == 1 || caseValue.Easycase.legend == 2 || caseValue.Easycase.legend == 4) &&  (SES_ID == caseValue.Easycase.user_id)) && caseValue.Easycase.isactive == 1" data-prjid="{{caseValue.Easycase.project_id}}" data-caseid="{{caseValue.Easycase.id}}" data-caseno="{{caseValue.Easycase.case_no}}"  id="mv_prj{{caseValue.Easycase.id}}" style=" " ng-click="mvtoProject(($index+1),$event);"><a href="javascript:void(0);"><i class="material-icons">&#xE8D4;</i>Move to Project</a></li>
+<!--                                            <li ng-if="((SES_TYPE == 1 || SES_TYPE == 2) || ((caseValue.Easycase.legend == 1 || caseValue.Easycase.legend == 2 || caseValue.Easycase.legend == 4) &&  (SES_ID == caseValue.Easycase.user_id))) && caseValue.Easycase.isactive == 0" data-prjid="{{caseValue.Easycase.project_id}}" data-caseid="{{caseValue.Easycase.id}}" data-caseno="{{caseValue.Easycase.case_no}}"  id="mv_prj{{caseValue.Easycase.id}}" style=" "><a ng-click="restoreFromTask(caseValue.Easycase.id,caseValue.Easycase.project_id,caseValue.Easycase.case_no)" href="javascript:void(0);"><i class="material-icons">&#xE8B3;</i>Restore</a></li>
+                                            <li ng-if="((SES_TYPE == 1 || SES_TYPE == 2) || ((caseValue.Easycase.legend == 1 || caseValue.Easycase.legend == 2 || caseValue.Easycase.legend == 4) &&  (SES_ID == caseValue.Easycase.user_id))) && caseValue.Easycase.isactive == 0" data-prjid="{{caseValue.Easycase.project_id}}" data-caseid="{{caseValue.Easycase.id}}" data-caseno="{{caseValue.Easycase.case_no}}"  id="mv_prj{{caseValue.Easycase.id}}" style=" "><a ng-click="removeFromTask(caseValue.Easycase.id,caseValue.Easycase.project_id,caseValue.Easycase.case_no,$index)" href="javascript:void(0);"><i class="material-icons">&#xE15C;</i>Remove</a></li>-->
+                                            <li ng-if="caseValue.Easycase.isactive == 1" ng-click="moveTask(caseValue.Easycase.id,caseValue.Easycase.case_no,'',caseValue.Easycase.project_id);" id="moveTask{{caseValue.Easycase.id}}" style="{{((caseValue.Easycase.legend == 1 || caseValue.Easycase.legend == 2 || caseValue.Easycase.legend == 4) && caseValue.Easycase.type_id != 10)?'display:block':'display:block'}}"><a href="javascript:void(0);"><i class="material-icons">&#xE89F;</i>Move to Task Group</a></li>
+                                            <li ng-if="getdata.Easycase.milestone_id" ng-click="removeTask(caseValue.Easycase.id,caseValue.Easycase.case_no,'',caseValue.Easycase.project_id);" id="moveTask{{caseValue.Easycase.id}}" style="{{((caseValue.Easycase.legend == 1 || caseValue.Easycase.legend == 2 || caseValue.Easycase.legend == 4) && caseValue.Easycase.type_id != 10)?'display:block':'display:block' }}"><a href="javascript:void(0);"><i class="material-icons">&#xE15C;</i>Remove from Task Group</a></li>
+                                            <li ng-if="caseValue.Easycase.isactive == 1 && res.caseMenuFilters == 'milestone' && (SES_TYPE == 1 || SES_TYPE == 2 || SES_ID == caseValue.Easycase.Em_user_id)" ng-click="removeThisCase(($index+1),caseValue.Easycase.Emid,caseValue.Easycase.id,caseValue.Easycase.Em_milestone_id,caseValue.Easycase.case_no,caseValue.Easycase.user_id);" id="rmv{{caseValue.Easycase.id}}" style="display:block"><a href="javascript:void(0);"><i class="material-icons">&#xE15C;</i>Remove Task</a></li>
+                                            <li ng-if="caseValue.Easycase.isactive == 1" ng-click="archiveCase(caseValue.Easycase.id,caseValue.Easycase.case_no,caseValue.Easycase.project_id,caseValue.Easycase.uniq_id,$parent.$index);" id="arch{{caseValue.Easycase.id}}" style="{{(SES_TYPE == 1 || SES_TYPE == 2 || (SES_ID == caseValue.Easycase.user_id))?'display:block':'display:none'}}"><a href="javascript:void(0);"><i class="material-icons">&#xE149;</i>Archive</a></li>
+                                            <li ng-if="caseValue.Easycase.isactive == 1" ng-click="deleteCase(caseValue.Easycase.id,caseValue.Easycase.case_no,caseValue.Easycase.project_id,'t_' + caseValue.Easycase.uniq_id,caseValue.Easycase.is_recurring,$parent.$index);" id="arch{{caseValue.Easycase.Emid}}" style="{{(SES_TYPE == 1 || SES_TYPE == 2 || (SES_ID == caseValue.Easycase.user_id))?'display:block':'display:none'}}"><a href="javascript:void(0);"><i class="material-icons">&#xE872;</i>Delete</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="relative list-cont-td" ng-if="tb.title">
+                                <a href="javascript:void(0);" class="ttl_listing" data-task-id="{{caseValue.Easycase.uniq_id}}"> 
+                                    <span id="titlehtml{{$index+1}}" data-task="{{caseValue.Easycase.uniq_id}}" ng-class="(caseValue.Easycase.type_id!=10 && caseValue.Easycase.legend==3)? 'case-title closed_tsk case_title_'+caseValue.Easycase.id : 'case-title case_title_'+caseValue.Easycase.id" ng-click="saveNgStorage(caseValue.Easycase.id,$index);">      
+                                        <span class="max_width_tsk_title ellipsis-view {{(caseValue.Easycase.legend == 5)?'resolve_tsk':'';}} case_title wrapword task_title_ipad  " title="{{osCommonMethods.formatText(osCommonMethods.ucfirst(caseValue.Easycase.title))}}" ng-bind-html="trustAsHtml(caseValue.Easycase.title)"></span> 
+                                    </span>
+                                </a>
+                                <div class="task_dependancy fr">
+                                    <span ng-if="caseValue.Easycase.children && caseValue.Easycase.children != '' " class="fl case_act_icons task_parent_block" id="task_parent_block_{{caseValue.Easycase.uniq_id}}">
+                                        <div rel="" title="Parents" ng-click="showParents(caseValue.Easycase.id ,caseValue.Easycase.uniq_id ,caseValue.Easycase.children);" class=" task_title_icons_parents fl"></div>
+                                        <div class="dropdown dropup fl1 open1 showParents">
+                                            <ul class="dropdown-menu  bottom_dropdown-caret" style="left: -11px; padding:5px; cursor:default; min-width:250px; max-width:500px;">
+                                                <li class="pop_arrow_new"></li>
+                                                <li class="task_parent_msg" style="">These tasks are waiting on this task.</li>
+                                                <li>
+                                                    <ul class="task_parent_items" id="task_parent_{{caseValue.Easycase.uniq_id}}" style="">
+                                                        <li style="text-align:center;" class="loader"><img src="{{HTTP_ROOT+'img/images/loader1.gif'}}"></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </span>
+                                     <span ng-if="caseValue.Easycase.depends && caseValue.Easycase.depends != '' " class="fl case_act_icons task_dependent_block" id="task_dependent_block_{{caseValue.Easycase.uniq_id}}">
+                                        <div rel="" title="Dependents" ng-click="showDependents(caseValue.Easycase.id ,caseValue.Easycase.uniq_id ,caseValue.Easycase.depends);" class=" task_title_icons_depends fl"></div>
+                                        <div class="dropdown dropup fl1 open1 showDependents">
+                                            <ul class="dropdown-menu  bottom_dropdown-caret" style="left: -11px; padding:5px; cursor:default; min-width:250px; max-width:500px;">
+                                                <li class="pop_arrow_new"></li>
+                                                <li class="task_dependent_msg" style="">Task can't start. Waiting on these task to be completed.</li>
+                                                <li>
+                                                    <ul class="task_dependent_items" id="task_dependent_{{caseValue.Easycase.uniq_id}}" style="">
+                                                        <li style="text-align:center;" class="loader"><img src="{{HTTP_ROOT+'img/images/loader1.gif'}}"></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </span>                                    
+                                </div>
+                                <div class="list-td-hover-cont"> 
+                                    <span class="created-txt">
+                                        {{ (caseValue.Easycase.case_count && caseValue.Easycase.case_count !=0) ? "Updated" : "Created" }} by {{ caseValue.Easycase.usrShortName }} {{ (caseValue.Easycase.updtedCapDt.indexOf('Today')==-1 && caseValue.Easycase.updtedCapDt.indexOf('Y\'day')==-1)?"on":"" }} {{ caseValue.Easycase.updtedCapDt }}
+                                    </span>
+                                    <span class="list-devlop-txt dropdown">    
+                                        <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0);" data-target="#">     
+                                          <i class="material-icons tag_fl">&#xE54E;</i>   
+                                            <span id="showUpdStatus{{ caseValue.Easycase.id}}" ng-class="(showQuickActiononList(caseValue.Easycase)&& caseValue.Easycase.isactive == 1 )?'clsptr':''"  title="{{caseValue.Easycase.csTdTyp[1]}}" >
+                                                <span class="tsktype_colr" id="tsktype{{ caseValue.Easycase.id}}">{{caseValue.Easycase.csTdTyp[1]}}<span class="due_dt_icn"></span></span>
+                                            </span>
+                                             <span class="check-drop-icon dsp-block"><i class="material-icons" style="font-size:24px;">&#xE5C5;</i></span>
+                                        </a>                                         
+                                        <ul ng-if="showQuickActiononList(caseValue.Easycase) && caseValue.Easycase.isactive == 1" class="dropdown-menu listgrp-bug-dropdn">
+                                            <li>
+                                             <input type="text" placeholder="Search" class="searchType" ng-keyup="seachitems($event);" />
+                                            </li>
+                                            <li ng-repeat="v in GLOBALS_TYPE" ng-click="changeCaseType(caseValue.Easycase.id,caseValue.Easycase.case_no); changestatus(caseValue.Easycase.id,v.Type.id, v.Type.short_name,v.Type.name , caseValue.Easycase.uniq_id,$parent.$index )" >
+                                                <a href="javascript:void(0);">
+                                                    <span ng-if="osCommonMethods.txs_typ(v.Type.short_name,v.Type.name,1) == v.Type.name" class="ttl_dd_icn">{{osCommonMethods.txs_typ(v.Type.short_name,v.Type.name,0).charAt(0)}}</span>
+                                                    <span ng-if="osCommonMethods.txs_typ(v.Type.short_name,v.Type.name,1) != v.Type.name"><i class="material-icons"  data-ng-bind-html="osCommonMethods.txs_typ(v.Type.short_name,v.Type.name,1)"></i></span>
+                                                    {{v.Type.name}}
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </span> 
+                                   
+                            
+                            
+                                <a ng-if="caseValue.Easycase.is_recurring == 1 || caseValue.Easycase.is_recurring == 2" rel="tooltip" title="Recurring Task" href="javascript:void(0);" ng-click="showRecurringInfo(caseValue.Easycase.id);" class="recurring-icon"><i class="material-icons">&#xE040;</i></a>
+                                <span class="small-list-devlop-icon">
+                                    <a ng-if="caseValue.Easycase.isactive == 1 && (caseValue.Easycase.legend == 1 || caseValue.Easycase.legend == 2 || caseValue.Easycase.legend == 4) && caseValue.Easycase.type_id != 10" rel="tooltip" title="Resolve" href="javascript:void(0)" ng-click="actiononTask(caseValue.Easycase.id,caseValue.Easycase.case_no,caseValue.Easycase.uniq_id,'resolve',$index);">
+					<i class="material-icons">&#xE889;</i>
+                                    </a>
+                                    <a ng-if="caseValue.Easycase.isactive == 1 && (caseValue.Easycase.legend == 1 || caseValue.Easycase.legend == 2 || caseValue.Easycase.legend == 4 || caseValue.Easycase.legend == 5) && caseValue.Easycase.type_id != 10" href="javascript:void(0)" rel="tooltip" title="Mark as Completed" ng-click="actiononTask(caseValue.Easycase.id,caseValue.Easycase.case_no,caseValue.Easycase.uniq_id,'close',$index);">
+                                        <i class="material-icons">&#xE876;</i>
+                                    </a>
+                                    <span ng-if="USER_SUB_NOW != CURRENT_EXPIRED_PLAN" rel="tooltip" title="Time Entry" ng-click="setSessionStorage('Task List Page', 'Time Log');createlog(caseValue.Easycase.id,caseValue.Easycase.title,$index);" class="case_act_icons task_title_icons_timelog fl"></span>
+                                     <a ng-if="caseValue.Easycase.isactive == 1" href="javascript:void(0);" id="act_reply_spn{{$index+1}}" style="{{(caseValue.Easycase.legend == 3)?'display:inline-block':'display:none' }}" data-task="{{caseValue.Easycase.uniq_id}}" page-refer-val="Task List Page" rel="tooltip" title="Re-open"><i class="material-icons">&#xE898;</i></a>
+                                     <a ng-if="caseValue.Easycase.isactive == 1" href="javascript:void(0);" id="act_reply_spn{{$index+1}}" style="{{(caseValue.Easycase.legend != 3)?'display:inline-block':'display:none' }}" data-task="{{caseValue.Easycase.uniq_id}}" page-refer-val="Task List Page" rel="tooltip" title="Reply"><i class="material-icons">&#xE15E;</i></a>
+                                     <a ng-if="caseValue.Easycase.isactive == 1 && showQuickActiononList(caseValue.Easycase)" href="javascript:void(0)" rel="tooltip" title="Edit" ng-click="editask(caseValue.Easycase.uniq_id,caseValue.Easycase.pjUniqid,caseValue.Easycase.pjname,$index);"><i class="material-icons">&#xE254;</i></a>
+                                     <a ng-if="USER_SUB_NOW != CURRENT_EXPIRED_PLAN" href="javascript:void(0)" rel="tooltip" title="Time Entry" ng-click="setSessionStorage('Task List Page','Time Log');createlog(caseValue.Easycase.id,caseValue.Easycase.title,$index);"><i class="material-icons">&#xE8B5;</i></a>
+                                     <a ng-if="caseValue.Easycase.isactive == 1 && (SES_TYPE == 1 || SES_TYPE == 2 || (SES_ID == caseValue.Easycase.user_id))" href="javascript:void(0)" rel="tooltip" title="Archive" ng-click="archiveCase(caseValue.Easycase.id,caseValue.Easycase.case_no,caseValue.Easycase.project_id,caseValue.Easycase.uniq_id,$parent.$index);"><i class="material-icons">&#xE149;</i></a>
+                                     <a ng-if="caseValue.Easycase.isactive == 1 && (SES_TYPE == 1 || SES_TYPE == 2 || (SES_ID == caseValue.Easycase.user_id))" href="javascript:void(0)" rel="tooltip" title="Delete" ng-click="deleteCase(caseValue.Easycase.id,caseValue.Easycase.case_no,caseValue.Easycase.project_id,'t_' +caseValue.Easycase.uniq_id,caseValue.Easycase.is_recurring,$parent.$index);"><i class="material-icons">&#xE872;</i></a>
+                                </span>
+                                </div>
+                            </td>
+                            <td ng-if="caseValue.Easycase.case_count && caseValue.Easycase.case_count != 0" class="attach-file-comment" data-task="{{caseValue.Easycase.uniq_id}}" id="kanbancasecount{{$index+1}}"style="cursor:pointer;">
+                                <a ng-if="caseValue.Easycase.format != 1 && caseValue.Easycase.format != 3"  href="javascript:void(0);" style="display:none;" id="fileattch{{$index+1}}"> 
+                                <a ng-if="caseValue.Easycase.format == 1 || caseValue.Easycase.format == 3"  href="javascript:void(0);">                                 
+                                        <i class="glyphicon glyphicon-paperclip"></i>
+                                </a>
+                                <span ng-if="caseValue.Easycase.case_count && caseValue.Easycase.case_count != 0">{{caseValue.Easycase.case_count}}</span>
+                                <a href="javascript:void(0)" id="repno{{$index+1}}" style="{{(!caseValue.Easycase.case_count || caseValue.Easycase.case_count==0)?'display:none':''}}"> <i class="material-icons">&#xE0B9;</i> </a>
+                            </td>
+                            <td ng-if="caseValue.Easycase.case_count == 0 || caseValue.Easycase.case_count == '' "  class="attach-file-comment">
+                                <a ng-if="caseValue.Easycase.format != 1 && caseValue.Easycase.format != 3"  href="javascript:void(0);" style="display:none;" id="fileattch{{$index+1}}"> 
+                                <a ng-if="caseValue.Easycase.format == 1 || caseValue.Easycase.format == 3"  href="javascript:void(0);">                                 
+                                        <i class="glyphicon glyphicon-paperclip"></i>
+                                </a>
+                                <span ng-if="caseValue.Easycase.case_count && caseValue.Easycase.case_count != 0">{{caseValue.Easycase.case_count}}</span>
+                                <a href="javascript:void(0)" id="repno{{$index+1}}" style="{{(!caseValue.Easycase.case_count || caseValue.Easycase.case_count==0)?'display:none':''}}"> <i class="material-icons">&#xE0B9;</i> </a>
+                            </td>
+                            <td ng-if="tb.message" ng-bind-html="trustAsHtml(caseValue.Easycase.message)" class="message-width"></td>
+                            <td ng-if="caseValue.Easycase.isactive == 0 && tb.assign"></td>
+                            <td ng-if="caseValue.Easycase.isactive != 0  && tb.assign" class="assi_tlist"> 
+                                <i class="material-icons">&#xE7FD;</i>
+                                <!-- If All project are not selected -->
+                                <span class="dropdown">
+                                    <span style="display:inline-block; cursor: pointer;" class="dropdown-toggle" data-toggle="{{(res.projUniq != 'all')?'dropdown':''}}" href="javascript:void(0);" data-target="#">
+                                        <span ng-if="res.projUniq != 'all' && showQuickActiononList(caseValue.Easycase) " id="showUpdAssign{{caseValue.Easycase.id}}" title="{{caseValue.Easycase.asgnName }}" class="clsptr" ng-click="displayAssignToMem(caseValue.Easycase.id,res.projUniq,caseValue.Easycase.assign_to,caseValue.Easycase.uniq_id,'','',caseValue.Easycase.client_status,$index)" ng-bind-html="caseValue.Easycase.asgnShortName"><span class="due_dt_icn"></span></span>
+                                        <span ng-if="res.projUniq != 'all' && showQuickActiononList(caseValue.Easycase)" class="check-drop-icon dsp-block" ng-click="displayAssignToMem(caseValue.Easycase.id,res.projUniq,caseValue.Easycase.assign_to,caseValue.Easycase.uniq_id,'','',caseValue.Easycase.client_status,$index)">   
+                                        <i class="material-icons">&#xE5C5;</i>
+                                        </span> 
+                                    </span>    
+                                    <ul class="dropdown-menu asgn_dropdown-caret" id="showAsgnToMem{{caseValue.Easycase.id}}">      
+                                            <li class="text-centre"><img src="{{HTTP_ROOT+'img/images/del.gif'}}" id="assgnload{{caseValue.Easycase.id}}"></li>    
+                                    </ul>
+                                </span>
+                                 <!-- else -->
+                                <span ng-if="res.projUniq == 'all' || !showQuickActiononList(caseValue.Easycase) " id="showUpdAssign{{caseValue.Easycase.id}}" style="cursor:text;text-decoration:none;color:#a7a7a7;" ng-bind-html="caseValue.Easycase.asgnShortName"></span>
+                                <span ng-if="res.projUniq == 'all'" class="check-drop-icon dsp-block">   
+                                    <span class="dropdown"> 
+                                        <a class="dropdown-toggle" data-toggle="{{(res.projUniq != 'all')?'dropdown':''}}" href="javascript:void(0);" data-target="#"><i class="material-icons">&#xE5C5;</i></a>    
+                                        <ul class="dropdown-menu asgn_dropdown-caret" id="showAsgnToMem{{caseValue.Easycase.id}}">      
+                                                <li class="text-centre"><img src="{{HTTP_ROOT+'img/images/del.gif'}}" id="assgnload{{caseValue.Easycase.id}}"></li>    
+                                        </ul>   
+                                    </span> 
+                                </span>
+                                 <!-- End of else -->
+                            </td>
+                            <td  ng-if="tb.priority"  ng-class="(caseValue.Easycase.csTdTyp[1] != 'Update')?'text-left task_priority csm-pad-prior-td':'text-left csm-pad12-prior-td'">
+                                <span ng-if="caseValue.Easycase.csTdTyp[1] == 'Update'" class="prio_high prio_lmh prio_gen" rel="tooltip" title="Priority:high"></span>
+                                <div ng-if="caseValue.Easycase.csTdTyp[1] != 'Update'"  style="" id="pridiv{{caseValue.Easycase.id}}" data-priority="{{caseValue.Easycase.priority}}" ng-class="(showQuickActiononList(caseValue.Easycase))?'pri_actions  dropdown':'pri_actions'">
+                                    <div class="dropdown cmn_h_det_arrow lmh-width">
+                                        <div ng-class="(showQuickActiononList(caseValue.Easycase))?'quick_action':''" data-toggle="{{(showQuickActiononList(caseValue.Easycase))?'dropdown':''}}"  style="cursor:pointer">
+                                            <span class=" prio_{{getPriority(caseValue.Easycase.priority)}} prio_lmh prio_gen prio-drop-icon" rel="tooltip" title="Priority:{{getPriority(caseValue.Easycase.priority)}}"></span>
+                                            <i class="tsk-dtail-drop material-icons">&#xE5C5;</i>
+                                        </div>
+                                        <ul ng-if="showQuickActiononList(caseValue.Easycase)" class="dropdown-menu quick_menu">
+                                            <li class="low_priority"><a href="javascript:void(0);" ng-click="detChangepriority(caseValue.Easycase.id,2,caseValue.Easycase.uniq_id,caseValue.Easycase.case_no,$index)"><span class="priority-symbol"></span>Low</a></li>
+                                            <li class="medium_priority"><a href="javascript:void(0);" ng-click="detChangepriority(caseValue.Easycase.id,1,caseValue.Easycase.uniq_id,caseValue.Easycase.case_no,$index)"><span class="priority-symbol"></span>Medium</a></li>
+                                            <li class="high_priority"><a href="javascript:void(0);" ng-click="detChangepriority(caseValue.Easycase.id,0,caseValue.Easycase.uniq_id,caseValue.Easycase.case_no,$index)"><span class="priority-symbol"></span>High</a></li>
+                                        </ul>
+                                    </div>
+                                </div> 
+                                <span ng-if="caseValue.Easycase.csTdTyp[1] != 'Update'" id="prilod{{caseValue.Easycase.id}}" style="display:none"><img src="{{HTTP_ROOT+'img/images/del.gif'}}" alt="Loading..." title="Loading..."></span> 
+                            </td>
+                            <td ng-if="tb.updates" class="text-left" title="{{(caseValue.Easycase.case_count && caseValue.Easycase.case_count!=0)?'updated':'created' }} by {{caseValue.Easycase.usrShortName}} {{(caseValue.Easycase.updtedCapDt.indexOf('Today')==-1 && caseValue.Easycase.updtedCapDt.indexOf('Y\'day')==-1)?'on':''}} {{caseValue.Easycase.updtedCapDt}} {{caseValue.Easycase.fbstyle}}.">{{caseValue.Easycase.fbstyle}}</td>
+                            <td ng-if="tb.gantt_start_date" class="text-left">{{caseValue.Easycase.fbStartDt}}</td>
+                            <td ng-if="tb.est_hrs" class="text-left">{{estHrFormat(caseValue.Easycase.estimated_hours)}}</td>
+                            <td ng-if="tb.client_status" class="text-left" >
+                                <span ng-if="caseValue.Easycase.client_status == 1" title="This task is hidden to Client" rel="tooltip">On</span>
+                                <span ng-if="caseValue.Easycase.client_status == 0" title="This task is show to Client" rel="tooltip">Off</span>
+                            </td>
+                            <td ng-if="tb.status"> 
+                                <span id="csStsRep{{$index+1}}" class="">
+                                   <div ng-if="caseValue.Easycase.isactive == 0" class="label new" style="background-color: olive">Archived</div>
+                                   <span ng-if="caseValue.Easycase.isactive != 0 && (GrpBy =='' || GrpBy !='status')" ng-bind-html="getStatus(caseValue.Easycase.type_id, caseValue.Easycase.legend)"></span>
+                                </span>
+                            </td>
+                            <td ng-if="tb.duedate" class="due_dt_tlist">
+                                <div ng-class="(caseValue.Easycase.csDueDate == '' || caseValue.Easycase.legend == 5 || caseValue.Easycase.type_id == 10 || caseValue.Easycase.legend == 3)?'toggle_due_dt dropdown':'dropdown' " > 
+                                    <span style="cursor:pointer;" class="dropdown-toggle" data-toggle="{{(showQuickActiononList(caseValue.Easycase))?'dropdown':''}}" data-target="#">
+                                    <span ng-if="caseValue.Easycase.isactive == 1 && showQuickActiononList(caseValue.Easycase) && caseValue.Easycase.type_id != 10" class="glyphicon glyphicon-calendar" title="Edit Due Date"></span>
+                                    <span ng-if="caseValue.Easycase.isactive == 1" class="show_dt" id="showUpdDueDate{{caseValue.Easycase.id}}" title="{{caseValue.Easycase.csDuDtFmtT}}" ng-bind-html="caseValue.Easycase.csDuDtFmt" ></span>
+                                        <span class="check-drop-icon dsp-block">   
+                                                <span> <i class="material-icons">&#xE5C5;</i></span>
+                                        </span>
+                                    </span>
+                                     <ul class="dropdown-menu" style="left:0px; width:50px;">     
+                                                    <li class="pop_arrow_new"></li>     
+                                                    <li><a href="javascript:void(0);" ng-click="changeCaseDuedate(caseValue.Easycase.id, caseValue.Easycase.case_no);changeDueDate(caseValue.Easycase.id, '00/00/0000','No Due Date', caseValue.Easycase.uniq_id,caseValue.Easycase.csDuDtFmt,$index)">No Due Date</a></li>     
+                                                    <li><a href="javascript:void(0);" ng-click="changeCaseDuedate(caseValue.Easycase.id, caseValue.Easycase.case_no); changeDueDate(caseValue.Easycase.id, res.mdyCurCrtd,'Today', caseValue.Easycase.uniq_id,caseValue.Easycase.csDuDtFmt,$index)">Today</a></li>     
+                                                    <li><a href="javascript:void(0);" ng-click="changeCaseDuedate(caseValue.Easycase.id, caseValue.Easycase.case_no); changeDueDate(caseValue.Easycase.id, res.mdyTomorrow,'Tomorrow', caseValue.Easycase.uniq_id,caseValue.Easycase.csDuDtFmt,$index)">Tomorrow</a></li>
+                                                    <li><a href="javascript:void(0);" ng-click="changeCaseDuedate(caseValue.Easycase.id, caseValue.Easycase.case_no); changeDueDate(caseValue.Easycase.id, res.mdyMonday,'Next Monday', caseValue.Easycase.uniq_id,caseValue.Easycase.csDuDtFmt,$index)">Next Monday</a></li>
+                                                    <li><a href="javascript:void(0);" ng-click="changeCaseDuedate(caseValue.Easycase.id, caseValue.Easycase.case_no); changeDueDate(caseValue.Easycase.id, res.mdyFriday,'This Friday', caseValue.Easycase.uniq_id,caseValue.Easycase.csDuDtFmt,$index)">This Friday</a></li>     
+                                                    <li>
+                                                        <a href="javascript:void(0);">
+                                                                <div class="cstm-dt-option-dtpik prtl">
+                                                                        <div class="cstm-dt-option" data-csatid="{{caseValue.Easycase.id}}" style="position:absolute; left:0px; top:0px; z-index:99999999;">
+                                                                        <input data-csatid="{{caseValue.Easycase.id}}" value=""  type="text" ng-change="displayDatePick(caseValue.Easycase.id,caseValue.Easycase.csDuDtFmt,$index)" id="set_due_date_{{caseValue.Easycase.id}}" class="set_due_date hide_corsor" title="Custom Date" style="background:none; border:0px;color:#fff;" mydatepicker  ng-model="caseValue.Easycase.due_date" />	
+                                                                        </div>
+                                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                                        <span style="position:relative;top:2px;">Custom&nbsp;Date</span>
+                                                                </div>
+                                                        </a>
+                                                    </li>
+                                            </ul>
+                                </div>
+                                <div class="overdueby_spn overdueby_spn_{{caseValue.Easycase.id}}">{{(showQuickActiononList(caseValue.Easycase))?caseValue.Easycase.csDuDtFmtBy:''}}</div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="crt_task_btn_btm">
+                <div class="os_plus">
+                    <div class="ctask_ttip"> <span class="label label-default">Create Task</span> </div>
+                    <a href="javascript:void(0)" onclick="setSessionStorage('Task List Page Big Plus', 'Create Task');creatask();"> <img src="{{HTTP_ROOT+'img/images/creat-task.png'}}" class="ctask_icn"> <img src="{{HTTP_ROOT+'img/images/plusct.png'}}" class="add_icn"> </a>
+                </div>
+            </div>
+        </div>
+        <input type="hidden" name="hid_cs" id="hid_cs" value="{{lnth}}"/>
+        <input type="hidden" name="totid" id="totid" value="{{totids}}"/>
+        <input type="hidden" name="chkID" id="chkID" value=""/>
+        <input type="hidden" name="slctcaseid" id="slctcaseid" value=""/>
+        <input type="hidden" id="getcasecount" value="{{res.caseCount}}" readonly="true"/>
+        <input type="hidden" id="openId" value="{{openId}}" />
+        <input type="hidden" id="email_arr" value="{{(res.email_arr)?res.email_arr:''}}" />
+        <input type="hidden" id="curr_sel_project_id" value="{{prjId}}"  />
+
+    <!-- PAGINATIONS --> 
+        <div class="os_pagination"> 
+        <div class="show_total_case">{{res.pgShLbl}}</div>   
+           <dir-pagination-controls class="" on-page-change="fetchTask('','',newPageNumber)">
+            <ul class="pagination" ng-if="1 < pages.length">
+                <li ng-if="boundaryLinks" ng-class="{ disabled : pagination.current == 1 }">
+                    <a href="" ng-click="setCurrent(1)">&laquo;</a>
+                </li>
+                <li ng-if="directionLinks" ng-class="{ disabled : pagination.current == 1 }">
+                    <a href="" ng-click="setCurrent(pagination.current - 1)">&lsaquo;</a>
+                </li>
+                <li ng-repeat="pageNumber in pages" ng-class="{ active : pagination.current == pageNumber, disabled : pageNumber == '...' }">
+                    <a href="" ng-click="setCurrent(pageNumber)">{{ pageNumber }}</a>
+                </li>
+
+                <li ng-if="directionLinks" ng-class="{ disabled : pagination.current == pagination.last }">
+                    <a href="" ng-click="setCurrent(pagination.current + 1)">&rsaquo;</a>
+                </li>
+                <li ng-if="boundaryLinks"  ng-class="{ disabled : pagination.current == pagination.last }">
+                    <a href="" ng-click="setCurrent(pagination.last)">&raquo;</a>
+                </li>
+            </ul>
+        </dir-pagination-controls>
+    </div>
+        </div>
+</div>

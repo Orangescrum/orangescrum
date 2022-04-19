@@ -1,0 +1,9 @@
+Sprint/TaskGroup,Title,Description,Type,Story Point,Priority,Assigned To,Estimated Hour
+TG1,User login with email and password,Validate the login form. Redirect to dashboard after login.,Development,,High,abc@mydomain.com,02:00
+TG2,Send mail and then allow user to reset password,Send an confirmation email with a link to reset the password.,Bug,,Medium,abc@mydomain.com,02:45
+TG1,Sample 1,Redirect the page to login page after logout. Not to the home page.,Story,50,Low,abc@mydomain.com,
+TG3,Admin listing should have access to edit & delete,,Development,,High,abc@mydomain.com,
+TG2,Registration with pricing plan details and subscription,Choose plan and complete registration process with braintree implementation,Enhancement,,Medium,abc@mydomain.com,
+TG1,Sample 2,,Development,,Low,abc@mydomain.com,
+TG2,Edit profile email validation issue,Issue on email validation on edit profile. Allowing two dot on email ID,Story,40,Low,abc@mydomain.com,
+,Task With Default task group,Default Task group Task Description,Story,27,,,01:00

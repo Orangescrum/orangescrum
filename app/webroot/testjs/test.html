@@ -1,0 +1,183 @@
+<script>
+var arr = [10, 20, 30];
+
+arr.forEach(function (elem, index){
+   console.log(elem + ' comes at ' + index);
+})
+
+var arr = [10, 20, 30]; 
+
+var result = arr.filter(function(elem){
+    return elem !== 20;
+})
+console.log(result);
+console.log(arr);
+console.log("--------------");
+
+var arr = [10, 20, 30];
+
+var mapped = arr.map(function(elem) {
+    return elem * 10;
+});
+console.log(mapped);
+console.log(arr);
+console.log("=================");
+
+
+var arr = [10, 20, 30];
+
+/*var sum = arr.reduce(function(sum, elem) {
+    return sum + elem;
+});
+console.log(sum);*/
+
+
+const arr1 = [1, 2, 3];
+const arr2 = arr1.map(function(item) {
+  return item * 2;
+});
+console.log(arr2);
+
+const unaryFunction = a => console.log (a + 10);
+unaryFunction(100);
+
+console.log('---currring----');
+function volume(length) {
+  return function(width) {
+    return function(height) {
+      return height * width * length;
+    }
+  }
+}
+
+var rest = volume(2)(3)(4); // 24
+//console.log(rest(4));
+
+
+// A simple memoized function to Add Number
+const memoizedAdd = () => {
+  let cache = {};
+	console.log('--looking at cache---');
+	console.log(cache);
+  return (number) => {
+    if (number in cache) {
+      console.log('Fetching from cache: ');
+      return cache[number];
+    }
+    else {
+      console.log('Calculating result: ');
+      let result = number + 10;
+      cache[number] = result;
+      return result;
+    }
+  }
+}
+// returned function from memoizedAdd
+const sum = memoizedAdd();
+console.log(sum(10)); // Calculating result: 20
+console.log(sum(10)); // Fetching from cache: 20
+
+
+function copy() {
+  /* Get the text field */
+  let copyText = document.getElementById("inputText");
+
+  /* Select the text field */
+  copyText.select();
+  copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+
+  /* Copy the text inside the text field */
+  document.execCommand("copy");
+
+  /* Alert the copied text */
+  alert("Copied the text: " + copyText.value);
+}
+
+var val = 10;
+
+console.log(val.toString(2)); // 1010  ==> Binary Conversion
+
+console.log(val.toString(8)); // 12  ==> Octal Conversion
+
+console.log(val.toString(16)); // A  ==> Hexadecimal Conversion
+
+const value1 = '10';
+const value2 = 20;
+
+let sum1 = value1 + value2;
+
+console.log(sum1);
+
+
+const value11 = '10';
+const value21 = 20;
+
+let sum2 = Number(value11) + value21;
+
+console.log(sum2);
+
+
+var object = {
+k1: "value1",
+k2: "value2",
+    k3: "value3"
+};
+
+for (var key in object) {
+    if (object.hasOwnProperty(key)) {
+        console.log(key + " -> " + object[key]); // k1 -> value1 ...
+    }
+}
+
+
+/*
+	array
+	for (var key of object) {
+	console.log(key); 
+}*/
+loop1:
+function sume(num1, num2, num3, num4){
+		console.log(arguments.length);
+		//debugger;
+		//this.name = 'aaaa';
+		//this.age = '12';
+    return num1 + num2 + num3 + num4;
+}
+loop2:
+sume.name = 'abc';
+sume.prototype.age = 12;
+sume.prototype.agew = function(){
+		return sume.name+' '+sumobj.age;
+};
+
+var sumobj = new sume(1,2,3,4);
+console.log(sumobj.agew());
+console.log(Math.random());
+console.log(navigator);
+
+var img = new Image();
+img.onload = function() {
+  console.log(this.width + 'x' + this.height);
+}
+img.src = 'http://www.google.com/intl/en_ALL/images/logo.gif';
+//document.write(img);
+
+//console.log(event.toLocaleString('en-GB', { timeZone: 'UTC' }));
+
+const target = { a: 1, b: 2 };
+const source = { b: 3, c: 4 };
+
+const returnedTarget = Object.assign({}, source);
+returnedTarget.age = 12;
+returnedTarget.ageFun = () => {consolle.log(1234);};
+
+console.log(target); // { a: 1, b: 3, c: 5 }
+console.log(returnedTarget);
+
+
+</script>
+
+<!-- The text field -->
+<input type="text" id="inputText" value="Hello World">
+<!-- The button used to copy the text -->
+<button onclick="copy()">Copy text</button>

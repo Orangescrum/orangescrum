@@ -1,0 +1,364 @@
+<style>
+  
+/* The container */
+.container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 15px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.container .chckbill {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 15px;
+  width: 15px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover .chckbill ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.container .chckbill:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container .chckbill:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.container .checkmark:after {
+ 	top: 5px;
+	left: 5px;
+	width: 5px;
+	height: 5px;
+	border-radius: 50%;
+	background: white;
+}
+.actn_clss{display:flex}
+.actn_clss label{margin: 0;padding: 0 0 0 24px;color: #888;}
+.actn_sltd{margin: 0 0 15px 0;font-size:16px}
+.actn_clss label .checkmark{top:2.5px;} 
+.total-timelog{color: #5276A6;font-size: 18px;float:right;font-weight: 600;letter-spacing: 1px;}
+.tlg_bill_typ{display:none}
+.pad-0{padding:0px}
+.tg_calendar-bar .col-lg-7{width:65% !important;}
+.tg_calendar-bar .col-lg-5{width:35% !important;}
+.tg_calendar-bar .timelog_filter_msg{width:70%}
+.tg_calendar-bar .pfl-icon-dv{width:30%}
+.tag-btn.timelog_filter_msg .tg_msg_pos{width: 85%;
+    padding: 0 15px 0 0;vertical-align: middle;background: transparent;
+    margin: 0; color: #727270;}
+.timelog_filter_msg .timelog_filter_msg_close{margin: 0;background: transparent;padding: 0;}
+.timelog_filter_msg .timelog_filter_msg_close:hover{background:transparent}
+.timelog_filter_msg .timelog_filter_msg_close .material-icons{font-size: 18px;padding: 0;color: #727270;}
+.timelog_filter_msg .timelog_filter_msg_close .material-icons:hover{color:#1A73E8}
+.timelog_lview  table tr th,.timelog_lview  table tr td{padding:6px}
+</style>
+<div id="caseTimeLogViewSpan_angular" class="pr" style="display:block">    
+    <div class="time-log-header timelog-table timelog-table-head " style="">
+        <div class="fr tl-msg-btn" style="display:none;">
+            <div class="logmore-btn fr">
+                <a class="anchor" style="padding-left: 0px;margin-left: 5px; width: 120px; padding-right: 0px;" onclick="ajax_timelog_export_csv();"><span class="icon-exp"></span>Export(.csv)</a>
+            </div>
+            <div class="showreplylog ht_log" style="display:none;">
+                <a href="javascript:void(0);" class="hide-tlog" style="text-decoration:none;" onclick="showreplytimelog();">
+                    Expand Time Log<i class="material-icons"></i>
+                </a>
+            </div>
+        </div>
+        <div class="cb"></div>
+    </div>
+    <div class="task_listing timelog_lview  hidetablelog timelog-detail-tbl" style="">
+        <div class="tlog_top_cnt">
+            <div class="col-lg-10  padnon">
+                <h6 id="tour_tlog_listing">{{'Estimated' | translate}}: <span ng-bind='records.logtimes.details.estimatedHrs | momentSecond:"H:mm"'></span></h6>
+                <h6>{{'Logged' | translate}}: <span ng-bind='records.logtimes.details.totalHrs |  momentSecond:"H:mm"'></span></h6>
+                <h6>{{'Billable' | translate}}: <span ng-bind='records.logtimes.details.billableHrs | momentSecond:"H:mm"'></span></h6>
+                <h6>{{'Non-Billable' | translate}}: <span ng-bind='records.logtimes.details.nonbillableHrs | momentSecond:"H:mm"'></span></h6>
+            </div>
+            <div class="col-lg-2 padnon btn_tlog_top">
+                <a href="javascript:void(0)" class="btn btn-sm btn_cmn_efect fr" onclick="timelog_export_popup();" rel="tooltip" title="{{'Export To CSV' | translate}}">
+                    <i class="material-icons">&#xE8D5;</i>                    
+                </a>
+            </div>
+            <div class="cb"></div>
+            <div class="col-lg-8 padnon btn_tlog_top tlg_bill_typ">
+                <div class="col-lg-1 pad-0">
+                    <span class="actn_sltd">{{'Mark as' | translate}}</span>
+                </div>
+                <div class="col-lg-5 actn_clss">
+                    
+                    <label class="container">{{'Billable' | translate}}
+                      <input type="radio" name="billable_type" value="1" onclick="markBillabltType(this)" class="chckbill">
+                      <span class="checkmark"></span>
+                    </label>
+                    <label class="container">{{'Non Billable' | translate}}
+                      <input type="radio" name="billable_type" value="0" onclick="markBillabltType(this)" class="chckbill">
+                      <span class="checkmark"></span>
+                    </label>
+                </div>
+                    
+            </div>
+            <div class="cb"></div>
+        </div>
+        <div class="cmn_custom_dtable">
+            <table class="table table-hover table-fixed-layout">
+                <thead>
+					<tr>
+                        <th class="width-3-per"><input type="checkbox" style="cursor:pointer" id="checkAlltlg" class="fl mglt chkOneAllTlg"></th>
+                        <th class="width-10-per"> 
+                            <a href="javascript:void(0)" ng-click="fetchTimelog( 'date');">{{'Date' | translate}}
+                                <span class="sorting_arw">
+                                    <i class="material-icons tsk_asc hidden" id="timelog_date_asc">&#xE5CE;</i>
+                                    <i class="material-icons tsk_desc hidden" id="timelog_date_desc">&#xE5CF;</i>
+                                    <i class="material-icons tsk_default" id="timelog_date">&#xE164;</i>
+                                </span>
+                            </a>
+                        </th>
+                        <th class="width-10-per">
+                            <a href="javascript:void(0)" ng-click="fetchTimelog('name');">{{'Resource Name' | translate}} 
+                                <span class="sorting_arw">
+                                    <i class="material-icons tsk_asc hidden" id="timelog_name_asc">&#xE5CE;</i>
+                                    <i class="material-icons tsk_desc hidden" id="timelog_name_desc">&#xE5CF;</i>
+                                    <i class="material-icons tsk_default" id="timelog_name">&#xE164;</i>
+                                </span> 
+                            </a>
+                        </th> 
+                        <th class="width-10-per" ng-if="records.logtimes.project_uniqId == 'all'">
+                            <a href="javascript:void(0);">Project Name</a>
+                        </th>
+                        <th class="width-7-per">
+                            <a href="javascript:void(0)" ng-click="fetchTimelog('caseno');">{{'Task' | translate}}# 
+                                <span class="sorting_arw">
+                                    <i class="material-icons tsk_asc hidden" id="timelog_caseno_asc">&#xE5CE;</i>
+                                    <i class="material-icons tsk_desc hidden" id="timelog_caseno_desc">&#xE5CF;</i>
+                                    <i class="material-icons tsk_default" id="timelog_caseno">&#xE164;</i>
+                                </span>
+                            </a> 
+                        </th>
+                        <th class="width-15-per">
+                            <a href="javascript:void(0)" ng-click="fetchTimelog('case_title');">{{'Task Title' | translate}}
+                                <span class="sorting_arw">
+                                     <i class="material-icons tsk_asc hidden" id="timelog_case_title_asc">&#xE5CE;</i>
+                                    <i class="material-icons tsk_desc hidden" id="timelog_case_title_desc">&#xE5CF;</i>
+                                    <i class="material-icons tsk_default" id="timelog_case_title">&#xE164;</i> 
+                                </span>
+                            </a>
+                        </th> 
+                        <th class="width-10-per"> 
+                            <a href="javascript:void(0)" ng-click="fetchTimelog('hours');" >{{'Logged Hours' | translate}} 
+                                <span class="sorting_arw">  
+                                      <i class="material-icons tsk_asc hidden" id="timelog_hours_asc">&#xE5CE;</i>
+                                    <i class="material-icons tsk_desc hidden" id="timelog_hours_desc">&#xE5CF;</i>
+                                    <i class="material-icons tsk_default" id="timelog_hours">&#xE164;</i>
+                                </span>    
+                            </a> 
+                        </th>  
+                        <th class="width-15-per"> 
+                            <a href="javascript:void(0)" ng-click="fetchTimelog('description');">{{'Note' | translate}} 
+                                <span class="sorting_arw"> 
+                                     <i class="material-icons tsk_asc hidden" id="timelog_description_asc">&#xE5CE;</i>
+                                    <i class="material-icons tsk_desc hidden" id="timelog_description_desc">&#xE5CF;</i>
+                                    <i class="material-icons tsk_default" id="timelog_description">&#xE164;</i>
+                                </span>
+                            </a>
+                        </th>
+                        <th class="width-7-per">
+                            <a href="javascript:void(0)" ng-click="fetchTimelog('start');">{{'Start' | translate}}  
+                                <span class="sorting_arw"> 
+                                     <i class="material-icons tsk_asc hidden" id="timelog_start_asc">&#xE5CE;</i>
+                                    <i class="material-icons tsk_desc hidden" id="timelog_start_desc">&#xE5CF;</i>
+                                    <i class="material-icons tsk_default" id="timelog_start">&#xE164;</i>
+                                </span>
+                            </a>  
+                        </th> 
+                        <th class="width-7-per"> 
+                            <a href="javascript:void(0)" ng-click="fetchTimelog('end');">{{'End' | translate}}  
+                                <span class="sorting_arw">
+                                     <i class="material-icons tsk_asc hidden" id="timelog_end_asc">&#xE5CE;</i>
+                                    <i class="material-icons tsk_desc hidden" id="timelog_end_desc">&#xE5CF;</i>
+                                    <i class="material-icons tsk_default" id="timelog_end">&#xE164;</i>
+                                </span> 
+                            </a> 
+                        </th>  
+                        <th class="width-5-per">{{'Break' | translate}}</th>
+                        <th class="text-center width-7-per">{{'Billable' | translate}}  </th>
+                        <th class="text-center width-7-per">{{'Timer' | translate}}  </th>
+                        <th class="noprint text-center width-5-per">{{'Billed' | translate}}  </th> 
+                        <th class="text-center width-7-per">{{'Action' | translate}}  </th>    
+                    </tr>  
+				</thead>
+				<tbody>
+                    <!--<tr ng-repeat="(key,value) in records.logtimes.logs" class="timelog-hover-block" data-id="log_prjuid_{{value.LogTime.log_id }}" data-puid="">-->   
+                     <tr dir-paginate="value in records.logtimes.logs | itemsPerPage:20" total-items="totalItems" class="timelog-hover-block" data-id="log_prjuid_{{value.LogTime.log_id }}" data-puid="{{value.Project.uniq_id}}" on-finish-render="inittooltip()">       
+                         <td><input type="checkbox" style="cursor:pointer" id="actionChkTlg{{value.LogTime.log_id }}" data-logid="{{value.LogTime.log_id }}" class="fl mglt chkOneTlg"></td>
+                         <td>{{ value[0].start_datetime_v1 | moment:"format: 'MMM DD, YYYY'" }}</td>            
+                        <td id="log_usrNm_{{value.LogTime.log_id}}">{{value[0].user_name}}</td>  
+                        <td ng-if="records.pagename != 'taskdetails' && records.logtimes.project_uniqId == 'all'" id="log_prjNm_{{value.LogTime.log_id }}>" > 
+                            {{ value[0].project_name }}
+                        </td>
+                        <td ng-if="records.logtimes.showTitle && records.logtimes.showTitle == 'Yes'">
+                            <a ng-if="value[0].task_name" id="titlehtml_{{value[0].task_name | splitTask :'1'}}" data-task='{{value[0].task_name | splitTask :"1"}}' data-task-id='{{value[0].task_name | splitTask :"1"}}' class="ttl_listing">
+                                {{value[0].task_name | splitTask :"2"}}
+                            </a>
+                            <a ng-if="!value[0].task_name" class="">---</a>
+
+                        </td>
+                        <td ng-if="records.logtimes.showTitle && records.logtimes.showTitle == 'Yes'">
+                            <a ng-if="value[0].task_name" id="titlehtml_{{value[0].task_name | splitTask :'1'}}" data-task='{{value[0].task_name | splitTask :"1"}}' data-task-id='{{value[0].task_name | splitTask :"1"}}' style="max-width: 130px;display: block;" class="ttl_listing ellipsis-view" ng-bind-html="value[0].task_name | splitTask :'0'" title="{{value[0].task_name | splitTask :'0'}}">
+                            </a>
+                            <a ng-if="!value[0].task_name" class="">---</a>
+                        </td>
+                         <td ng-if="value.LogTime.user_id == SES_ID || SES_TYPE == 1 || SES_TYPE == 2" class="relative  action_tlv" data-logid="{{value.LogTime.log_id}}">     
+                            {{ value.LogTime.total_hours |  momentSecond:"H:mm" }}                              
+                        </td>
+                        <td ng-if="value.LogTime.user_id != SES_ID && SES_TYPE != 1 && SES_TYPE != 2" class="relative">   
+                            {{value.LogTime.total_hours |  momentSecond:"H:mm"}}
+                        </td> 
+                        <td><div class="max_width_tltsk_title ellipsis-view" title="{{value.LogTime.description | formatText}}" ng-bind-html="value.LogTime.description | formatText"></div></td>         
+                        <!--<td ng-if='value.LogTime.timesheet_flag == 0'>{{ value.LogTime.start_time | formatdate }}</td>      
+                        <td ng-if='value.LogTime.timesheet_flag == 1'>N/A</td>      
+                        <td ng-if='value.LogTime.timesheet_flag == 0'>{{ value.LogTime.end_time | formatdate }}</td>     
+                        <td ng-if='value.LogTime.timesheet_flag == 1'>N/A</td>--> 
+                        <td>{{value.LogTime.start_time | formatdate }}</td>      
+                        <td>{{value.LogTime.end_time | formatdate }}</td> 
+                        <td>
+                            <span ng-if="value.LogTime.break_time && value.LogTime.break_time !=0 " class="fl">{{value.LogTime.break_time |  momentSecond:"H:mm"}}</span>
+                            <span ng-if="!value.LogTime.break_time || value.LogTime.break_time ==0" class="fl">---</span>
+                        </td>        
+                        <td class="text-center bilble_icn timelog">  
+                            <a ng-if="value.LogTime.is_billable == 1" class="tlg-status-link" href="javascript:void(0);"><i class="material-icons tick_mark">&#xE834;</i></a>					
+                            <a ng-if="value.LogTime.is_billable != 1" class="tlg-status-link" href="javascript:void(0);"><i class="material-icons cross_mark">&#xE5CD;</i></a>
+                        </td>           
+                        <td class="noprint">   
+                            <a ng-if="value.LogTime.task_status == 1" class="tlg-status-link" href="javascript:void(0);"><i class="material-icons">&#xE834;</i></a>
+                            <a ng-if="value.LogTime.task_status != 1" class="tlg-status-link" href="javascript:void(0);"><i class="material-icons">&#xE5CD;</i></a>
+                        </td>         
+                        <td class="text-center bilble_icn timelog">
+                            <a ng-if="value.LogTime.is_from_timer == 1" class="tlg-status-link" href="javascript:void(0);"><i class="material-icons tick_mark">&#xE834;</i></a>					
+                            <a ng-if="value.LogTime.is_from_timer != 1" class="tlg-status-link" href="javascript:void(0);"><i class="material-icons cross_mark">&#xE5CD;</i></a>
+                        </td>        
+                        <td ng-if="value.LogTime.user_id == SES_ID || SES_TYPE == 1 || SES_TYPE == 2" class="text-center action_tlv" data-logid="{{value.LogTime.log_id}}">
+                            <a ng-if="records.logtimes.project_uniqId == 'all' && isAllowed('Edit Timelog Entry') && (value.LogTime.pending_status == 0 || value.LogTime.pending_status == 3)" data-prj-name="{{value[0].project_name }}" class="anchor edit_time_log" href="javascript:void(0);" data-task-id="{{value.LogTime.task_id}}">
+                                <i class="material-icons">&#xE254;</i>
+                            </a>
+                            <a ng-if="records.logtimes.project_uniqId != 'all' && isAllowed('Edit Timelog Entry') && (value.LogTime.pending_status == 0 || value.LogTime.pending_status == 3)"  class="anchor edit_time_log" href="javascript:void(0);" data-task-id="{{value.LogTime.task_id}}">
+                                <i class="material-icons">&#xE254;</i>
+                            </a>
+                            <a class="anchor delete_time_log" href="javascript:void(0);" ng-if="isAllowed('Delete Timelog Entry') && (value.LogTime.pending_status == 0 || value.LogTime.pending_status == 3)">
+                                <i class="material-icons">&#xE872;</i>
+                            </a>
+                          
+                        </td>
+                      
+                        <td ng-if="value.LogTime.user_id != SES_ID && SES_TYPE != 1 && SES_TYPE != 2" class="text-center action_tlv" data-logid="{{value.LogTime.log_id}}">      
+                            <div class="timelog-overlap" style="" rel="tooltip" title="{{'You are not authorized to modify.' | translate}}"></div>
+                            <a ng-if="records.logtimes.project_uniqId == 'all' && isAllowed('Edit Timelog Entry') && (value.LogTime.pending_status == 0 || value.LogTime.pending_status == 3)" data-prj-name="{{value[0].project_name }}" class="anchor edit_time_log" href="javascript:void(0);" data-task-id="{{value.LogTime.task_id}}">
+                                <i class="material-icons">&#xE254;</i>
+                            </a>
+                            <a ng-if="records.logtimes.project_uniqId != 'all' && isAllowed('Edit Timelog Entry') && (value.LogTime.pending_status == 0 || value.LogTime.pending_status == 3)"  class="anchor edit_time_log" href="javascript:void(0);" data-task-id="{{value.LogTime.task_id}}">
+                                <i class="material-icons">&#xE254;</i>
+                            </a>
+                            <a class="anchor delete_time_log" href="javascript:void(0);" ng-if="isAllowed('Delete Timelog Entry') && (value.LogTime.pending_status == 0 || value.LogTime.pending_status == 3)">
+                                <i class="material-icons">&#xE872;</i>
+                            </a>             
+                        </td>                          
+                    </tr>  
+                    <tr ng-show="records.logtimes.caseCount > 0">
+                        <td colspan="{{(records.logtimes.project_uniqId == 'all')?6:5}}"><span class="total-timelog">{{'Total'|translate}}</span></td>
+                        <td colspan="8"><strong>{{total_hrs_of_page() |  momentSecond:"H:mm"}}</strong></td>
+                    </tr>
+					<tr ng-show="records.logtimes.caseCount == 0" class="no-record">
+						<td colspan="14" class="text-center">
+						<div class="no-data-box">
+							<img style="max-height: 100px;" src="/img/no-data/notimelog.png" /> 
+							<br /><br /> 
+							<span class="tlog_nodt">{{'All Time Log entries will appear here.' | translate}} <br />
+								<a href="javascript:void(0)" data-toggle="modal" data-target="#myModal" onclick="setSessionStorage('TileLog Listing','Time Log');createlog(0,'')" class="btn btn_cmn_efect cmn_bg btn-info cmn_size" ng-if="isAllowed('Manual Time Entry')">
+									<i class="material-icons cmn-icon-prop" style="font-size:16px;">&#xE192;</i> {{'Log Your Time' | translate}}
+								</a>
+							</span>
+						</div>
+						</td>
+					</tr>
+                </tbody>
+            </table>   
+        </div>   
+    </div>  
+    
+    <div class="os_pagination">     
+        <div class="show_total_case">{{records.logtimes.pgShLbl}}</div>   
+           <dir-pagination-controls class="" on-page-change="fetchTimelog('',newPageNumber)">
+            <ul class="pagination" ng-if="1 < pages.length">
+                <li ng-if="boundaryLinks" ng-class="{ disabled : pagination.current == 1 }">
+                    <a href="" ng-click="setCurrent(1)">&laquo;</a>
+                </li>
+                <li ng-if="directionLinks" ng-class="{ disabled : pagination.current == 1 }">
+                    <a href="" ng-click="setCurrent(pagination.current - 1)">&lsaquo;</a>
+                </li>
+                <li ng-repeat="pageNumber in pages track by $index" ng-class="{ active : pagination.current == pageNumber, disabled : pageNumber == '...' }">
+                    <a href="" ng-click="setCurrent(pageNumber)">{{ pageNumber }}</a>
+                </li>
+
+                <li ng-if="directionLinks" ng-class="{ disabled : pagination.current == pagination.last }">
+                    <a href="" ng-click="setCurrent(pagination.current + 1)">&rsaquo;</a>
+                </li>
+                <li ng-if="boundaryLinks"  ng-class="{ disabled : pagination.current == pagination.last }">
+                    <a href="" ng-click="setCurrent(pagination.last)">&raquo;</a>
+                </li>
+            </ul>
+        </dir-pagination-controls>
+    </div>
+      
+    <div style="border-bottom:1px solid #ccc;" ng-if="1 < pages.length" >   
+        <div class="cb"></div>         
+    </div>                
+    <div class="tlog-ru-report r-u-link" ng-if="isAllowed('View Resource Utilization')">
+    </div>
+		<div class="crt_task_btn_btm timelog_cond_cls num_2">   
+				<span  class="hide_tlp_cross" title="<?php echo __('Close');?>" onclick="resetHoverEffect('timelog', this);">&times;</span>
+         
+        <div class="os_plus">    
+            <div class="ctask_ttip"> 
+                <span class="label label-default">         
+                    {{'Time Entry'|translate}}     
+                </span>      
+            </div>      
+            <a href="javascript:void(0)" onclick="setSessionStorage('Time Log List View', 'Time Log');createlog(0,'')" ng-if="isAllowed('Manual Time Entry')"> 
+                <i class="material-icons cmn-icon-prop ctask_icn">&#xE192;</i>    
+                {{HTTP_ROOT}}
+                <img src="/img/images/plusct.png" class="add_icn">      
+            </a>    
+        </div>
+    </div>
+    <div class="cb"></div>  
+</div>

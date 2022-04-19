@@ -1,0 +1,178 @@
+/*
+jQuery.ganttView v.0.8.0
+Copyright (c) 2010 JC Grubbs - jc.grubbs@devmynd.com
+MIT License Applies
+*/
+
+div.ganttview-hzheader-month,
+div.ganttview-hzheader-day,
+div.ganttview-vtheader,
+div.ganttview-vtheader-item-name,
+div.ganttview-vtheader-series,
+div.ganttview-grid,
+div.ganttview-grid-row-cell {
+	float: left;
+}
+
+div.ganttview-hzheader-month,
+div.ganttview-hzheader-day {
+	text-align: center;
+}
+
+div.ganttview-grid-row-cell.last,
+div.ganttview-hzheader-day.last,
+div.ganttview-hzheader-month.last {
+	border-right: none;
+}
+
+div.ganttview {
+	border:1px solid #EDEDED;
+}
+
+
+/* Horizontal Header */
+
+div.ganttview-hzheader-month {
+	width: 60px;
+	height: 20px;
+	font-size:12px;
+	font-weight:bold;
+	border-right: 1px solid #EDEDED;
+	line-height: 20px;
+}
+
+div.ganttview-hzheader-day {
+	width: 20px;
+	height: 20px;
+	font-size:12px;
+	border-right: 1px solid #EDEDED;
+	border-top: 1px solid #EDEDED;
+	line-height: 20px;
+	color: #777;
+}
+
+
+/* Vertical Header */
+
+div.ganttview-vtheader {
+	margin-top: 41px;
+	width: 280px;
+	overflow: hidden;
+	background-color: #fff;
+}
+
+div.ganttview-vtheader-item {
+	overflow: hidden;
+	color: black;
+}
+
+div.ganttview-vtheader-item-name {
+	width: 120px;
+	padding-left: 5px;
+	font-size:12px;
+	color: black;
+	border-top: 1px solid #EDEDED;
+	line-height: 16px;
+}
+
+div.ganttview-vtheader-series-name {
+	width: 150px;
+	height: 31px;
+	border-left:1px;
+	font-size:12px;
+	line-height: 16px;
+	overflow: hidden;
+}
+
+
+/* Slider */
+
+div.ganttview-slide-container {
+	overflow: auto;
+	border-left: 1px solid #999;
+	border:1px solid #EDEDED;
+}
+
+
+/* Grid */
+
+div.ganttview-grid-row-cell {
+	width: 20px;
+	height: 31px;
+	border-right: 1px solid #EDEDED;
+	border-top: 1px solid #EDEDED;
+}
+
+div.ganttview-grid-row-cell.ganttview-weekend {
+	background-color: #fafafa;
+}
+
+
+/* Blocks */
+
+div.ganttview-blocks {
+	margin-top: 40px;
+	border:1px solid #EDEDED;
+}
+
+div.ganttview-block-container {
+	height: 30px;
+	padding-top: 4px;
+}
+
+div.ganttview-block {
+	position: relative;
+	height: 25px;
+	background-color: #3dbb89;
+	border:1px solid #EDEDED;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+}
+
+div.ganttview-block-text {
+	position: absolute;
+	height: 12px;
+	font-size: 0.8em;
+	color: #FFF;
+	padding: 2px 3px;
+}
+div.ganttview-task {
+	position: absolute;
+	height: 12px;
+	font-size: 12px;
+	color: #FFF;
+	padding: 2px 20px;
+}
+
+/* Adjustments for jQuery UI Styling */
+
+div.ganttview-block div.ui-resizable-handle.ui-resizable-s {
+	bottom: -0;
+	border:1px solid #EDEDED;
+}
+
+
+/* Tooltip */
+div.tooltip {outline:none; min-width: 75px; max-width: 255px;} 
+div.tooltip strong {line-height:30px;} 
+div.tooltip:hover {text-decoration:none;} 
+div.tooltip span { z-index:10;display:none; padding:14px 20px; margin-top:30px;margin-left:-50px; width:200px; line-height:16px; } 
+div.tooltip:hover span{ display:inline; position:absolute; border:2px solid #FFF; color:#EEE; background:#333} 
+.callout {z-index:20;position:absolute;border:0;top:-14px;left:120px;} 
+/*CSS3 extras*/ 
+div.tooltip span { border-radius:2px; box-shadow: 0px 0px 8px 4px #666; 
+/*opacity: 0.8;*/ }
+.ui-tooltip
+{
+    /* tooltip container box */
+    max-width: 300px;
+}
+.ui-tooltip-content
+{
+    /* tooltip content */
+    max-width: 300px;
+}
+.noprint {
+  display:none !important;
+}

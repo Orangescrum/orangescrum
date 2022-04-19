@@ -1,0 +1,325 @@
+.task-list-bar{z-index:112}
+.os_projct_overview{width:100%;background:transparent;}
+.os_projct_overview .overview_wrapper{width:95%;margin:0 auto;height:100%}
+.os_projct_overview .d_tbl{display:table;width:100%;}
+.os_projct_overview .d_tbl .d_tbl_cel{display:table-cell;vertical-align:middle;padding:5px}
+.os_projct_overview .red_txt{color:#ff0000}
+.os_projct_overview .pad-rht-0{padding-right:0}
+.os_projct_overview .pad-lft-0{padding-left:0}
+.os_projct_overview  .scroll_body {overflow-y:auto;overflow-x:hidden;height:230px}
+.os_projct_overview .proj_head{background:#669933;border-bottom:2px solid #658744;color:#fff;padding:5px 0;}
+.os_projct_overview .proj_head .d_tbl_cel{width:15%;position:relative;}
+.os_projct_overview .proj_head  h6{font-size:20px;line-height:24px;color:#fff;
+    margin:0;font-weight:600;text-align:center;}
+.os_projct_overview .proj_head .d_tbl_cel.p_name{width:36%;}
+.os_projct_overview .proj_head .d_tbl_cel.p_name h2{font-size:26px;line-height:36px;margin:0;color:#fff;font-weight:700;text-align:center}
+.os_projct_overview .proj_head .d_tbl_cel.date{width:17%;padding:5px 15px;text-align:center;font-size:17px;line-height:20px;color:#fff;font-weight:500}
+.os_projct_overview_date .d_tbl_cel.date{width:35%;padding:14px 15px;text-align:center;font-size:17px;line-height:20px;color:#555;font-weight:500}
+.os_projct_overview .proj_head .d_tbl_cel.date span, .os_projct_overview_date .d_tbl_cel.date span{display:block;margin-bottom:5px}
+.os_projct_overview .proj_head .progress_count{font-size:26px;line-height:40px;
+    color:#fff;display:inline-block;font-weight:700;position:absolute;
+    text-align:center;left:0;right:0;margin:auto;bottom:0px;}
+.os_projct_overview .v_line_separator{width:1px;height:50%;background:#85D714;position:absolute;right:0;top:0;bottom:0;margin:auto}
+.os_projct_overview .bread_crumb ul{list-style-type:none;margin:0;padding:15px 0}
+.os_projct_overview .bread_crumb ul li{display:inline-block;vertical-align:middle;font-size:15px;margin-right:10px;}
+.os_projct_overview .bread_crumb ul li .material-icons{display:inline-block;vertical-align:middle}
+.os_projct_overview .content_databox > section > .col-md-8{padding-left:0}
+.os_projct_overview .content_databox > section > .col-md-4{padding-left:0}
+.os_projct_overview .content_databox > section {margin-bottom:30px}
+.os_projct_overview .content_databox > section.inactiveTask-mbtom {margin-bottom:0px}
+.os_projct_overview .content_databox > section.inactiveTask-mbtom .wbox_data {height:auto;}
+.os_projct_overview .task_listing, .os_projct_overview .setting_wrapper{box-shadow:none;-webkit-box-shadow:none}
+.os_projct_overview .content_databox .inactiveTask-mbtom .all-task-srch h5 button,
+.os_projct_overview .content_databox .inactiveTask-mbtom .all-task-srch h5 input{display:inline-block;vertical-align:middle;float:none;width:auto;background: transparent;
+    border: none;box-shadow: none;outline: none;color:#fff}
+.os_projct_overview .content_databox .inactiveTask-mbtom .all-task-srch h5 input{border:1px solid #fff;padding:5px 15px;}
+.os_projct_overview .inactiveTask-mbtom .all-task-srch h5::before{background:transparent}
+.os_projct_overview .content_databox .inactiveTask-mbtom .all-task-srch h5 button .material-icons{background:transparent !important}
+.os_projct_overview .wbox_data{background:#fff;padding:0px;height:365px;text-align:left;position:relative;}
+.os_projct_overview  h5{display:block;font-size:20px;line-height:30px;color:#4271A1;font-weight:600;text-align:left;position:relative;margin:0 0 15px;padding:0}
+.os_projct_overview  h5::before{content:'';width:30px;height:2px;background:#9DC1E6;position:absolute;left:0;bottom:0;display:block;}
+
+.os_projct_overview  .wbox_data .chat_status_result{list-style-type:none;margin:0;padding:0}
+.os_projct_overview  .wbox_data .chat_status_result li{width:18%;display:inline-block;font-size:13px;color:#555;font-weight:500;text-align:center;}
+.os_projct_overview  .wbox_data .chat_status_result li.in_progress{width:25%}
+.os_projct_overview  .wbox_data .chat_status_result li.total{width:15%}
+.os_projct_overview  .wbox_data .chat_status_result li.non_billable{width:30%}
+.os_projct_overview  .wbox_data .chat_status_result .v_line{border-right:1px solid #DCDCDC}
+.os_projct_overview  .wbox_data .chat_status_result li h6{font-size:18px;margin:0;padding:0;color:#969696;font-weight:600;}
+.os_projct_overview  .wbox_data .add{width:35px;height:35px;line-height:35px;background:#fff;color:#4271A1;font-size:26px;font-weight:600;text-align:center;border-radius:50%;position:absolute;top:8px;right:15px;cursor:pointer;}
+.os_projct_overview  .wbox_data table .user_name{padding-left:30px;font-size:16px;font-weight:600;line-height:24px;position:relative;text-align:left}
+.os_projct_overview  .wbox_data .drop_icon{width:15px;height:15px;background:#ff0000;border-radius:50%;position:absolute;display:block;left:5px;top:0;bottom:0;margin:auto;cursor:pointer}
+.os_projct_overview  .wbox_data .drop_icon .h_line{width:60%;
+    height:2px;background:#fff;margin:auto;display:block;position:absolute;
+    left:0;right:0;top:0;bottom:0;}
+.os_projct_overview  .wbox_data table .user_name .pfl_img{display:inline-block;width:30px;height:30px;vertical-align:middle;border-radius:50%;border:1px solid #ddd}
+.os_projct_overview  .wbox_data table .user_name .pfl_img img{max-width:100%;border-radius: 50%;width:100%;height:100%;vertical-align:top;}
+.os_projct_overview  .wbox_data table{width:100%;}
+.os_projct_overview  .wbox_data table tr th,.os_projct_overview  .wbox_data table tr td
+{text-align:center;padding:8px 5px;position:relative}
+.os_projct_overview  .wbox_data .task_listing table tr th,.os_projct_overview  .wbox_data .task_listing table tr td{text-align:left}
+.os_projct_overview  .wbox_data table tr th .line_bar{display:inline-block;margin:0;}
+.os_projct_overview  .wbox_data .team thead tr{background:#fff;color:#4271A1;border-bottom:2px solid #eee}
+.os_projct_overview  .wbox_data .team tr{background:#fff}
+.os_projct_overview  .wbox_data .team  tr:nth-child(2n+2){background:#fff}
+.os_projct_overview .wbox_data .team  table tbody tr{border-bottom:1px solid #eee}
+
+.os_projct_overview  .wbox_data table.team.scroll_body tbody{height:230px}
+.os_projct_overview  .wbox_data .team tr th,
+.os_projct_overview  .wbox_data .team tr td{width:20%;color:#4271A1;padding:5px;
+font-weight:700;}
+.os_projct_overview  .wbox_data .team tr th:first-child,
+.os_projct_overview  .wbox_data .team tr td:first-child{width:36%}
+.os_projct_overview  .wbox_data .team  tr td{color:#303030;padding:5px;}
+.os_projct_overview  .wbox_data .team  tr td.red_txt{color:#ff0000}
+
+.os_projct_overview .box_header{background:#95b2ce;padding:10px 15px 10px;position: relative;}
+.os_projct_overview .box_header h5{color:#fff;margin-bottom:0}
+.os_projct_overview .box_header  h5::before{background:#fff}
+.os_projct_overview  .view_more{text-decoration:none;color:#3B6C9D;font-size:15px;padding:4px 10px;background:#fff;border-radius:3px;display:inline-block;position:absolute;right:15px;top:9px;font-weight:500; border:2px solid #fff;}
+.os_projct_overview  .view_more:hover{box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23); -moz-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23); -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23); background: transparent; color: #fff;}
+.os_projct_overview .file .wbox_data{background:transparent;padding:0;}
+.os_projct_overview  .file  table.scroll_body tbody{height:425px}
+.os_projct_overview .file table tbody tr{border-bottom:1px solid #eee}
+.os_projct_overview .file  table tr{background:#fff}
+.os_projct_overview .file  table thead th,.os_projct_overview .file  table tbody td{width:20%;    padding:8px 15px;}
+.os_projct_overview .file  table tr th{color:#4271A1;font-weight:700;}
+.os_projct_overview .file  table thead tr th:nth-child(3),
+.os_projct_overview .file  table tbody tr td:nth-child(3){width:36%}
+.os_projct_overview .file .scroll_body{height:420px}
+.os_projct_overview .file  table tr.no_bg{background:transparent}
+.os_projct_overview .file  table tr.no_bg td{text-align:left;padding-left:15px;}
+
+
+.os_projct_overview .file .wbox_data table .user_name{font-weight:500;font-size:14px;}
+.os_projct_overview .file  .wbox_data table .file_img_name span{display:inline-block;vertical-align:middle;margin-right:5px;}
+.os_projct_overview .file  .wbox_data table .file_img_name img{max-width:100%}
+.os_projct_overview .wbox_data .download_icon{background:url(../img/download-icon.png) no-repeat 0px 0px;background-size:100% 100%;width:35px;height:35px;display:inline-block;cursor:pointer}
+.os_projct_overview .wbox_data .box_header{position:relative}
+.os_projct_overview  .project_lunch_date .box_header{position:relative;background:#95b2ce;padding:15px 15px 15px 120px;text-align:center}
+.os_projct_overview  .project_lunch_date .box_header figure{width:82px;height:78px;position:absolute;left:15px;top:0;bottom:0;margin:auto}
+.os_projct_overview  .project_lunch_date .box_header figure img{max-width:100%}
+.os_projct_overview  .project_lunch_date .box_header h4{font-size:26px;line-height:40px;color:#fff;margin:0;text-align:center;font-weight:600}
+.os_projct_overview  .project_lunch_date .box_header h4 span{font-size:20px;display:block}
+.os_projct_overview .task_type{margin-top:30px}
+.os_projct_overview .task_type .wbox_data .total_task{margin-top:0px;font-size:24px;line-height:34px;color:#4271A1;font-weight:600;vertical-align:middle;text-align:center;}
+.os_projct_overview .task_type .wbox_data .total_task span{color:#303030;margin-left:20px;display:inline-block;vertical-align:middle}
+.os_projct_overview .task_type .wbox_data ul{width:50%;float:left;margin:0;padding:20px 0 0 10px;list-style-type:none}
+.os_projct_overview .task_type .wbox_data ul li{display:block;padding-left:35px;margin-bottom:10px;position:relative;text-align:left;font-size:12px}
+.os_projct_overview .task_type .wbox_data .circle_demo{width:16px;height:16px;display:inline-block;border-radius:50%;background:#FF99CC;position:absolute;left:1px;top:0;bottom:0;margin:auto}
+.os_projct_overview .task_type .wbox_data .circle_demo.cd_1{background:#9900CC}
+.os_projct_overview .task_type .wbox_data .circle_demo.cd_2{background:#00CCFF}
+.os_projct_overview .task_type .wbox_data .circle_demo.cd_3{background:#99CC33}
+.os_projct_overview .task_type .wbox_data .circle_demo.cd_4{background:#663300}
+.os_projct_overview .task_type .wbox_data .circle_demo.cd_5{background:#FF6633}
+.os_projct_overview .task_type .wbox_data .number{display:inline-block;font-size:15px;color:#303030;vertical-align:middle;margin-left:5px;float:right}
+.os_projct_overview .overdue_task .wbox_data{padding:0}
+.os_projct_overview .overdue_task td a{color: #4271A1;}
+/* .os_projct_overview .overdue_task .wbox_data .box_header{padding:15px 15px 0}
+
+ .os_projct_overview .overdue_task  .view_more,.os_projct_overview  .activites .view_more{background:#669933;color:#fff} */
+
+.os_projct_overview .overdue_task .wbox_data table tbody tr:nth-child(2n+1){background:#F5F5F5}
+.os_projct_overview .overdue_task .wbox_data table th{width:20%;font-weight:700;color:#4271A1;}
+.os_projct_overview .overdue_task .wbox_data table td{width:20%;color:#303030;font-weight:500;}
+.os_projct_overview .overdue_task .wbox_data table th:first-child,.os_projct_overview .overdue_task .wbox_data table td:first-child{width:30%; text-align: left;}
+.os_projct_overview .overdue_task .wbox_data table th:first-child{text-indent: 15px;width: 28%;}
+.os_projct_overview .overdue_task .wbox_data table th:nth-child(2),.os_projct_overview .overdue_task .wbox_data table tr td:nth-child(2){width:30%;text-align:left}
+.os_projct_overview .overdue_task .wbox_data table th:nth-child(2){width: 29%;}
+
+.os_projct_overview .overdue_task .wbox_data table .user_name{padding-left:0;font-weight:500;font-size:13px}
+.os_projct_overview .overdue_task .wbox_data table .user_name .pfl_img{margin-right:5px}
+.os_projct_overview .activites .scroll_body{height:300px}
+.os_projct_overview .activites ul{margin:0 0 0 20px;padding:10px 0px;list-style-type:none;border-left:1px solid #ccc}
+.os_projct_overview .activites ul li{display:block;width:100%;position:relative;padding-left:20px;margin-top:30px;text-align:left}
+.os_projct_overview .activites ul li:first-child{margin-top:0}
+.os_projct_overview .activites ul li .pfl_img{width:30px;height:30px;display:block;position:absolute;left:-15px;top:0;bottom:0;margin:auto;border-radius:50%;background:#ddd}
+.os_projct_overview .activites ul li .pfl_img img{max-width:100%}
+.os_projct_overview .activites ul li .date{font-size:12px;padding:5px 10px 3px;color:#fff;text-align:center;display:inline-block;background:#336699;border-radius: 20px;
+line-height:15px;}
+.os_projct_overview .activites ul li .type{display:block;color:#FFAE77;font-size:14px;font-weight:600;margin:5px 0;}
+.os_projct_overview .activites ul li .link_time a{text-decoration:none;font-size:14px;color:#4977A4;width:70%;float:left;display:block;overflow:hidden; text-overflow: ellipsis;white-space:nowrap;}
+.os_projct_overview .activites ul li .link_time .time{color:#999;font-size:12px;float:right;width:30%;}
+.os_projct_overview .activites ul li .name{font-size:14px;color:#555;}
+.os_projct_overview .project_description ol{margin:20px 0 0 0px;padding:20px 20px 0 20px;list-style-type:decimal;border-top:1px solid #ddd}
+.os_projct_overview .project_description ol li,.os_projct_overview .project_description ol li ul li{display:block;font-size:16px;line-height:26px;position:relative;text-align:left;font-weight:500}
+.os_projct_overview .project_description ol li ul{margin:20px 0 0 50px;padding:0;list-style-type:none}
+.os_projct_overview .project_description ol li ul li{padding-left:25px}
+.os_projct_overview .project_description ol li ul li::before{content:'';width:13px;height:13px;display:block;position:absolute;left:0;top:8px;background:#99CC33;border-radius:50%}
+.os_projct_overview .project_description .wbox_data {height:100%;min-height:150px;}
+
+.os_projct_overview .bx-wrapper {margin:0px auto 0px;}
+.os_projct_overview .bx-wrapper .bx-viewport{border:none;box-shadow:none;background:transparent}
+.os_projct_overview .bx-wrapper .bx-controls-direction a{background:url(../../img/assets/arrow.png) no-repeat 0px 0px;width:20px;height:24px;display:inline-block}
+.os_projct_overview .bx-wrapper .bx-controls-direction .bx-prev{background-position:0px 0px;left:-12px;}
+.os_projct_overview .bx-wrapper .bx-controls-direction .bx-prev:hover{background-position:0px -28px}
+.os_projct_overview .bx-wrapper .bx-controls-direction .bx-next{background-position:-20px 0px;right:-12px;}
+.os_projct_overview .bx-wrapper .bx-controls-direction .bx-next:hover{background-position:-20px -28px;}
+.os_projct_overview .bx-wrapper .bx-loading {display:none;}
+.os_projct_overview .task_group .wbox_data {height:300px;}
+.os_projct_overview .task_group .task_group_catagory table{background:#E6E6E6;height:180px;width:100%;table-layout:fixed}
+.os_projct_overview .task_group .task_group_catagory table tbody{border:1px solid #E6E6E6}
+.os_projct_overview .task_group .task_group_catagory table tr td{padding:5px;}
+.os_projct_overview .task_group .task_group_catagory table th{background:#336699;color:#fff;padding:10px;text-align:center;font-size:16px;overflow: hidden;text-overflow: ellipsis;}
+.os_projct_overview .task_group .task_group_catagory table .close_progress td{width:50%;font-size:13px;line-height:18px;background:#fff;text-align:center;overflow: hidden;text-overflow: ellipsis;}
+.os_projct_overview .task_group .task_group_catagory table .close_progress td:first-child{border-right:1px solid #ddd}
+.os_projct_overview .task_group .task_group_catagory table .close_progress td strong{font-size:16px;display:block}
+.os_projct_overview .task_group .task_group_catagory table .total td{text-align:center;font-size:16px;font-weight:400}
+.os_projct_overview  .task_group .task_group_catagory table.complete{background:#fff}
+.os_projct_overview  .task_group .task_group_catagory table.complete  tr th{background:#669933}
+
+
+.os_projct_overview.blank_view  .proj_head figure{height:100%}
+.os_projct_overview.blank_view  .proj_head figure img{max-width:100%}
+.os_projct_overview.blank_view  .proj_head .line_bar{display:block;margin:10px auto}
+.os_projct_overview.blank_view  .line_bar{display:block;border-radius:20px;margin:10px 0;}
+.os_projct_overview.blank_view .empty_line_cont .line_bar{background:#ddd !important;}
+.os_projct_overview.blank_view  .line_bar.big{height:16px;width:100%;}
+.os_projct_overview.blank_view  .line_bar.medium{height:10px;width:80%;}
+.os_projct_overview.blank_view  .line_bar.small{height:5px;width:60%;}
+.os_projct_overview.blank_view  .line_bar.white{background:#fff}
+.os_projct_overview.blank_view  .line_bar.blue{background:#336699}
+.os_projct_overview.blank_view  .line_bar.purple{background:#F19A91}
+.os_projct_overview.blank_view  .line_bar.gray{background:#8DC2F8}
+.os_projct_overview.blank_view  .line_bar.orange{background:#F3C788}
+.os_projct_overview.blank_view  .line_bar.green{background:#8AD6A3}
+.os_projct_overview.blank_view  .line_bar.denim{background:#996633}
+.os_projct_overview.blank_view  .line_bar.red{background:#ff0000}
+
+.os_projct_overview.blank_view .line_bar.darkblue {background:#4275B6}
+.os_projct_overview.blank_view .line_bar.darkorange {background:#F18000}
+
+.os_projct_overview.blank_view  .bread_crumb ul li .gray_circle{display:inline-block;vertical-align:middle;width:18px;height:18px;border-radius:50%;background:#B3B3B3}
+.os_projct_overview.blank_view  .bread_crumb ul li .gray_line{display:inline-block;vertical-align:middle;width:auto;height:35px;border-radius:20px;margin:0 5px;font-size:15px;}
+.os_projct_overview.blank_view  .wbox_data figure{margin:30px auto}
+.os_projct_overview.blank_view  .wbox_data .chat_status_result .line_bar{margin:10px auto}
+.os_projct_overview.blank_view  .wbox_data table td .line_bar{display:inline-block;}
+.os_projct_overview.blank_view .wbox_data .empty_line_cont table td .line_bar{background:#ddd !important;border-color:#ddd !important}
+.os_projct_overview.blank_view .wbox_data .empty_line_cont table .user_name .pfl_img{background:#ddd !important;border-color:#ddd !important}
+.os_projct_overview.blank_view  .wbox_data table .user_name .pfl_img.orange{background:#FF6600;border-color:#FF6600}
+.os_projct_overview.blank_view  .wbox_data table .user_name .pfl_img.drk_gray{background:#99CCCC;border-color:#99CCCC}
+.os_projct_overview.blank_view  .wbox_data table .user_name .pfl_img.purple{background:#00FFFF;border-color:#00FFFF}
+.os_projct_overview.blank_view  .wbox_data table .user_name .pfl_img.blue{background:#336699;border-color:#336699}
+.os_projct_overview.blank_view .wbox_data .team .line_bar.gray{background:#CDCDCD}
+.os_projct_overview.blank_view .wbox_data .team .line_bar.red{background:#ff0000}
+.os_projct_overview.blank_view .file .box_header .line_bar.white{width:90px;height:25px;position:absolute;right:15px;top:0;bottom:0;margin:auto}
+.os_projct_overview.blank_view .file .line_bar.blue{width:50%;}
+.os_projct_overview.blank_view .file  table tr.no_bg td .line_bar{width:50px;background:#CDCDCD;}
+.os_projct_overview.blank_view .file .wbox_data table td .line_bar.gray{background:#B3B3B3;}
+.os_projct_overview.blank_view .file .wbox_data table .user_name .pfl_img{width:30px;height:30px}
+.os_projct_overview.blank_view .file .wbox_data table .user_name .line_bar.gray{width:70%;vertical-align:middle;}
+.os_projct_overview.blank_view .file table tbody tr td .line_bar{margin:0}
+.os_projct_overview.blank_view .project_lunch_date .line_bar.white{display:inline-block;}
+.os_projct_overview.blank_view .task_type .wbox_data figure{width:50%;float:left;}
+.os_projct_overview.blank_view .task_type .wbox_data .line_bar.blue{display:inline-block;margin:0;vertical-align:middle}
+.os_projct_overview.blank_view .task_type .wbox_data .total_task .line_bar{display:inline-block;width:50%}
+.os_projct_overview.blank_view .task_type .wbox_data .total_task .line_bar:nth-child(2){width:25%;margin-left:20px;}
+.os_projct_overview.blank_view .overdue_task .box_header .line_bar{width:90px;height:25px;position:absolute;right:15px;top:0;bottom:0;margin:auto}
+.os_projct_overview.blank_view .overdue_task table thead .line_bar.medium{width:80px}
+.os_projct_overview.blank_view .overdue_task table tbody .line_bar{margin:0}
+.os_projct_overview.blank_view .activites .line_bar.big.green{width:90px;height:25px;position:absolute;right:0;top:0;bottom:0;margin:auto}
+.os_projct_overview.blank_view .activites .medium.blue{width:120px;height:8px}
+.os_projct_overview.blank_view .activites .small.dark_gray{background:#999;width:80%}
+.os_projct_overview.blank_view .activites .small.gray{width:50%}
+.os_projct_overview.blank_view  .task_group .task_group_catagory .line_bar.small.gray{display:inline-block;margin:0}
+.os_projct_overview.blank_view  .task_group .task_group_catagory .line_bar.small.gray.width_30{width:30px}
+.os_projct_overview.blank_view  .task_group .task_group_catagory .line_bar.small.gray.width_70{width:70px}
+.os_projct_overview.blank_view  .task_group .task_group_catagory .circle{width:30px;height:30px;display:block;margin:5px auto;background:#DCDCDC;border-radius:50%}
+.os_projct_overview  .wbox_data .chat_status_result li h6.ov_cmn_h6 {font-size:11px;}
+
+
+
+
+.os_projct_overview .wbox_data .chat_status_result{width: 100%; display: block; text-align: center;}
+.os_projct_overview .wbox_data .chat_status_result.chat_billable_result li{width: 32%;display: inline-block;vertical-align: middle;    padding: 0 5px;}
+.os_projct_overview .wbox_data .chat_status_result.chat_billable_result .v_line {padding: 0 10px;}
+.os_projct_overview .wbox_data .chat_status_result.chat_billable_result li h6.ov_cmn_h6 {font-size: 12px;}
+.os_projct_overview .wbox_data .team tr th, .os_projct_overview .wbox_data .team tr td{font-size: 13px; line-height: 15px;}
+
+
+.os_projct_overview .wbox_data .team tr th:first-child, .os_projct_overview .wbox_data .team tr td:first-child{width: 100px; padding-left: 35px;}
+.os_projct_overview .wbox_data .team tr th:first-child{padding-left:34px; padding-right: 34px;}
+.os_projct_overview .wbox_data table .user_name{padding-left: 0px;}
+.os_projct_overview .wbox_data .drop_icon{left: -25px;}
+.os_projct_overview .wbox_data table tr th, .os_projct_overview .wbox_data table tr td, .os_projct_overview .overdue_task .wbox_data table .user_name{font-size: 14px;}
+.os_projct_overview .wbox_data table .user_name .pfl_img img{margin:0px;}
+
+.os_projct_overview .file table thead th, .os_projct_overview .file table tbody td{width: auto;}
+.os_projct_overview .file #files_overview table td:first-child, .os_projct_overview .file #files_overview table th:first-child{width:1%;}
+.os_projct_overview .file #files_overview table td:last-child, .os_projct_overview .file #files_overview table th:last-child{width:8%;}
+.os_projct_overview .file #files_overview table td:nth-child(2), .os_projct_overview .file #files_overview table th:nth-child(2){width:5%;}
+.os_projct_overview .file table thead tr th:nth-child(3), .os_projct_overview .file table tbody tr td:nth-child(3) {text-align: left;  width: auto;}
+#new_recent_activities .cmn_profile_holder{border-radius: 100%; height: 100%; width: 100%; line-height: 30px;}
+.os_projct_overview .activites #new_recent_activities ul li .pfl_img img {border-radius: 100%;  height: auto; max-width: 100%;  width: 100%;}
+.project_description .wbox_data p{font-size: 15px; font-weight: 500; line-height: 25px; color: #333; margin-top: 15px;padding:15px}
+
+
+
+.project_overview_bar h6 {color: #7e7e7e;  font-size:12px; font-weight: 600; line-height: 15px; margin: 0; text-align: center; position:relative; top:-16px;}
+.project_overview_bar #pprog_holder{display: inline-block;padding-left:0px;height:80px;overflow:hidden;position: relative;top:-15px}
+.project_overview_bar .dyn_overall_abstxt{position:absolute;bottom:0;left:0;right:0px;font-size:12px;text-align:center}
+.overview-bar .project_overview_bar .pad_zero{padding:0}
+.project_overview_bar .dyn_overall_abstxt span{margin-left:5px;font-weight:600}
+.overview-bar .ldBar.label-center > .ldBar-label{font-size: 18px;}
+#proj_loading_bar{position: relative;}
+.d_tbl_cel.p_name{position: relative;}
+.overview-bar h2#ov_prj_name{display: inline-block;color: #555;font-size: 22px;font-weight: 600;line-height: 36px;margin: 15px 0 0;text-overflow: ellipsis; overflow: hidden; white-space: nowrap; max-width:85%;} 
+.overview-bar .inline-edit-usr .material-icons{position: relative; top: -8px;}
+.inline-edit-usr#dsbleInactOver{display: inline-block; float: none;}
+.os_projct_overview_date .d_tbl_cel.date{color: #333; font-size:14px;  font-weight:500; line-height: 20px; text-align: center; padding:14px 10px;}
+
+.os_projct_overview_date .date .v_line_separator {background: #ccc;  height: 50%;  margin: auto;  position: absolute;  right: 0;  top: 14px;  width: 1px;}
+.overview-bar{padding-left: 20px;margin:0}
+#caseOverview .task_group #project_groups{padding-top: 25px;}
+#caseOverview .task_group #project_groups .task_group_catagory{width:100%;margin:0 auto; text-align: center;overflow: hidden;overflow-x: auto;white-space: nowrap;}
+#caseOverview .task_group #project_groups .task_group_catagory .col-md-2{float:none; display:inline-block;width:220px}
+
+
+.bread_crumb{position: relative; z-index:111;}
+.os_projct_overview .bread_crumb ul{padding: 0px 0px 20px;}
+.os_projct_overview .bread_crumb ul li{position: relative; padding-left: 25px; margin-right: 20px; color:#4D4D4D; font-weight: 600; font-size: 16px;}
+.os_projct_overview .bread_crumb ul li::before{content: ""; position: absolute; left: 0px; top: 2px; background:url(../img/bcru-sprite.png) no-repeat 0px 0px; width:18px;height:20px;}
+.os_projct_overview .bread_crumb ul li.a_task::before{background-position: 0px 2px; }
+.os_projct_overview .bread_crumb ul li.m_task::before{background-position: 0px -20px;}
+.os_projct_overview .bread_crumb ul li.t_entry::before{background-position: 0px -41px;}
+.os_projct_overview .bread_crumb ul li.activity_icon::before{background-position: 0px -66px;}
+.os_projct_overview .bread_crumb ul li a{color:#4D4D4D; font-weight: 500; font-size: 15px; padding-bottom: 5px;}
+.os_projct_overview .bread_crumb ul li a:hover{text-decoration: none; border-bottom: 2px solid #4271a1;}
+
+.os_projct_overview .wbox_data .add:hover::after {
+    border: 2px solid #fff;border-radius: 50%;bottom: 0;content: "";
+    height: 50px;width:50px;left: -7px;margin: auto;position: absolute;
+    right: 0;top: 0;transition: all 0.3s ease-in-out 0s;
+	-webkit-transition: all 0.3s ease-in-out 0s;-moz-transition: all 0.3s ease-in-out 0s;}
+.os_projct_overview .wbox_data .add:hover{transform: scale(0.8);-webkit-transform: scale(0.8);-moz-transform: scale(0.8);transition: all 0.3s ease-in-out 0s;
+	-webkit-transition: all 0.3s ease-in-out 0s;-moz-transition: all 0.3s ease-in-out 0s;}
+.closetask_overview_ttlp{text-decoration:none;display:inline-block;position:absolute;right:0px;bottom:0;color:#F6911D}
+.closetask_overview_ttlp:hover{color:#F6911D}
+.closetask_overview_ttlp .tool_tip_cont{position:absolute;top:30px;left:0;right:0;width:200px;border-radius:3px;background:#000;color:#fff;font-size:13px;line-height:20px;padding:10px;display:none;}
+.closetask_overview_ttlp .tool_tip_cont::before{content:'';width:0;height:0;border-left:10px solid transparent;border-right:10px solid transparent;border-bottom:10px solid #000;position:absolute;left:2px;top:-8px;display:block}
+.closetask_overview_ttlp:hover .tool_tip_cont{display:block}
+#proj_prog_cnt {position: absolute;top: 40px;display: inline-block;font-size: 14px;font-weight: 600;text-align: center;color: #333;left: 50%; transform: translateX(-50%);-webkit-transform: translateX(-50%);-moz-transform: translateX(-50%);}
+.project_overview_bar.row {margin-left: 12px;}
+.overview-bar .overview-bnr {top:5px;}
+.file table td a{color:#4977a4}
+.os_projct_overview.blank_view .wbox_data .empty_line_cont .download_icon{display:none}
+.os_projct_overview.blank_view .wbox_data .empty_line_cont.scroll_body{position:relative}
+.os_projct_overview.blank_view .wbox_data .empty_line_cont.scroll_body .material-icons{color:#ddd}
+.os_projct_overview.blank_view .task_group .task_group_catagory .empty_line_cont table th{background:#eee}
+.os_projct_overview.blank_view .task_group .task_group_catagory .data_not_avail{top:50%}
+.data_not_avail{width:180x;height:30px;line-height: 30px;font-size: 20px;color:#aaa;text-align:center;position: absolute;left:0;right:0;top:30%;margin:auto;display:inline-block;z-index:9;transform:rotate(330deg);-webkit-transform: rotate(330deg);-moz-transform: rotate(330deg);}
+
+
+
+.os_projct_overview .content_databox .inactiveTask-mbtom .all-task-srch h5 input::-webkit-input-placeholder { 
+  color: #fff;
+}
+.os_projct_overview .content_databox .inactiveTask-mbtom .all-task-srch h5 input::-moz-placeholder { 
+  color: #fff;
+}
+.os_projct_overview .content_databox .inactiveTask-mbtom .all-task-srch h5 input:-ms-input-placeholder { 
+  color: #fff;
+}
+.os_projct_overview .content_databox .inactiveTask-mbtom .all-task-srch h5 input:-moz-placeholder {
+  color: #fff;
+}

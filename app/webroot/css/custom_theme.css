@@ -1,0 +1,464 @@
+.left-menu-panel.cmn_white_bg .fixed_left_nav {
+  background: #fff;
+}
+
+.custom-navbar.nav_inr_menu .logo_cmpnay_name_toggle.cmn_white_bg .logo_cmpany_name,.custom-navbar.nav_inr_menu .logo_cmpnay_name_toggle.cmn_white_bg .navbar-brand.nav-logo {
+  background: #fff;
+}
+
+.custom-navbar.nav_inr_menu .logo_cmpnay_name_toggle.cmn_white_bg .navbar-nav>li.nav-logo>a,.custom-navbar.nav_inr_menu .logo_cmpnay_name_toggle.cmn_white_bg .sidebar-toggle {
+  color: #555;
+}
+
+.left-menu-panel.cmn_white_bg .option_menu_panel .side-nav>li>a {
+  color: #000;
+}
+
+.left-menu-panel.cmn_white_bg .option_menu_panel .side-nav>li.active:hover>a,.left-menu-panel.cmn_white_bg .option_menu_panel .side-nav>li.active>a {
+  color: #000;font-weight: 600;
+}
+
+.left-menu-panel.cmn_white_bg .option_menu_panel .side-nav>li.active.gradient-45deg-white:hover>a,.left-menu-panel.cmn_white_bg .option_menu_panel .side-nav>li.active.gradient-45deg-white>a {
+  background: rgba(0,0,0,.035);
+  color: #000;
+}
+
+.left-menu-panel.cmn_white_bg .option_menu_panel .side-nav>li>a:hover {
+  background: rgba(0,0,0,.035);
+  color: #000;
+}
+
+/*.left-menu-panel.cmn_white_bg .option_menu_panel .side-nav li ul,.left-menu-panel.cmn_white_bg .option_menu_panel .side-nav>li>a+ul.cmn_sub_item,.left-menu-panel.cmn_white_bg .option_menu_panel .side-nav>li>a+ul>li.reports_submenu>ul {
+  background: rgba(243,245,247,.37);
+  border-top: 1px solid #eee;
+}
+
+.left-menu-panel.cmn_white_bg .option_menu_panel .side-nav>li>a+ul.left-palen-submenu-items {
+  border: none;
+}
+
+.left-menu-panel.cmn_white_bg .option_menu_panel .side-nav>li>a+ul.view_tasks_menu>li a:hover,.left-menu-panel.cmn_white_bg .option_menu_panel .side-nav>li>a+ul.view_tasks_menu>li.active-list a {
+  color: #000;
+}
+
+.left-menu-panel.cmn_white_bg .option_menu_panel .side-nav li>a+ul li a {
+  color: #000;
+}
+
+.left-menu-panel.cmn_white_bg .option_menu_panel .side-nav>li>a+ul.cmn_sub_item>li.prevent_togl_li.active>a,.left-menu-panel.cmn_white_bg .option_menu_panel .side-nav>li>a+ul>li.reports_submenu>ul>li.active>a {
+  color: #000;
+}
+*/
+
+
+.left-menu-panel.cmn_white_bg .option_menu_panel .side-nav li>a:hover .left-menu-icon.material-icons,.left-menu-panel.cmn_white_bg .option_menu_panel .side-nav>li.refafrnd_li a:hover .glyphicon {
+  color: #000;
+}
+
+.left-menu-panel.cmn_white_bg .option_menu_panel .side-nav li.active.gradient-45deg-white>a .glyphicon,.left-menu-panel.cmn_white_bg .option_menu_panel .side-nav li.active.gradient-45deg-white>a .left-menu-icon.material-icons {
+  color: #000;
+}
+
+.left-menu-panel.cmn_white_bg .option_menu_panel .side-nav li.active>a .glyphicon,.left-menu-panel.cmn_white_bg .option_menu_panel .side-nav li.active>a .left-menu-icon.material-icons {
+  color: #000;
+}
+
+.amber>a .material-icons,.brown>a .material-icons,.cyan>a .material-icons,.deep-purple>a .material-icons,.gradient-45deg-deep-orange-orange>a .material-icons,.gradient-45deg-green-teal>a .material-icons,.gradient-45deg-indigo-blue>a .material-icons,.gradient-45deg-indigo-light-blue>a .material-icons,.gradient-45deg-light-blue-cyan>a .material-icons,.gradient-45deg-purple-amber>a .material-icons,.gradient-45deg-purple-deep-orange>a .material-icons,.gradient-45deg-purple-deep-purple>a .material-icons,.gradient-45deg-red-pink>a .material-icons,.light-blue>a .material-icons,.pink>a .material-icons,.purple>a .material-icons,.red>a .material-icons,.teal>a .material-icons {
+  color: #fff;
+}
+
+.amber>a .glyphicon,.brown>a .glyphicon,.cyan>a .glyphicon,.deep-purple>a .glyphicon,.gradient-45deg-deep-orange-orange>a .glyphicon,.gradient-45deg-green-teal>a .glyphicon,.gradient-45deg-indigo-blue>a .glyphicon,.gradient-45deg-indigo-light-blue>a .glyphicon,.gradient-45deg-light-blue-cyan>a .glyphicon,.gradient-45deg-purple-amber>a .glyphicon,.gradient-45deg-purple-deep-orange>a .glyphicon,.gradient-45deg-purple-deep-purple>a .glyphicon,.gradient-45deg-red-pink>a .glyphicon,.light-blue>a .glyphicon,.pink>a .glyphicon,.purple>a .glyphicon,.red>a .glyphicon,.teal>a .glyphicon {
+  color: #fff;
+}
+
+.custom-navbar.nav_inr_menu .project-dropdown .btn-group .btn.btn-info a {
+  color: #fff;
+}
+
+.custom-navbar.nav_inr_menu .right_pfl_menu.cmn_white_bg .project-dropdown .btn-group .btn.btn-info a {
+  color: #333;
+}
+
+.custom-navbar.nav_inr_menu .right_pfl_menu.cmn_white_bg .folder-icon,.custom-navbar.nav_inr_menu .right_pfl_menu.cmn_white_bg .nav-srch-icon .material-icons.search_top_hide_show_icon,.custom-navbar.nav_inr_menu .right_pfl_menu.cmn_white_bg .profile-bar>li,.custom-navbar.nav_inr_menu .right_pfl_menu.cmn_white_bg .project-dropdown .btn-group .btn.btn-info .nav-dot,.custom-navbar.nav_inr_menu .right_pfl_menu.cmn_white_bg .project-dropdown_log .btn-group .btn.btn-info .nav-dot,.custom-navbar.nav_inr_menu .right_pfl_menu.cmn_white_bg .sett_icn .material-icons {
+  color: #888;
+}
+
+.custom-navbar.nav_inr_menu .right_pfl_menu .folder-icon,.custom-navbar.nav_inr_menu .right_pfl_menu .nav-srch-icon .material-icons.search_top_hide_show_icon,.custom-navbar.nav_inr_menu .right_pfl_menu .profile-bar>li,.custom-navbar.nav_inr_menu .right_pfl_menu .project-dropdown .btn-group .btn.btn-info .nav-dot,.custom-navbar.nav_inr_menu .right_pfl_menu .project-dropdown_log .btn-group .btn.btn-info .nav-dot,.custom-navbar.nav_inr_menu .right_pfl_menu .sett_icn .material-icons {
+  color: #fff;
+}
+
+.custom-navbar.nav_inr_menu .right_pfl_menu.cmn_white_bg .quick_link_btn,.custom-navbar.nav_inr_menu .right_pfl_menu.cmn_white_bg .upgrd_btn {
+  background: #1a73e8!important;
+  color: #fff;
+}
+
+.custom-navbar.nav_inr_menu .right_pfl_menu .quick_link_btn,.custom-navbar.nav_inr_menu .right_pfl_menu .upgrd_btn {
+  font-size: 13px;
+  font-family: RobotoDraft-Regular;
+  background: #fff !important;
+}
+
+.custom-navbar.nav_inr_menu .right_pfl_menu.cmn_white_bg .profile-bar>li:hover {
+  color: #1a73e8 !important;
+}
+
+.custom-navbar.nav_inr_menu .right_pfl_menu .profile-bar>li:hover {
+  color: #fff !important;
+}
+
+.all_create_btn>a.gradient-45deg-indigo-blue,.gradient-45deg-indigo-blue.top_project_btn,.os_plus a.gradient-45deg-indigo-blue,.right_pfl_menu.gradient-45deg-indigo-blue {
+  background: #303f9f;
+  background: -webkit-linear-gradient(45deg,#303f9f,#1976d2)!important;
+  background: -moz- oldlinear-gradient(45deg,#303f9f,#1976d2)!important;
+  background: -o-linear-gradient(45deg,#303f9f,#1976d2)!important;
+  background: linear-gradient(45deg,#303f9f,#1976d2)!important;
+}
+
+.all_create_btn>a.gradient-45deg-purple-deep-orange,.gradient-45deg-purple-deep-orange.top_project_btn,.os_plus a.gradient-45deg-purple-deep-orange,.right_pfl_menu.gradient-45deg-purple-deep-orange {
+  background: #8e24aa;
+  background: -webkit-linear-gradient(45deg,#8e24aa,#ff6e40)!important;
+  background: -moz- oldlinear-gradient(45deg,#8e24aa,#ff6e40)!important;
+  background: -o-linear-gradient(45deg,#8e24aa,#ff6e40)!important;
+  background: linear-gradient(45deg,#8e24aa,#ff6e40)!important;
+}
+
+.all_create_btn>a.gradient-45deg-light-blue-cyan,.gradient-45deg-light-blue-cyan.top_project_btn,.os_plus a.gradient-45deg-light-blue-cyan,.right_pfl_menu.gradient-45deg-light-blue-cyan {
+  background: #0288d1;
+  background: -webkit-linear-gradient(45deg,#0288d1,#26c6da)!important;
+  background: -moz- oldlinear-gradient(45deg,#0288d1,#26c6da)!important;
+  background: -o-linear-gradient(45deg,#0288d1,#26c6da)!important;
+  background: linear-gradient(45deg,#0288d1,#26c6da)!important;
+}
+
+.all_create_btn>a.gradient-45deg-purple-amber,.gradient-45deg-purple-amber.top_project_btn,.os_plus a.gradient-45deg-purple-amber,.right_pfl_menu.gradient-45deg-purple-amber,.upgrd_btn.gradient-45deg-purple-amber {
+  background: #d500f9;
+  background: -webkit-linear-gradient(45deg,#d500f9,#ffa000)!important;
+  background: -moz- oldlinear-gradient(45deg,#d500f9,#ffa000)!important;
+  background: -o-linear-gradient(45deg,#d500f9,#ffa000)!important;
+  background: linear-gradient(45deg,#d500f9,#ffa000)!important;
+}
+
+.all_create_btn>a.gradient-45deg-purple-deep-purple,.gradient-45deg-purple-deep-purple.top_project_btn,.os_plus a.gradient-45deg-purple-deep-purple,.right_pfl_menu.gradient-45deg-purple-deep-purple {
+  background: #7b1fa2;
+  background: -webkit-linear-gradient(45deg,#7b1fa2,#7c4dff)!important;
+  background: -moz- oldlinear-gradient(45deg,#7b1fa2,#7c4dff)!important;
+  background: -o-linear-gradient(45deg,#7b1fa2,#7c4dff)!important;
+  background: linear-gradient(45deg,#7b1fa2,#7c4dff)!important;
+}
+
+.all_create_btn>a.gradient-45deg-deep-orange-orange,.gradient-45deg-deep-orange-orange.top_project_btn,.os_plus a.gradient-45deg-deep-orange-orange,.right_pfl_menu.gradient-45deg-deep-orange-orange {
+  background: #bf360c;
+  background: -webkit-linear-gradient(45deg,#bf360c,#f57c00)!important;
+  background: -moz- oldlinear-gradient(45deg,#bf360c,#f57c00)!important;
+  background: -o-linear-gradient(45deg,#bf360c,#f57c00)!important;
+  background: linear-gradient(45deg,#bf360c,#f57c00)!important;
+}
+
+.all_create_btn>a.gradient-45deg-green-teal,.gradient-45deg-green-teal.top_project_btn,.os_plus a.gradient-45deg-green-teal,.right_pfl_menu.gradient-45deg-green-teal {
+  background: #43a047;
+  background: -webkit-linear-gradient(45deg,#43a047,#1de9b6)!important;
+  background: -moz- oldlinear-gradient(45deg,#43a047,#1de9b6)!important;
+  background: -o-linear-gradient(45deg,#43a047,#1de9b6)!important;
+  background: linear-gradient(45deg,#43a047,#1de9b6)!important;
+}
+
+.all_create_btn>a.gradient-45deg-indigo-light-blue,.gradient-45deg-indigo-light-blue.top_project_btn,.os_plus a.gradient-45deg-indigo-light-blue,.right_pfl_menu.gradient-45deg-indigo-light-blue {
+  background: #3949ab;
+  background: -webkit-linear-gradient(45deg,#3949ab,#4fc3f7)!important;
+  background: -moz- oldlinear-gradient(45deg,#3949ab,#4fc3f7)!important;
+  background: -o-linear-gradient(45deg,#3949ab,#4fc3f7)!important;
+  background: linear-gradient(45deg,#3949ab,#4fc3f7)!important;
+}
+
+.all_create_btn>a.gradient-45deg-red-pink,.gradient-45deg-red-pink.top_project_btn,.os_plus a.gradient-45deg-red-pink,.right_pfl_menu.gradient-45deg-red-pink {
+  background: #ff5252;
+  background: -webkit-linear-gradient(45deg,#ff5252,#f48fb1)!important;
+  background: -moz- oldlinear-gradient(45deg,#ff5252,#f48fb1)!important;
+  background: -o-linear-gradient(45deg,#ff5252,#f48fb1)!important;
+  background: linear-gradient(45deg,#ff5252,#f48fb1)!important;
+}
+
+.all_create_btn>a.red,.os_plus a.red,.red.top_project_btn,.right_pfl_menu.red {
+  background-color: #f44336!important;
+}
+
+.all_create_btn>a.purple,.os_plus a.purple,.purple.top_project_btn,.right_pfl_menu.purple {
+  background-color: #9c27b0!important;
+}
+
+.all_create_btn>a.pink,.os_plus a.pink,.pink.top_project_btn,.right_pfl_menu.pink {
+  background-color: #e91e63!important;
+}
+
+.all_create_btn>a.deep-purple,.deep-purple.top_project_btn,.os_plus a.deep-purple,.right_pfl_menu.deep-purple {
+  background-color: #673ab7!important;
+}
+
+.all_create_btn>a.cyan,.cyan.top_project_btn,.os_plus a.cyan,.right_pfl_menu.cyan {
+  background-color: #00bcd4!important;
+}
+
+.all_create_btn>a.teal,.os_plus a.teal,.teal.top_project_btn,.right_pfl_menu.teal {
+  background-color: #009688!important;
+}
+
+.all_create_btn>a.light-blue,.light-blue.top_project_btn,.os_plus a.light-blue,.right_pfl_menu.light-blue {
+  background-color: #03a9f4!important;
+}
+
+.all_create_btn>a.amber,.amber.top_project_btn,.os_plus a.amber,.right_pfl_menu.amber {
+  background-color: #ff7a59!important;
+}
+
+.all_create_btn>a.brown,.brown.top_project_btn,.os_plus a.brown,.right_pfl_menu.brown .brown>a {
+  background-color: #5d4037!important;
+}
+
+/*Start left panel active line bar color*/
+.sidebar_parent_li.gradient-45deg-indigo-blue > a::before{
+  background: #303f9f;
+  background: -webkit-linear-gradient(45deg,#303f9f,#1976d2)!important;
+  background: -moz- oldlinear-gradient(45deg,#303f9f,#1976d2)!important;
+  background: -o-linear-gradient(45deg,#303f9f,#1976d2)!important;
+  background: linear-gradient(45deg,#303f9f,#1976d2)!important;
+}
+.sidebar_parent_li.gradient-45deg-purple-deep-orange > a::before{
+  background: #8e24aa;
+  background: -webkit-linear-gradient(45deg,#8e24aa,#ff6e40)!important;
+  background: -moz- oldlinear-gradient(45deg,#8e24aa,#ff6e40)!important;
+  background: -o-linear-gradient(45deg,#8e24aa,#ff6e40)!important;
+  background: linear-gradient(45deg,#8e24aa,#ff6e40)!important;
+}
+
+.sidebar_parent_li.gradient-45deg-light-blue-cyan > a::before{
+  background: #0288d1;
+  background: -webkit-linear-gradient(45deg,#0288d1,#26c6da)!important;
+  background: -moz- oldlinear-gradient(45deg,#0288d1,#26c6da)!important;
+  background: -o-linear-gradient(45deg,#0288d1,#26c6da)!important;
+  background: linear-gradient(45deg,#0288d1,#26c6da)!important;
+}
+
+.sidebar_parent_li.gradient-45deg-purple-amber > a::before{
+  background: #d500f9;
+  background: -webkit-linear-gradient(45deg,#d500f9,#ffa000)!important;
+  background: -moz- oldlinear-gradient(45deg,#d500f9,#ffa000)!important;
+  background: -o-linear-gradient(45deg,#d500f9,#ffa000)!important;
+  background: linear-gradient(45deg,#d500f9,#ffa000)!important;
+}
+
+.sidebar_parent_li.gradient-45deg-purple-deep-purple > a::before{
+  background: #7b1fa2;
+  background: -webkit-linear-gradient(45deg,#7b1fa2,#7c4dff)!important;
+  background: -moz- oldlinear-gradient(45deg,#7b1fa2,#7c4dff)!important;
+  background: -o-linear-gradient(45deg,#7b1fa2,#7c4dff)!important;
+  background: linear-gradient(45deg,#7b1fa2,#7c4dff)!important;
+}
+
+.sidebar_parent_li.gradient-45deg-deep-orange-orange > a::before{
+  background: #bf360c;
+  background: -webkit-linear-gradient(45deg,#bf360c,#f57c00)!important;
+  background: -moz- oldlinear-gradient(45deg,#bf360c,#f57c00)!important;
+  background: -o-linear-gradient(45deg,#bf360c,#f57c00)!important;
+  background: linear-gradient(45deg,#bf360c,#f57c00)!important;
+}
+
+.sidebar_parent_li.gradient-45deg-green-teal > a::before{
+  background: #43a047;
+  background: -webkit-linear-gradient(45deg,#43a047,#1de9b6)!important;
+  background: -moz- oldlinear-gradient(45deg,#43a047,#1de9b6)!important;
+  background: -o-linear-gradient(45deg,#43a047,#1de9b6)!important;
+  background: linear-gradient(45deg,#43a047,#1de9b6)!important;
+}
+
+.sidebar_parent_li.gradient-45deg-indigo-light-blue > a::before{
+  background: #3949ab;
+  background: -webkit-linear-gradient(45deg,#3949ab,#4fc3f7)!important;
+  background: -moz- oldlinear-gradient(45deg,#3949ab,#4fc3f7)!important;
+  background: -o-linear-gradient(45deg,#3949ab,#4fc3f7)!important;
+  background: linear-gradient(45deg,#3949ab,#4fc3f7)!important;
+}
+
+.sidebar_parent_li.gradient-45deg-red-pink > a::before{
+  background: #ff5252;
+  background: -webkit-linear-gradient(45deg,#ff5252,#f48fb1)!important;
+  background: -moz- oldlinear-gradient(45deg,#ff5252,#f48fb1)!important;
+  background: -o-linear-gradient(45deg,#ff5252,#f48fb1)!important;
+  background: linear-gradient(45deg,#ff5252,#f48fb1)!important;
+}
+
+.sidebar_parent_li.red > a::before{
+  background-color: #f44336!important;
+}
+
+.sidebar_parent_li.purple > a::before{
+  background-color: #9c27b0!important;
+}
+
+.sidebar_parent_li.pink > a::before{
+  background-color: #e91e63!important;
+}
+
+.sidebar_parent_li.deep-purple > a::before{
+  background-color: #673ab7!important;
+}
+
+.sidebar_parent_li.cyan > a::before{
+  background-color: #00bcd4!important;
+}
+
+.sidebar_parent_li.teal > a::before {
+  background-color: #009688!important;
+}
+
+.sidebar_parent_li.light-blue > a::before{
+  background-color: #03a9f4!important;
+}
+
+.sidebar_parent_li.amber > a::before{
+  background-color: #ff7a59!important;
+}
+
+.sidebar_parent_li.brown > a::before {
+  background-color: #5d4037!important;
+}
+
+/*End left panel active line bar color*/
+.gradient-45deg-indigo-blue .quick_link_btn,.upgrd_btn.gradient-45deg-indigo-blue{
+  color: #303f9f!important;
+}
+
+.gradient-45deg-purple-deep-orange .quick_link_btn,.upgrd_btn.gradient-45deg-purple-deep-orange {
+  color: #8e24aa!important;
+}
+
+.gradient-45deg-light-blue-cyan .quick_link_btn,.upgrd_btn.gradient-45deg-light-blue-cyan {
+  color: #0288d1!important;
+}
+
+.gradient-45deg-purple-amber .quick_link_btn,.upgrd_btn.gradient-45deg-purple-amber {
+  color: #d500f9!important;
+}
+
+.gradient-45deg-purple-deep-purple .quick_link_btn,.upgrd_btn.gradient-45deg-purple-deep-purple {
+  color: #7b1fa2!important;
+}
+
+.gradient-45deg-deep-orange-orange .quick_link_btn,.upgrd_btn.gradient-45deg-deep-orange-orange {
+  color: #bf360c!important;
+}
+
+.gradient-45deg-green-teal .quick_link_btn,.upgrd_btn.gradient-45deg-green-teal {
+  color: #43a047!important;
+}
+
+.gradient-45deg-indigo-light-blue .quick_link_btn,.upgrd_btn.gradient-45deg-indigo-light-blue {
+  color: #3949ab!important;
+}
+
+.gradient-45deg-red-pink .quick_link_btn,.upgrd_btn.gradient-45deg-red-pink {
+  color: #ff5252!important;
+}
+
+.red .quick_link_btn,.upgrd_btn.red {
+  color: #f44336!important;
+}
+
+.purple .quick_link_btn,.upgrd_btn.purple {
+  color: #9c27b0!important;
+}
+
+.pink .quick_link_btn,.upgrd_btn.pink {
+  color: #e91e63!important;
+}
+
+.deep-purple .quick_link_btn,.upgrd_btn.deep-purple {
+  color: #673ab7!important;
+}
+
+.cyan .quick_link_btn,.upgrd_btn.cyan {
+  color: #00bcd4!important;
+}
+
+.teal .quick_link_btn,.upgrd_btn.teal {
+  color: #009688!important;
+}
+
+.light-blue .quick_link_btn,.upgrd_btn.light-blue {
+  color: #03a9f4!important;
+}
+
+.amber .quick_link_btn,.upgrd_btn.amber {
+  color: #ff7a59!important;
+}
+
+.brown .quick_link_btn,.upgrd_btn.brown {
+  color: #5d4037!important;
+}
+
+#style_switcher .reset_theme {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  right: 10px;
+  top: 18px;
+  cursor: pointer;
+}
+
+#style_switcher .reset_theme .material-icons {
+  font-size: 24px;
+  color: #888;
+}
+
+#style_switcher .reset_theme .material-icons:hover {
+  color: #1a73e8;
+}
+.right_pfl_menu .left_trial .upgrd_btn_top_hdr{color:#fff !important;}
+.right_pfl_menu.cmn_white_bg .left_trial .upgrd_btn_top_hdr{color:#00DE00 !important;}
+
+.indigo-blue {color: #303f9f !important;font-weight: bold !important;}
+.purple-deep-orange {color: #8e24aa !important;font-weight: bold !important;}
+.light-blue-cyan {color: #0288d1 !important;font-weight: bold !important;}
+.purple-amber {color: #d500f9 !important;font-weight: bold !important;}
+.purple-deep-purple {color: #7b1fa2 !important;font-weight: bold !important;}
+.deep-orange-orange {color: #bf360c !important;font-weight: bold !important;}
+.green-teal {color: #43a047 !important;font-weight: bold !important;}
+.indigo-light-blue {color: #3949ab !important;font-weight: bold !important;}
+.red-pink {color: #ff5252 !important;font-weight: bold !important;}
+.red-text{color: #f44336 !important;font-weight: bold !important;}
+.purple-text{color: #9c27b0 !important;font-weight: bold !important;}
+.pink-text{color: #e91e63 !important;font-weight: bold !important;}
+.deep-purple-text{color: #673ab7 !important;font-weight: bold !important;}
+.cyan-text{color: #00bcd4 !important;font-weight: bold !important;}
+.teal-text{color: #009688 !important;font-weight: bold !important;}
+.light-blue-text{color: #03a9f4 !important;font-weight: bold !important;}
+.amber-text{color: #ff7a59 !important;font-weight: bold !important;}
+.brown-text{color: #5d4037 !important;font-weight: bold !important;}
+.white-text{font-weight: bold !important;}
+
+/*.btn.loginactive.gradient-45deg-indigo-blue,
+.btn.cmn_disabled_btn.gradient-45deg-indigo-blue,
+.btn.loginactive.gradient-45deg-purple-deep-orange,
+.btn.cmn_disabled_btn.gradient-45deg-purple-deep-orange,
+.btn.loginactive.gradient-45deg-light-blue-cyan,
+.btn.cmn_disabled_btn.gradient-45deg-light-blue-cyan,
+.btn.loginactive.gradient-45deg-purple-amber,
+.btn.cmn_disabled_btn.gradient-45deg-purple-amber,
+.btn.loginactive.gradient-45deg-purple-deep-purple,
+.btn.cmn_disabled_btn.gradient-45deg-purple-deep-purple,
+.btn.loginactive.gradient-45deg-deep-orange-orange,
+.btn.cmn_disabled_btn.gradient-45deg-deep-orange-orange,
+.btn.loginactive.gradient-45deg-green-teal,
+.btn.cmn_disabled_btn.gradient-45deg-green-teal,
+.btn.loginactive.gradient-45deg-indigo-light-blue,
+.btn.cmn_disabled_btn.gradient-45deg-indigo-light-blue,
+.btn.loginactive.gradient-45deg-red-pink,
+.btn.cmn_disabled_btn.gradient-45deg-red-pink,
+ .btn.loginactive.red,.btn.cmn_disabled_btn.red, 
+ .btn.loginactive.purple,.btn.cmn_disabled_btn.purple, 
+ .btn.loginactive.pink,.btn.cmn_disabled_btn.pink, 
+ .btn.loginactive.deep-purple,.btn.cmn_disabled_btn.deep-purple, 
+ .btn.loginactive.cyan,.btn.cmn_disabled_btn.cyan, 
+ .btn.loginactive.teal,.btn.cmn_disabled_btn.teal, 
+ .btn.loginactive.light-blue,.btn.cmn_disabled_btn.light-blue, 
+ .btn.loginactive.amber,.btn.cmn_disabled_btn.amber, 
+ .btn.loginactive.brown,.btn.cmn_disabled_btn.brown{opacity: 0.2;color:#fff !important} */

@@ -1,0 +1,44 @@
+Array
+(
+    [12] => Array
+        (
+            [estd] => 0
+            [act] => 4800
+            [per] => 0
+        )
+
+)
+Array
+(
+    [2] => Array
+        (
+            [estd] => 259200
+            [act] => 51060
+            [per] => 19.7
+        )
+
+    [1] => Array
+        (
+            [estd] => 892800
+            [act] => 3600
+            [per] => 0.4
+        )
+
+    [3] => Array
+        (
+            [estd] => 0
+            [act] => 1800
+            [per] => 0
+        )
+
+)
+Array
+(
+    [12] => Array
+        (
+            [estd] => 0
+            [act] => 4800
+            [per] => 0
+        )
+
+)

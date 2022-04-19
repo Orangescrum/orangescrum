@@ -1,0 +1,3 @@
+Array
+{"action":"command","token":"kZwIAuTdmrQgvvARyE6IQlBc","team_id":"T4M73E2P2","team_domain":"andolasoft","channel_id":"C4NJH68TG","channel_name":"general","user_id":"U4MTWGL02","user_name":"ashish","command":"\/joke","text":"jdskjdfs","response_url":"https:\/\/hooks.slack.com\/commands\/T4M73E2P2\/157845721105\/eIfg04UWjrzXlDmtnj9mCvl1"}
+{"action":"command","token":"kZwIAuTdmrQgvvARyE6IQlBc","team_id":"T4M73E2P2","team_domain":"andolasoft","channel_id":"C4NJH68TG","channel_name":"general","user_id":"U4MTWGL02","user_name":"ashish","command":"\/joke","text":"tets","response_url":"https:\/\/hooks.slack.com\/commands\/T4M73E2P2\/157817313424\/rUl2ZDn5aBgEYSmqPCp78GqV"}

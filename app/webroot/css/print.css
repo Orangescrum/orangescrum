@@ -1,0 +1,24 @@
+@media print and (color) {
+* {
+     -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+   }
+   * { margin: 0 !important; padding: 0 !important; }
+  html, body {
+    height:100%; 
+    overflow: hidden;
+    background: none !important; 
+    font-size: 9.5pt;
+  }
+.custom-navbar,.left-menu-panel,.sticky_footer,.os_plus,#lo_avail_for_chat_btn{display:none !important}
+.ganttButtonBar{display:none !important}
+.rht_content_cmn, .task-list-bar{padding-left:0 !important}
+#workSpace, .vSplitBar, .splitterContainer, .splitElement{height: auto !important;}
+.print_preview_project_name{display:block !important;}
+.taskEditRow.rowSelected td, .taskEditRow.rowSelected input{background:none;}
+.splitBox2{width:100% !important;float:none;}
+.splitBox2 div{width:100% !important;left:0 !important;}
+.splitBox2 div table{width:100% !important;left:0 !important;}
+.ganttSVGBox{left:-30% !important;}
+.taskEditRow.rowSelected td,.taskEditRow.rowSelected input{background-color:none;}
+}

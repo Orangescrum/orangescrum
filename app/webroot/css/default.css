@@ -1,0 +1,31 @@
+.picker-frame {
+    border: 0 none;
+    height: 100%;
+    overflow: hidden;
+    width: 100%;
+}
+.picker.modal-dialog-bg {
+    background-color: #FFFFFF;
+    left: 0;
+    position: relative;
+    top: 0;
+}
+.picker.modal-dialog {
+    background-color: #FFFFFF;
+    border: 1px solid #ACACAC;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    left: 0;
+    overflow: auto;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    width: auto;
+    z-index: 1001;
+}
+.picker.modal-dialog-content {
+    font-size: 0;
+    padding: 0;
+}
+.picker.modal-dialog-title, .picker.modal-dialog-buttons {
+    display: none;
+}

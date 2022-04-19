@@ -1,0 +1,9 @@
+Project,Task#,Commented By,Assigned To,Comment,Status,Type,Comment Date,Priority
+Getting Started Orangescrum,1,abc@mydomain.com,abc@mydomain.com,I have completed this task,CLOSED,Development,23-01-2019,HIGH
+Getting Started Orangescrum,2,abc@mydomain.com,abc@mydomain.com,Checked the original message,WIP,Bug,20-01-2019,LOW
+My Budget,2,prabhudas.behera@andolasoft.co.in,prabhudas.behera@andolasoft.co.in,Test 1,in progress,Development,20-01-2019,low
+My Budget,2,prabhudas.behera@andolasoft.co.in,prabhudas.behera@andolasoft.co.in,test2,resolve,Development,20-01-2019,HIGH
+My Budget,1,prabhudas.behera@andolasoft.co.in,prabhudas.behera@andolasoft.co.in,test3,resolved,Development,20-01-2019,medium
+GSO,26,prabhudas.behera@andolasoft.co.in,prabhudas.behera@andolasoft.co.in,test4,new,Development,20-01-2019,HIGH
+GSO,27,abc@mydomain.com,abc@mydomain.com,test5,new,Development,20-01-2019,HIGH
+GSO,27,prabhudas.behera@andolasoft.co.in,prabhudas.behera@andolasoft.co.in,test6,omg,Development,20-01-2019,MEDIUM

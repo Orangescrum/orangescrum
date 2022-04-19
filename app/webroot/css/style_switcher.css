@@ -1,0 +1,298 @@
+/* style switcher */
+#style_switcher {
+  height:auto;
+  position: fixed;
+  right: 0;
+  top: 55px;
+  /* top: 170px; */
+  background: #fff;
+  width: 360px;
+  /* width: 240px; */
+  z-index: 111; /*1094*/
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0px 15px 15px;
+  /* margin-right: -246px; */
+  margin-right: -366px;
+  -webkit-transition: margin 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: margin 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.26);
+  box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.26);
+}
+#style_switcher.switcher_active {
+  margin-right: 0;
+}
+#style_switcher .switcher_app_themes {
+  margin: 0;
+  padding:10px 0;
+  list-style: none;
+  overflow: hidden;
+}
+#style_switcher .switcher_app_themes > li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+#style_switcher .switcher_app_themes li {
+  float: left;
+  cursor: pointer;
+  width: 24px;
+    height: 24px;
+    margin: 5px;
+    text-align:center;
+  /* opacity: 0.5; */
+  -webkit-transition: opacity 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 280ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+#style_switcher .switcher_app_themes li span {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  border: 3px solid #fff;
+  border-radius: 12px;
+  padding: 0 4px;
+  line-height: 24px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+#style_switcher .switcher_app_themes li.gradient-45deg-white span{    border-width: 1px;border-color:#ccc;width: 19px;height: 19px; margin-top: 3px;}
+
+
+#style_switcher .switcher_app_themes li.active_theme {
+  opacity: 1;
+  position: relative;
+}
+#style_switcher .switcher_app_themes li.active_theme span{
+  -webkit-box-shadow: 0 0 10px 3px #ff7a59;
+  box-shadow: 0 0 10px 3px #ff7a59;
+}
+
+#style_switcher .switcher_app_themes li.gradient-45deg-white .app_color_main {
+  background: #fff;
+  background: -webkit-linear-gradient(45deg, #fff, #fff) !important;
+  background: -moz- oldlinear-gradient(45deg, #fff, #fff) !important;
+  background:      -o-linear-gradient(45deg, #fff, #fff) !important;
+  background:         linear-gradient(45deg, #fff, #fff) !important;
+}
+
+#style_switcher .switcher_app_themes li.gradient-45deg-indigo-blue .app_color_main {
+  background: #303f9f;
+  background: -webkit-linear-gradient(45deg, #303f9f, #1976d2) !important;
+  background: -moz- oldlinear-gradient(45deg, #303f9f, #1976d2) !important;
+  background:      -o-linear-gradient(45deg, #303f9f, #1976d2) !important;
+  background:         linear-gradient(45deg, #303f9f, #1976d2) !important;
+}
+#style_switcher .switcher_app_themes li.gradient-45deg-purple-deep-orange .app_color_main {
+  background: #8e24aa;
+  background: -webkit-linear-gradient(45deg, #8e24aa, #ff6e40) !important;
+  background: -moz- oldlinear-gradient(45deg, #8e24aa, #ff6e40) !important;
+  background:      -o-linear-gradient(45deg, #8e24aa, #ff6e40) !important;
+  background:         linear-gradient(45deg, #8e24aa, #ff6e40) !important;
+}
+#style_switcher .switcher_app_themes li.gradient-45deg-light-blue-cyan .app_color_main {
+  background: #0288d1;
+  background: -webkit-linear-gradient(45deg, #0288d1, #26c6da) !important;
+  background: -moz- oldlinear-gradient(45deg, #0288d1, #26c6da) !important;
+  background:      -o-linear-gradient(45deg, #0288d1, #26c6da) !important;
+  background:         linear-gradient(45deg, #0288d1, #26c6da) !important;
+}
+#style_switcher .switcher_app_themes li.gradient-45deg-purple-amber .app_color_main {
+  background: #d500f9;
+      background: -webkit-linear-gradient(45deg, #d500f9, #ffa000) !important;
+      background: -moz- oldlinear-gradient(45deg, #d500f9, #ffa000) !important;
+      background:      -o-linear-gradient(45deg, #d500f9, #ffa000) !important;
+      background:         linear-gradient(45deg, #d500f9, #ffa000) !important;
+}
+#style_switcher .switcher_app_themes li.gradient-45deg-purple-deep-purple .app_color_main {
+  background: #7b1fa2;
+      background: -webkit-linear-gradient(45deg, #7b1fa2, #7c4dff) !important;
+      background: -moz- oldlinear-gradient(45deg, #7b1fa2, #7c4dff) !important;
+      background:      -o-linear-gradient(45deg, #7b1fa2, #7c4dff) !important;
+      background:         linear-gradient(45deg, #7b1fa2, #7c4dff) !important;
+}
+#style_switcher .switcher_app_themes li.gradient-45deg-deep-orange-orange .app_color_main {
+  background: #bf360c;
+      background: -webkit-linear-gradient(45deg, #bf360c, #f57c00) !important;
+      background: -moz- oldlinear-gradient(45deg, #bf360c, #f57c00) !important;
+      background:      -o-linear-gradient(45deg, #bf360c, #f57c00) !important;
+      background:         linear-gradient(45deg, #bf360c, #f57c00) !important;
+}
+#style_switcher .switcher_app_themes li.gradient-45deg-green-teal .app_color_main {
+  background: #43a047;
+      background: -webkit-linear-gradient(45deg, #43a047, #1de9b6) !important;
+      background: -moz- oldlinear-gradient(45deg, #43a047, #1de9b6) !important;
+      background:      -o-linear-gradient(45deg, #43a047, #1de9b6) !important;
+      background:         linear-gradient(45deg, #43a047, #1de9b6) !important;
+}
+#style_switcher .switcher_app_themes li.gradient-45deg-indigo-light-blue .app_color_main {
+  background: #3949ab;
+      background: -webkit-linear-gradient(45deg, #3949ab, #4fc3f7) !important;
+      background: -moz- oldlinear-gradient(45deg, #3949ab, #4fc3f7) !important;
+      background:      -o-linear-gradient(45deg, #3949ab, #4fc3f7) !important;
+      background:         linear-gradient(45deg, #3949ab, #4fc3f7) !important;
+}
+#style_switcher .switcher_app_themes li.gradient-45deg-red-pink .app_color_main {
+  background: #ff5252;
+      background: -webkit-linear-gradient(45deg, #ff5252, #f48fb1) !important;
+      background: -moz- oldlinear-gradient(45deg, #ff5252, #f48fb1) !important;
+      background:      -o-linear-gradient(45deg, #ff5252, #f48fb1) !important;
+      background:         linear-gradient(45deg, #ff5252, #f48fb1) !important;
+}
+/* Solid */
+#style_switcher .switcher_app_themes li.red .app_color_main {
+  background-color: #f44336 !important;
+}
+#style_switcher .switcher_app_themes li.purple .app_color_main {
+  background-color: #9c27b0 !important;
+}
+#style_switcher .switcher_app_themes li.pink .app_color_main {
+  background-color: #e91e63 !important;
+}
+#style_switcher .switcher_app_themes li.deep-purple .app_color_main {
+  background-color: #673ab7 !important;
+}
+#style_switcher .switcher_app_themes li.cyan .app_color_main {
+  background-color: #00bcd4 !important;
+}
+#style_switcher .switcher_app_themes li.teal .app_color_main {
+  background-color: #009688 !important;
+}
+#style_switcher .switcher_app_themes li.light-blue .app_color_main {
+      background-color: #03a9f4 !important;
+}
+#style_switcher .switcher_app_themes li.amber .app_color_main {
+  background-color: #ff7a59 !important;
+}
+#style_switcher .switcher_app_themes li.brown .app_color_main {
+  background-color: #5d4037 !important;
+}
+
+#style_switcher .switcher_app_themes li.gradient-45deg-white .app_color_main {
+  color: #fff !important;
+}
+
+#style_switcher_toggle {
+  position: absolute;
+  top: 80px;
+  left: -22px;
+  width:16px;
+  height: 36px;
+  background: #177cc3;
+  border-radius: 4px 0 0 4px;
+  cursor: pointer !important;
+  padding: 0;
+  -webkit-box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.26);
+  box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.26);
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  z-index: 1096;
+}
+#style_switcher_toggle .material-icons {
+  font-size: 30px;
+  line-height: 36px;
+  color: #fff;position: relative;left: -6px;}
+.switcher_active #style_switcher_toggle{left: -16px;}
+.app_theme_dark #style_switcher,
+.app_theme_dark #style_switcher_toggle {
+  background: #424242;
+}
+.app_theme_dark #style_switcher_toggle .material-icons {
+  color: #cbcbcb;
+}
+.heading_b {font-size:18px;line-height:30px;padding:0 0 5px;margin:15px 0;border-bottom:1px solid #ddd}
+.heading_c {font-size:16px;line-height:28px;margin: 0;}
+.os-margin-bottom {margin-bottom: 16px !important;}
+}
+.os-margin-medium-bottom {
+    margin-bottom: 32px!important;
+}
+#style_switcher .switcher_app_themes li .theme_loader{
+    width: 28px;
+    display: none;
+    background: #fff;
+    border-radius: 50%;
+    border: 2px solid #ddd;
+    padding: 3px;
+}
+
+
+/*customization start here*/
+#style_switcher .checkbox .checkbox-material{top:2px;margin-right: 5px;}
+#style_switcher .checkbox label,#style_switcher .radio label{color:#555;font-size:14px}
+
+/*#style_switcher_toggle i
+{
+    -webkit-animation: fa-spin 2s infinite linear;
+       -moz-animation: fa-spin 2s infinite linear;
+         -o-animation: fa-spin 2s infinite linear;
+            animation: fa-spin 2s infinite linear;
+}
+
+@-webkit-keyframes fa-spin
+{
+    0%
+    {
+        -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+    }
+    100%
+    {
+        -webkit-transform: rotate(359deg);
+                transform: rotate(359deg);
+    }
+}
+
+@-moz-keyframes fa-spin
+{
+    0%
+    {
+        -moz-transform: rotate(0deg);
+             transform: rotate(0deg);
+    }
+    100%
+    {
+        -moz-transform: rotate(359deg);
+             transform: rotate(359deg);
+    }
+}
+
+@-o-keyframes fa-spin
+{
+    0%
+    {
+        -o-transform: rotate(0deg);
+           transform: rotate(0deg);
+    }
+    100%
+    {
+        -o-transform: rotate(359deg);
+           transform: rotate(359deg);
+    }
+}
+
+@keyframes fa-spin
+{
+    0%
+    {
+        -webkit-transform: rotate(0deg);
+           -moz-transform: rotate(0deg);
+             -o-transform: rotate(0deg);
+                transform: rotate(0deg);
+    }
+    100%
+    {
+        -webkit-transform: rotate(359deg);
+           -moz-transform: rotate(359deg);
+             -o-transform: rotate(359deg);
+                transform: rotate(359deg);
+    }
+}*/
+
+
+
+
+
+
+
+
+

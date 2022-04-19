@@ -1,0 +1,7 @@
+   .wrap_title_txt{width:400px !important;}
+   .task_listing{padding:0px !important;margin:0px !important;}
+   .wrap_title_txt a{width:100% !important;display:block !important;white-space:normal !important;color:#2d6dc4 !important}
+   .list-td-hover-cont{position:relative !important}
+   .wrap_assign_txt{width:200px !important;display:block !important;white-space:normal !important;}
+    tr, td{page-break-inside: avoid !important;}
+

@@ -1,0 +1,7 @@
+#autopopup{position:fixed}
+.floater{bottom:0;display:none;padding:0;position:absolute;top:-40px;z-index:35;}
+.floater td{background-color:white;border:1px solid #CBCBCB;color:black;box-shadow:1px 4px 6px #999999;-moz-box-shadow:1px 4px 6px #999999;-webkit-box-shadow:1px 4px 6px #999999;}
+.matchedSmartInputItem{font-size:em;padding:5px 10px 3px 8px;margin:0;cursor:pointer;border-bottom:1px dotted #CCCCCC;}
+.selectedSmartInputItem{color:#fff;background-color:#5191BD;}
+#smartInputResults{padding:0;margin:0;min-width:375px;width:auto;}
+.siwCredit{margin:0;padding:0;margin-top:10px;font-size:0.7em;color:black;}

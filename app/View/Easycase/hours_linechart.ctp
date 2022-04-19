@@ -1,0 +1,1 @@
+ <?php echo $this->element("../Report/hours_linechart",array('mode'=>'overview'));?>

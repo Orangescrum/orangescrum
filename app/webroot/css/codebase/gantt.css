@@ -1,0 +1,161 @@
+html, body{ height:100%; padding:0px; margin:0px; overflow: hidden;}
+
+.gantt-fullscreen{position: absolute; bottom: 20px; right: 20px; width: 30px; height: 30px; padding: 2px; font-size: 32px; background: transparent; cursor: pointer; opacity: 0.5; text-align: center; -webkit-transition:background-color 0.5s, opacity 0.5s; transition:background-color 0.5s, opacity 0.5s;}
+.gantt-fullscreen:hover{background: rgba(150, 150, 150, 0.5); opacity: 1;}
+.gantt_task_progress{text-align:left; padding-left:10px; box-sizing: border-box; color:white; font-weight: bold;}
+
+/*link style*/
+.gantt_task_link.start_to_start .gantt_line_wrapper div{background-color: #7576ba;}
+.gantt_task_link.start_to_start:hover .gantt_line_wrapper div{box-shadow: 0 0 5px 0px #7576ba;}
+.gantt_task_link.start_to_start .gantt_link_arrow_right{border-left-color: #7576ba;}
+
+.gantt_task_link.finish_to_start .gantt_line_wrapper div{background-color: #7576ba;}
+.gantt_task_link.finish_to_start:hover .gantt_line_wrapper div{box-shadow: 0 0 5px 0px #7576ba;}
+.gantt_task_link.finish_to_start .gantt_link_arrow_right{border-left-color: #7576ba;}
+
+.gantt_task_link.finish_to_finish .gantt_line_wrapper div{background-color: #7576ba;}
+.gantt_task_link.finish_to_finish:hover .gantt_line_wrapper div{box-shadow: 0 0 5px 0px #7576ba;}
+.gantt_task_link.finish_to_finish .gantt_link_arrow_left{border-right-color: #7576ba;}
+
+.gantt_task_link.gantt_critical_link .gantt_line_wrapper>div{background-color: #e63030;}
+.gantt_task_link.gantt_critical_link:hover .gantt_line_wrapper>div{background-color: #e63030;}
+.gantt_critical_link .gantt_link_arrow {border-left-color: #e63030 !important;}
+.gantt_critical_link .gantt_link_arrow_left {border-right-color: #e63030 !important;}
+
+/*.gantt_task_link.start_to_start .gantt_line_wrapper div{background-color: #dd5640;}
+.gantt_task_link.start_to_start:hover .gantt_line_wrapper div{box-shadow: 0 0 5px 0px #dd5640;}
+.gantt_task_link.start_to_start .gantt_link_arrow_right{border-left-color: #dd5640;}
+
+.gantt_task_link.finish_to_start .gantt_line_wrapper div{background-color: #7576ba;}
+.gantt_task_link.finish_to_start:hover .gantt_line_wrapper div{box-shadow: 0 0 5px 0px #7576ba;}
+.gantt_task_link.finish_to_start .gantt_link_arrow_right{border-left-color: #7576ba;}
+
+.gantt_task_link.finish_to_finish .gantt_line_wrapper div{background-color: #55d822;}
+.gantt_task_link.finish_to_finish:hover .gantt_line_wrapper div{box-shadow: 0 0 5px 0px #55d822;}
+.gantt_task_link.finish_to_finish .gantt_link_arrow_left{border-right-color: #55d822;}
+
+.gantt_task_link.gantt_critical_link .gantt_line_wrapper>div{background-color: #e63030;}
+.gantt_task_link.gantt_critical_link:hover .gantt_line_wrapper>div{background-color: #e63030;}
+.gantt_critical_link .gantt_link_arrow {border-left-color: #e63030 !important;}
+.gantt_critical_link .gantt_link_arrow_left {border-right-color: #e63030 !important;}*/
+
+/*split task*/
+.complex_gantt_bar{background: transparent; border:none;}
+.complex_gantt_bar .gantt_task_progress{display:none;}
+
+/*priority*/
+.high{border:2px solid #ff5757; color: #d96c49; background: #ff5757;}
+.high .gantt_task_progress{background: #da4543;}
+
+.medium{border:2px solid #28af51; color:#34c461; background: #28af51;}
+.medium .gantt_task_progress{background: #23964d;}
+
+.low{border:2px solid #b4a532; color:#6ba8e3; background: #b4a532;}
+.low .gantt_task_progress{background: #c95c0a;}
+
+/*date picker*/
+.gantt_cal_light  input{width: 96px; margin: 3px 10px 10px 10px; color: #646464; text-align: center;}/* padding: 0; font-size: 11px; height: 17px; border: 1px solid #ccc;*/
+.dhtmlxcalendar_dhx_skyblue, .dhtmlxcalendar_dhx_web, .dhtmlxcalendar_dhx_terrace {z-index: 999999 !important;}
+/*.dhx_calendar_cont input {width: 96px; padding: 0; margin: 3px 10px 10px 10px; font-size: 11px; height: 17px; text-align: center; border: 1px solid #ccc; color: #646464;}*/
+
+/*completed task*/
+.complete_button{margin-top: 1px; background-image:url("common/v_complete.png"); width: 20px;}
+.dhx_btn_set.complete_button_set{background: #ACCAAC; color: #454545; border: 1px solid #94AD94;}
+.completed_task{border:1px solid #94AD94;}
+.completed_task .gantt_task_progress{background: #ACCAAC;}
+
+.dhtmlx-completed{border-color: #669e60;}
+.dhtmlx-completed div {background: #81c97a;}
+
+/*progress slider*/
+.gantt_slider {width: 530px; height: 20px; margin-left: 10px; display: inline-block;}
+.gantt_slider input{width: 34px; height: 18px; border: none;}
+.gantt_slider div:first-child, .gantt_slider .gantt_slider_value{display: inline-block; vertical-align: middle; line-height: 13px;}
+.gantt_slider .gantt_slider_value{font-size: 15px; color: black; margin: 5px 10px;}
+
+/*custom buttons*/
+.fa{cursor: pointer; font-size: 14px; text-align: center; opacity: 0.2; padding: 5px;}
+.fa:hover{opacity: 1;}
+.fa-pencil{color: #ffa011;}
+.fa-plus{color: #328EA0;}
+.fa-times{color: red;}
+
+/*filtering*/
+.filters_wrapper {line-height: 12px; font-size: 12px;}
+.filters_wrapper span {font-weight: bold; padding-right: 5px;}
+.filters_wrapper label {padding-right: 3px;}
+
+.action_buttons{text-align:center;}
+.action_buttons input{margin:0px 5px;}
+
+.weekend{background: #f4f7f4 !important;}
+.gantt_selected .weekend{background:#FFF3A1 !important;}
+.gantt_task_cell.weekend{background-color: #EFF5FD;}
+.gantt_task_row.gantt_selected .gantt_task_cell.weekend{background-color: #F8EC9C;}
+
+.filters_wrapper {line-height: 12px; font-size: 12px;}
+.filters_wrapper span {font-weight: bold; padding-right: 5px;}
+.filters_wrapper label {padding-right: 3px;}
+
+.dhx_toolbar_btn button{padding:0px; margin: 0px; background: transparent; border: 1px solid transparent; cursor: pointer; color:#3db9d3; -webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;}
+.dhx_toolbar_btn button:hover{padding:0px; margin: 0px; border: 1px solid #ffffff; color: #ffffff;}
+.dhx_toolbar_btn .dhxtoolbar_btn_sep{background: #3db9d3; height: 32px; width:2px; margin-top: 0px;}
+/*, .dhx_toolbar_btn button:focus*/
+.dhx_toolbar_dhx_skyblue .dhx_toolbar_btn .span_completed_tasks{color:#fff;}
+.dhx_toolbar_dhx_skyblue{background: #395376; height: 35px;}
+.dhx_toolbar_dhx_skyblue .dhx_toolbar_btn{color: #3db9d3; margin: -3px -2px !important; padding: 5px !important;}
+.span_completed_tasks{vertical-align: top;display: inline-block;margin-top: 6px;font-size: 13px;}/*position: relative; top: -7px;*/
+.dhx_toolbar_dhx_skyblue div.dhxtoolbar_float_left{width: 100%;}
+.hidden{display: none;}
+.navbar-brand {color: #999999; background: url(../../../img/sprite_osv2.png) 0px -0px; width: 26px; height: 27px; text-indent: -99999px; margin: 0; display: block;}
+
+/* hide progress drag in projects and objectives */
+.project-task .gantt_task_progress_drag, .phase-task .gantt_task_progress_drag {display: none !important;}
+
+/* hide 'plus' buttons for tasks */
+.regular-task .gantt_add, .regular-task .gantt_grid_add {display: none;}
+.milestone-task .gantt_grid_delete{display:none;}
+
+.gantt_task_cell.day_end, .gantt_task_cell.no_work_hour.day_start{border-right-color: #C7DFFF;}
+.gantt_task_cell.weekend.day_end, .gantt_task_cell.weekend.day_start{border-right-color: #E2E1E1;}
+.gantt_task_cell.weekend, .gantt_task_cell.no_work_hour{background-color: #F5F5F5;}
+.gantt_task_row.gantt_selected .gantt_task_cell.weekend{background-color: #F8EC9C;}
+
+.dhtmlx-info{padding:0px;}
+/*editor*/
+.gantt_cal_lsection{float:left; width:17%; clear:left; padding-top:5px;}
+.gantt_cal_ltext, .dhx_calendar_cont{float:left; width:76%; clear:right;}
+.gantt_cal_light  input{width:125px;}
+
+.gantt_critical_task {background-color: #e63030 !important; border-color: #9d3a3a !important;}
+.gantt_critical_task .gantt_task_progress{background-color:rgba(0,0,0,.4)}
+/*.gantt_critical_link .gantt_line_wrapper>div{background-color:#e63030}
+.gantt_critical_link .gantt_link_arrow{border-color:#e63030}*/
+/*.gantt_unselectable,.gantt_unselectable div{-webkit-user-select:none;-moz-user-select:none;-moz-user-select:-moz-none}*/
+/*.milestone .gantt_link_control.task_right{display:none;}
+.milestone .gantt_link_control.task_left{display:none;}*/
+/*.gantt_task_line.gantt_project{background-color: #3db9d3; border: 1px solid #2898b0;}*/
+.milestone-task .gantt_task_progress_drag,
+.milestone-task .gantt_task_drag,
+.milestone-task .gantt_task_progress_drag,
+.milestone-task .gantt_task_progress,
+.milestone-task .gantt_link_control{display: none !important;}
+.material-icons{float:left; margin-top:1px;}
+.dhtmlx_message_area{top:35px !important;}
+.gantt_grid_head_cell.gantt_grid_head_add{display:none;}
+.edit_items{display: block; width: 94%; margin-left:1%; margin-right:1%; float:left;}
+.edit_items .gantt_cal_lsection{display: block; width: 100%;}
+.edit_items .gantt_cal_ltext{display: block; width: 100%;}
+.edit_items .dhx_calendar_cont{display: block; width: 100%;}
+.edit_items.task input{width:100%;text-align: left; margin:0px; border-top: 0px; border-left: 0px; border-right: 0px;}
+.edit_items input{margin:0px; border-top: 0px; border-left: 0px; border-right: 0px;}
+.edit_items select{width:100%;text-align: left; margin:0px; border-top: 0px; border-left: 0px; border-right: 0px;}
+.edit_items.parent{display: block; width: 30%; float: left;}
+.edit_items.progress{display: block; width: 30%; float: left;}
+.edit_items.user{display: block; width: 30%; float: left;}
+.edit_items.priority{display: block; width: 30%; float: left; clear:left;}
+.edit_items.milestone{display: block; width: 30%; float: left;}
+.edit_items.task_type{display: block; width: 30%; float: left;}
+.edit_items.task_status{display: block; width: 30%; float: left;}
+.edit_items.time{display: block; width: 65%; float: left;}
+.dhx_toolbar_dhx_skyblue div.dhx_toolbar_btn, .dhx_toolbar_dhx_skyblue div.dhx_toolbar_arw{height:32px;}

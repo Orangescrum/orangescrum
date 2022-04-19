@@ -1,0 +1,86 @@
+.wel_admin
+{
+	font-weight:bold;
+	font-size:18px;
+	color:#F16624;
+	text-align:center;
+}
+.admin_outer
+{
+	width:100%;
+	cursor:text;
+	height: 78px;
+	border-radius:0px;
+	-moz-border-radius:0px;
+	-webkit-border-radius:0px;
+}
+
+.manage_table td
+{
+	padding-left:4px;
+}
+.manage_table
+{
+	border:1px solid #CFD7DD;
+}
+.comp_name a
+{
+	color:#666; 
+	text-decoration:none;
+	cursor:pointer;
+}
+.comp_name a:hover
+{
+	text-decoration:underline;
+	color:#F16624;
+}
+.footer_title
+{
+	font-size:14px;
+	color:#fff;
+	padding-top: 20px;
+	text-align:center;
+}
+.footer_title a
+{
+	text-decoration:none;
+	color:#F16624;
+	cursor:pointer;
+}
+.footer_title a:hover
+{
+	text-decoration:underline;
+}
+.admin_logo{margin:15px 46px;}
+.admin_ui{margin-left: 48px;padding-top: 25px;}
+.admin_manage{ left: 2px;position: absolute;top: 140px;}
+.admin_top{padding-left: 10px; min-height: 470px;margin-top: 45px;}
+.admin_ui .ui-tabs-nav {
+    /*border-bottom: 1px solid #CCCCCC;*/
+    height: 29px;
+    width: 94%!important;
+	padding: 0 0 0 17px!important;
+}
+.admin_manage .ui-tabs-nav {
+    border-bottom: none;
+    height: 28px;
+	padding: 0 0 0 26px!important;
+}
+.admin_cover{/*border: 1px solid #ccc; */margin: 0 59px 70px 50px;}
+.mng_company #container{width:100%!important; margin-left:0px;border:1px solid #ccc;}
+.mng_company #container table{margin-left:0px;width:100%;}
+.admin_cover .td_outer_box{border-radius:0px;-moz-border-radius:0px;-webkit-border-radius:0px; padding-bottom: 40px; padding-top:20px;}
+.comp_det td.lbl{font-weight:bold;float:right}
+@media only screen and (max-width:800px) {
+	.admin_logo {margin: 15px 30px;}
+	.admin_ui { margin-left: 29px;}
+	.admin_cover {padding-right: 0px; margin: 0 59px 70px 31px;}
+	.admin_cover .td_outer_box {width:99%}
+	.comp_det td{font-size:14px!important;}
+	.comp_det td.lbl{text-align: right;width: 123px;}
+	.assn_usr{width:103px;}
+	.tab_dt tr td {font-size: 12px!important;padding: 3px 1px !important;}
+	.mng_wrd{width: 80px; text-overflow: ellipsis; overflow: hidden;}
+	.mng_company{overflow-x:scroll;}
+	.mng_company #container{width:800px!important;}
+}
