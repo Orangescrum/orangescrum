@@ -509,7 +509,6 @@ if( $is_active_proj || (SES_TYPE==3)){
 														
 														
 														<li><a href="<?php echo HTTP_ROOT.'project-status';?>" onclick="trackEventLeadTracker('Top Setting','Project Status','<?php echo $_SESSION['SES_EMAIL_USER_LOGIN'];?>');"><?php echo __('Project Status');?></a></li>
-														<li><a href="<?php echo HTTP_ROOT.'project-type';?>" onclick="trackEventLeadTracker('Top Setting','Project Type','<?php echo $_SESSION['SES_EMAIL_USER_LOGIN'];?>');"><?php echo __('Project Type');?></a></li>
 													
                                                     
 									

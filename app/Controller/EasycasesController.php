@@ -8516,21 +8516,6 @@ class EasycasesController extends AppController
         $cond = ' 1 ';
         $postdata = $this->data;
         $this->loadModel('Project');
-        $this->loadModel('EasycaseLabel');
-        $this->loadModel('Label');
-        if ($postdata['is_multiple'] == '1') {
-            $params['conditions'][] = array('EasycaseLabel.easycase_id IN' => $postdata['case_id'],'EasycaseLabel.project_id' => $postdata['old_project_id']);
-        } else {
-            $params['conditions'][] = array('EasycaseLabel.easycase_id' => $postdata['case_id'],'EasycaseLabel.project_id' => $postdata['old_project_id']);
-        }
-        $labels = $this->EasycaseLabel->find('all', $params);
-        $labelCondition['conditions'][] = array('Label.project_id IN' => [$postdata['case_id'],'0'],'Label.company_id'=>[SES_COMP]);
-        $labelCondition['fields'] = array('Label.lbl_title','Label.id');
-        // echo "<pre>"; print_r($labelCondition); exit;
-        $label_exist = $this->Label->find('list', $labelCondition);
-        //echo "<pre>"; print_r($label_exist); exit;
-         
-        $this->EasycaseLabel->saveLabelOtherProject($labels, $label_exist, $postdata);
         // if(!$this->Project->compareProjectStatusgroup($old_project_id, $project_id)){
         // 	echo json_encode(array('success' => 0,'msg'=>__('Can not move task to a project having different status workflow.')));
         // 	exit;

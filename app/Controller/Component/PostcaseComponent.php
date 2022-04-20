@@ -1790,10 +1790,10 @@ Team Orangescrum
             $data['CaseRemovedFile']['user_id'] = SES_ID;
             $data['CaseRemovedFile']['company_id'] = SES_COMP;
             $data['CaseRemovedFile']['case_file_name'] = !empty($val['CaseFile']['upload_name'])?$val['CaseFile']['upload_name']:$val['CaseFile']['file'];
-            $cnt = $ProjectTemplateCaseFile->find('count', array('conditions' => array('ProjectTemplateCaseFile.upload_name' => $data['CaseRemovedFile']['case_file_name'])));
-            if ($cnt ==0) {
+            // $cnt = $ProjectTemplateCaseFile->find('count', array('conditions' => array('ProjectTemplateCaseFile.upload_name' => $data['CaseRemovedFile']['case_file_name'])));
+            // if ($cnt ==0) {
                 $caseRemovedFile->save($data);
-            }
+            // }
         }
         if ($caseFile->deleteAll(array('CaseFile.id' => $delids, 'CaseFile.company_id' => SES_COMP, 'CaseFile.easycase_id' => $easycaseid))) {
             $cur_data = $easycase->find('first', array('conditions' => array('Easycase.id' => $easycaseid), 'fields' => array('Easycase.id','Easycase.case_no', 'Easycase.project_id', 'Easycase.thread_count','Easycase.format', 'Easycase.message','Easycase.istype')));

@@ -104,32 +104,14 @@
                                 <% } %>
                                 <% } %>
 								<% if(isAllowed("Create Task",projectUniqid)){ %>
-                                    <% 
-									
-									if((caseDet.Easycase.is_sub_sub_task==null) || (caseDet.Easycase.is_sub_sub_task=='')){
-									if(caseLegend !=3 && caseTypeId != 10){ %>
-                                    <li onclick="addSubtaskPopup(<%= '\'' + projectUniqid + '\'' %>,<%= '\'' + caseDet.Easycase.id + '\'' %>,<%= '\'' + caseDet.Easycase.project_id + '\'' %>,<%= '\'' + caseDet.Easycase.uniq_id + '\'' %>,<%= '\'' + caseDet.Easycase.title + '\'' %>);trackEventLeadTracker(<%= '\'Task List Page\'' %>,<%= '\'Create Sub task\'' %>,<%= '\'<?php echo $_SESSION['SES_EMAIL_USER_LOGIN'];?>\'' %>);">
-                                        <a href="javascript:void(0);"><i class="material-icons"></i><?php echo __('Create Subtask');?></a>
-                                    </li>
-                                    <% } }%>
                           <% } %>
 					<% if(caseParenId){ %>
 					<% if(isAllowed("Change Other Details of Task",projectUniqid)){ %>
 										  
-                                        <li onclick="convertToParentTask(<%= '\''+ caseAutoId+'\',\''+caseNo+'\'' %>);trackEventLeadTracker(<%= '\'Task List Page\'' %>,<%= '\'Convert To Parent Task\'' %>,<%= '\'<?php echo $_SESSION['SES_EMAIL_USER_LOGIN'];?>\'' %>);" id="convertToTask<%= caseAutoId %>" style=" <% if(showQuickActiononList){ %>display:block <% } else { %>display:none<% } %>">
-                                              <a href="javascript:void(0);"><i class="material-icons">&#xE15A;</i><?php echo __('Convert To Parent');?></a>
-                                        </li>
+                                       
                                       
 					<% } } %>
-									  <% if(caseParenId == "" || caseParenId == null){ %>
-									  <%	if((caseDet.Easycase.sub_sub_task==null) || (caseDet.Easycase.sub_sub_task =="") || (caseDet.Easycase.sub_sub_task ==0)){  %>
-										  <% if(isAllowed("Change Other Details of Task",projectUniqid)){ %>
-                                        <li onclick="convertToSubTask(<%= '\''+ caseAutoId+'\',\''+projId+'\',\''+caseNo+'\'' %>);trackEventLeadTracker(<%= '\'Task List Page\'' %>,<%= '\'Convert To Sub Task\'' %>,<%= '\'<?php echo $_SESSION['SES_EMAIL_USER_LOGIN'];?>\'' %>);" id="convertToSubTask<%= caseAutoId %>" style=" <% if(showQuickActiononList){ %>display:block <% } else { %>display:none<% } %>">
-                                              <a href="javascript:void(0);"><i class="material-icons">&#xE15A;</i><?php echo __('Convert To Subtask');?></a>
-                                        </li>
-                                      
 									  
-										  <% } } } %>
                                     <?php if($GLOBALS['user_subscription']['subscription_id'] != CURRENT_EXPIRED_PLAN){ ?>
                                     <% if(isAllowed('Manual Time Entry',projectUniqid)){ %>
 									<% if(caseLegend == 3){ %>
@@ -299,34 +281,7 @@
                                 <% } %>
                                 <% } %>
                     <% } %>
-                    <% } %>
-					<% if(isAllowed("Create Task",projectUniqid)){ %>
-                                    <% 
-									
-									if((caseDet.Easycase.is_sub_sub_task==null) || (caseDet.Easycase.is_sub_sub_task=='')){
-									if(caseLegend !=3 && caseTypeId != 10){ %>
-                                    <li onclick="addSubtaskPopup(<%= '\'' + projectUniqid + '\'' %>,<%= '\'' + caseDet.Easycase.id + '\'' %>,<%= '\'' + caseDet.Easycase.project_id + '\'' %>,<%= '\'' + caseDet.Easycase.uniq_id + '\'' %>,<%= '\'' + caseDet.Easycase.title + '\'' %>);trackEventLeadTracker(<%= '\'Task List Page\'' %>,<%= '\'Create Sub task\'' %>,<%= '\'<?php echo $_SESSION['SES_EMAIL_USER_LOGIN'];?>\'' %>);">
-                                        <a href="javascript:void(0);"><i class="material-icons"></i><?php echo __('Create Subtask');?></a>
-                                    </li>
-                                    <% } }%>
-                          <% } %>
-					<% if(caseParenId){ %>
-					<% if(isAllowed("Change Other Details of Task",projectUniqid)){ %>
-										  
-                                        <li onclick="convertToParentTask(<%= '\''+ caseAutoId+'\',\''+caseNo+'\'' %>);trackEventLeadTracker(<%= '\'Task List Page\'' %>,<%= '\'Convert To Parent Task\'' %>,<%= '\'<?php echo $_SESSION['SES_EMAIL_USER_LOGIN'];?>\'' %>);" id="convertToTask<%= caseAutoId %>" style=" <% if(showQuickActiononList){ %>display:block <% } else { %>display:none<% } %>">
-                                              <a href="javascript:void(0);"><i class="material-icons">&#xE15A;</i><?php echo __('Convert To Parent');?></a>
-                                        </li>
-                                      
-					<% } } %>
-									  <% if(caseParenId == "" || caseParenId == null){ %>
-									  <%	if((caseDet.Easycase.sub_sub_task==null) || (caseDet.Easycase.sub_sub_task =="") || (caseDet.Easycase.sub_sub_task ==0)){  %>
-										  <% if(isAllowed("Change Other Details of Task",projectUniqid)){ %>
-                                        <li onclick="convertToSubTask(<%= '\''+ caseAutoId+'\',\''+projId+'\',\''+caseNo+'\'' %>);trackEventLeadTracker(<%= '\'Task List Page\'' %>,<%= '\'Convert To Sub Task\'' %>,<%= '\'<?php echo $_SESSION['SES_EMAIL_USER_LOGIN'];?>\'' %>);" id="convertToSubTask<%= caseAutoId %>" style=" <% if(showQuickActiononList){ %>display:block <% } else { %>display:none<% } %>">
-                                              <a href="javascript:void(0);"><i class="material-icons">&#xE15A;</i><?php echo __('Convert To Subtask');?></a>
-                                        </li>
-                                      
-									  
-										  <% } } } %>
+                    <% } %>	 
                                 <?php if($GLOBALS['user_subscription']['subscription_id'] != CURRENT_EXPIRED_PLAN){ ?>
                                     <% if(isAllowed("Manual Time Entry",projectUniqid)){ %>
 									<% if(caseLegend == 3){ %>

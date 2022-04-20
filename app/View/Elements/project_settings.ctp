@@ -16,13 +16,6 @@
                         </a>
                     </li>
                 <?php } ?>
-                  <?php if($this->Format->isAllowed('View Invoice Setting',$roleAccess)){ ?>
-                   <li <?php if(CONTROLLER == 'invoices' && PAGE_NAME == 'settings') {?>class="active-list" <?php }?>>
-                        <a id="sett_invoice" href="<?php if($GLOBALS['Userlimitation']['subscription_id'] == CURRENT_EXPIRED_PLAN){ echo 'javascript:showUpgradPopup(1);'; }else{ echo HTTP_ROOT.'invoice-settings';} ?>" class="all-list" onclick="return trackEventLeadTracker('Company Settings','Invoice','<?php echo $_SESSION['SES_EMAIL_USER_LOGIN'];?>');">
-                            <i class="material-icons">&#xE53E;</i> <?php echo __('Invoice');?> <?php echo $this->Format->getlockIcon(); ?>
-                        </a>
-                    </li> 
-                <?php } ?>
                 <?php if(SES_TYPE < 3){ /* ?>   
                     <li class="task-sett pr <?php if(CONTROLLER == 'projects' && PAGE_NAME == 'task_settings') {?>active-list<?php }?>">
                         <a id="sett_invoice" href="<?php echo HTTP_ROOT.'task-settings';?>" class="all-list" onclick="return trackEventLeadTracker('Company Settings','Task Settings','<?php echo $_SESSION['SES_EMAIL_USER_LOGIN'];?>');">

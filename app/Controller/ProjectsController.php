@@ -5793,12 +5793,9 @@ class ProjectsController extends AppController
         $this->loadModel('User');
         $prjmanager_names = $this->User->find('list', array('fields' => array('User.uniq_id', 'User.name')));
 
-        $this->loadModel('InvoiceCustomer');
-        $inv_user_list = $this->InvoiceCustomer->find('all', array('fields' => array("id", "first_name","last_name")));
+        
         $user_list=array();
-        foreach ($inv_user_list as $key=>$val) {
-            $user_list[$val['InvoiceCustomer']['id']]=$val['InvoiceCustomer']['first_name'].' '.$val['InvoiceCustomer']['last_name'];
-        }
+        
         // $user_list = $this->User->find('list', array('fields' => array('User.id', 'User.name')));
         $this->loadModel('Industry');
         $industries = $this->Industry->find('list', array('conditions' => array('Industry.is_display' => 1),'fields' => array('Industry.id', 'Industry.name')));
@@ -7888,7 +7885,6 @@ class ProjectsController extends AppController
         }
         $sts_txt = $status == 2 ? __("Approved") : __("Rejected");
         $subject = "Timesheet Approval Status (" . $startEmailDate . " - " . $endEmailDate . " " . $endEmailDateYear . ") ";
-        // $approver_ses_email = "chandan.pattnaik@andolasoft.co.in";
         $this->Email->delivery = 'smtp';
         $this->Email->to = $ses_email;
 
