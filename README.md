@@ -46,10 +46,15 @@ The key features are:
 - [Default Status Workflow](https://www.orangescrum.com/custom-status-workflow)
 - [Default User Role Management](https://www.orangescrum.com/user-role-management)
 
+## [](https://github.com/Orangescrum/orangescrum/blob/main/README.md#task-list-view)Task List View
 ![TaskList](https://user-images.githubusercontent.com/104009174/164024431-7a2aa224-f01a-4a89-a04f-edfdc7a64180.png)
+## [](https://github.com/Orangescrum/orangescrum/blob/main/README.md#add-edit-task-form-view)Add/Edit Task Form View
 ![Task](https://user-images.githubusercontent.com/104009174/164024438-ba48ce20-eb87-4268-be2a-b6f3b9e64108.png)
+## [](https://github.com/Orangescrum/orangescrum/blob/main/README.md#task-details-view)Task Details View
 ![TaskDetail](https://user-images.githubusercontent.com/104009174/164024414-8a4d6117-b200-409d-9cf4-0f3d1585a76d.png)
+## [](https://github.com/Orangescrum/orangescrum/blob/main/README.md#project-list-view)Project List View
 ![Project](https://user-images.githubusercontent.com/104009174/164024428-a42a6b4b-8c48-49f9-a65d-c463eb78d578.png)
+## [](https://github.com/Orangescrum/orangescrum/blob/main/README.md#dashboard-view)Dashboard View
 ![DashBoard](https://user-images.githubusercontent.com/104009174/164024434-c8821926-b57f-4f53-9136-e4da33fc6304.png)
 
 We use Orangescrum in our daily jobs to manage our customers information, projects. It is deployed in the production environment of our premium users, and we supported several organizations to deploy this community version on their servers as well. We take care of our open source edition similar than we do for our cloud/enterprise self-hosted edition, in fact both of them use the same code base structure. So feel free to use it in your organization or business!
@@ -64,6 +69,23 @@ We use Orangescrum in our daily jobs to manage our customers information, projec
 -   MySQL 5.6 or 5.7
     -   If STRICT mode is On, turn it Off.
 
+## [](https://github.com/Orangescrum/orangescrum/blob/main/README.md#how-to-download)How to Download the Package from Orangescrum GitHub repository?
+
+To download the Orangescrum Open-source package from the GitHub repository, please follow the process:
+
+-   Go to xampp/htdocs
+![HTDOCS](https://www.orangescrum.com/blog/wp-content/uploads/2022/04/HTDOCS.png)
+-   Open git bash here. (As shown in below image)
+![GitBash](https://www.orangescrum.com/blog/wp-content/uploads/2022/04/GitBash.png)
+-   Go to your GitHub account and search for Orangescrum. Or click here to find the Orangscrum Repository.
+![Click-On-Codes.png](https://www.orangescrum.com/blog/wp-content/uploads/2022/04/Click-On-Codes.png)
+-   Click on the code and copy the link.
+-   Go to git bash terminal  and add Command line: git clone <github link>  (the link you have copied from GitHub)
+![Copy-the-link](https://www.orangescrum.com/blog/wp-content/uploads/2022/04/Copy-the-link.png)
+-   Click on enter. Orangescrum folder will be generated inside your htdocs.
+-   Otherwise, download the zip file and extract the file inside your htdocs.
+![Download-the-Zip](https://www.orangescrum.com/blog/wp-content/uploads/2022/04/Download-the-Zip.png)
+
 ## [](https://github.com/Orangescrum/orangescrum/blob/main/README.md#installation)Installation
 
 -   Extract the archive. Upload the extracted folder(orangescrum-master) to your working directory.
@@ -72,8 +94,6 @@ We use Orangescrum in our daily jobs to manage our customers information, projec
 -   Get the database.sql file from the root directory and import that to your database.
 -   Locate your  `app`  directory, do the changes on following files:
     -   `app/Config/database.php`  - We have already updated the database name as "Orangescrum" which you can change at any point. In order to change it, just create a database using any name and update that name as database in DATABASE_CONFIG section. And also you can set a password for your Mysql login which you will have to update in the same page as password. [Required]
-    -   `app/Config/constants.php`  - Provide your valid SMTP_UNAME and SMTP_PWORD. For SMTP email sending you can use(Only one at a time) either Gmail or Sendgrid or Mandrill. By default we are assuming that you are using Gmail, so Gmail SMTP configuration section is uncommented. If you are using Sendgrid or Mandrill just comment out the Gmail section and uncomment the Sendgrid or Mandrill configuration section as per your requirement. [Required]
-    -   `app/Config/constants.php`  - Update the FROM_EMAIL_NOTIFY and SUPPORT_EMAIL [Required]
 -   Run the application as  [https://www.your-site.com/](http://your-site.com/)  from your browser and start using Orangescrum
 
 For more information please visit below link:  [https://www.orangescrum.com/open-source/general-installation-guide](http://orangescrum.com/open-source/general-installation-guide)
