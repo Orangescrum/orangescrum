@@ -52,7 +52,7 @@ The key features are:
 ![Task](https://user-images.githubusercontent.com/104009174/164024438-ba48ce20-eb87-4268-be2a-b6f3b9e64108.png)
 ## [](https://github.com/Orangescrum/orangescrum/blob/main/README.md#task-details-view)Task Details View
 ![TaskDetail](https://user-images.githubusercontent.com/104009174/164024414-8a4d6117-b200-409d-9cf4-0f3d1585a76d.png)
-## [](https://github.com/Orangescrum/orangescrum/blob/main/README.md#project-list-view)Project List View
+## [](https://github.com/Orangescrum/orangescrum/blob/main/README.md#project-list-view)Project Card View
 ![Project](https://user-images.githubusercontent.com/104009174/164024428-a42a6b4b-8c48-49f9-a65d-c463eb78d578.png)
 ## [](https://github.com/Orangescrum/orangescrum/blob/main/README.md#dashboard-view)Dashboard View
 ![DashBoard](https://user-images.githubusercontent.com/104009174/164024434-c8821926-b57f-4f53-9136-e4da33fc6304.png)
