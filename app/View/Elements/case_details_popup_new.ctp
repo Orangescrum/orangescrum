@@ -1,6 +1,12 @@
 <style>
 	ul.dropdown-menu li .caseDetailsSpan a:hover {background: #eee;color: #2d6dc4 !important;}
 	.ttype_global {position: relative;display: inline;width: 100%;padding-left: 20px;}
+	.attach_detils{ display: flex;flex-wrap: wrap;align-items: flex-start;    margin: 0 -10px;}
+	span.downlodfile_detail {padding: 0 10px;display: block;width: 33.33%;border: none;background: transparent;}
+	.downlodfile_detail a .ellipsis-view {margin-left: 5px;max-width: 100px;}
+	.downlodfile_detail a {text-decoration:none;color: #000;display: flex;padding: 5px;border: 1px solid #e6e6e6;border-radius: 4px;background-color: #e6e6e6;margin: 5px;}
+	.downlodfile_detail a small {display: block;margin: 3px 0 0 15px;color: #939fa9;}
+
 </style>
 
 <% var showQuickAct = showQuickActDD = 0; var UserClients_dtl = ''; var clientids = '';
@@ -819,6 +825,23 @@
                                                 <i class="material-icons">&#xE226;</i>
                                                 <% if(filesArr){ %> <span class="attach_cnt"> <% if((filesArr.length)==1){ %> <?php echo __('1 Attachment');?> <%}else {%><%= filesArr.length%> <?php echo __('Attachments');?> <% } %></span> <% } else { %><?php echo __('No Attachments');?> <% } %>
                                             </span>
+											<div class="attach_detils" style="margin-bottom:20px">
+											<% for(var fileKey in filesArr) {
+												var getFiles = filesArr[fileKey];
+												caseFileName = getFiles.CaseFile.file;
+												caseFileUName = getFiles.CaseFile.upload_name;
+                                                caseFileId = getFiles.CaseFile.id;
+												downloadurl = getFiles.CaseFile.downloadurl;
+												var d_name = getFiles.CaseFile.display_name;
+												if(!d_name){ d_name = caseFileName;}
+                                                if(caseFileUName == null){ caseFileUName = caseFileName;}  %>
+		
+												<span class ="downlodfile_detail">
+														<a href="<?php echo HTTP_ROOT; ?>easycases/download/<%= caseFileUName %>" alt="<%= caseFileName %>" title="<?php echo __('Download');?>"><i style="color: #049aff"class="material-icons">&#xE2C4;</i><div class="ellipsis-view"><%= d_name %></div> <small>(<%= getFiles.CaseFile.file_size %>)</small></a>
+													</span>
+											
+												<% } %>
+											</div>
                                             <% var images = ""; var caseFileName = "";
                                             for(var fileKey in filesArr) {
 						var getFiles = filesArr[fileKey];
