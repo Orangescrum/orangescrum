@@ -98,6 +98,17 @@ To download the Orangescrum Open-source package from the GitHub repository, plea
 
 For more information please visit below link:  [https://www.orangescrum.com/open-source/general-installation-guide](http://orangescrum.com/open-source/general-installation-guide)
 
+## [](https://github.com/Orangescrum/orangescrum/blob/main/README.md#Languages)Supported Languages
+	
+Orangescrum community edition supports the following languages:
+	
+- Danish
+- English
+- French
+- German
+- Portuguese
+- Spanish
+
 ## [](https://github.com/Orangescrum/orangescrum/blob/main/README.md#updates)Updates
 
 New features, enhancements, and updates appear on a regular basis. You just need to follow these checkpoints:
