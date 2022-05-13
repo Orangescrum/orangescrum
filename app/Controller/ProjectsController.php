@@ -643,6 +643,18 @@ class ProjectsController extends AppController
                 $query = "AND Project.status='3' AND Project.isactive!='2'";
                 $filtype = 'stack';
             }
+            $param_count = count($_GET);
+            $p_type = $this->request->query['proj-type'];
+            $manager_id = $this->request->query['manager'];
+            $client = $this->request->query['client'];            
+            $url_status = $this->request->query['fil-type'];
+            if ((isset($url_status)) && $url_status != 'started' && $url_status != 'on-hold' && $url_status != 'stack') {
+                if ($url_status == 4) {
+                    $query .=" AND Project.status IN(". $url_status.")"." AND Project.isactive='2'";
+                }else{
+                    $query .=" AND Project.status IN(". $url_status.")"." AND Project.isactive!='2'";
+                }
+            }
         $this->set('inactive_project_cnt', $inactive_project_cnt);
         $this->set('active_project_cnt', $active_project_cnt);
         $this->set('started_project_cnt', $started_project_cnt);
@@ -650,6 +662,9 @@ class ProjectsController extends AppController
         $this->set('stack_project_cnt', $stack_project_cnt);
         $this->set('projtype', $projtype);
         $this->set('filtype', $filtype);
+         $this->set('p_type', $p_type);
+        $this->set('manager_id', $manager_id);
+        $this->set('client', $client);
         if ($projtype == "active-grid" || $projtype == "inactive-grid") {
             $this->loadModel('ProjectField');
             $fields = array();
@@ -753,6 +768,10 @@ class ProjectsController extends AppController
         if ($pjname) {
             $query .= " AND name LIKE '%" . addslashes($pjname) . "%' ";
         }
+        if (isset($p_type)){
+           $query.=" AND Types.id IN(".$p_type.")";
+            
+        }
         $sql = "SELECT SQL_CALC_FOUND_ROWS Project.id,uniq_id,name,Project.user_id,project_type,short_name,Project.description,Project.isactive,Project.status,Project.estimated_hours,Project.priority,Project.dt_created,Project.dt_updated,Project.start_date,Project.end_date,Project.project_methodology_id,Project.status_group_id,
                 (SELECT COUNT(easycases.id) AS tot FROM easycases WHERE easycases.project_id=Project.id and easycases.istype='1' and easycases.isactive='1') AS totalcase,
                 (SELECT SUM(LogTime.total_hours) AS hours 
@@ -763,7 +782,8 @@ class ProjectsController extends AppController
                 (SELECT SUM(case_files.file_size) AS file_size FROM case_files WHERE case_files.project_id=Project.id) AS storage_used,
                 (SELECT roles.role FROM roles,project_users where project_users.role_id = roles.id and project_users.user_id ='". SES_ID ."' and project_users.company_id = '".SES_COMP."' and project_users.project_id = Project.id group by project_users.id ) as role,
                 (SELECT roles.role FROM roles,company_users where company_users.role_id = roles.id and company_users.user_id ='". SES_ID ."' and company_users.company_id = '".SES_COMP."' group by company_users.id ) as crole
-                FROM projects AS Project 
+                FROM projects AS Project LEFT JOIN project_metas AS ProjectMeta ON ProjectMeta.project_id = Project.id
+                LEFT JOIN project_types AS Types ON Types.id = ProjectMeta.proj_type
                 WHERE Project.name!='' " . $query . " 
                 ORDER BY dt_created DESC $limit";
 
@@ -7986,7 +8006,14 @@ class ProjectsController extends AppController
         $this->loadModel("ProjectType");
         $diy_cond = array('ProjectType.is_active' => 1);
         $diy_list = $this->ProjectType->find('list', array('fields' => array('ProjectType.id', 'ProjectType.title'), 'conditions' => $diy_cond, 'order' => array('ProjectType.title' => 'ASC')));
-        $this->set(compact('diy_list'));
+        
+        if ($this->request->data['page'] !== "manage") {
+            $this->set(compact('diy_list'));    
+        }else if($this->request->data['page'] == "manage"){
+            $this->set('page',$this->request->data['page']);
+            $this->set('diy_new_list',$diy_list);
+        }
+       
     }
     /*
     * Project status filters
@@ -7994,13 +8021,21 @@ class ProjectsController extends AppController
     public function ajax_project_status_flt()
     {
         $this->layout = 'ajax';
-        $diy_list = array(
-            '1'=>'Started',
-            '2'=>'Hold',
-            '3'=>'Stack',
-            '4'=>'Completed',
-        );
-        $this->set(compact('diy_list'));
+        if ($this->request->data['page'] !== "manage") {
+            $diy_list = array(
+                '1'=>'Started',
+                '2'=>'Hold',
+                '3'=>'Stack',
+                '4'=>'Completed',
+            );
+            $this->set(compact('diy_list'));
+        }else if($this->request->data['page'] == "manage"){
+            $this->loadModel("ProjectStatus");
+            $diy_new_list = $this->ProjectStatus->getAllProjectStatus(SES_COMP);
+            $this->set('page',$this->request->data['page']);
+            $this->set('diy_new_list',$diy_new_list);
+        }
+        
     }
     /*
     * Project client filters

@@ -79,7 +79,8 @@ if(count($allLeftMenu['allUsermenus'])){
                 $setaClick = ($menuStatus['dynamic_a_click'])? $menuStatus['dynamic_a_click'] : $meta['a_click'];
                 $setMenuName = ($menuStatus['dynamic_menu_name'])? $menuStatus['dynamic_menu_name'] : $masterMenu[$menu_id]['name'];
             ?>
-            <a href="<?php echo $setUrl; ?>" onclick="<?php echo $setaClick; ?>return trackEventLeadTracker('Left Panel','<?php echo $masterMenu[$menu_id]['name'] ;?>','<?php echo $_SESSION['SES_EMAIL_USER_LOGIN'];?>');">
+
+            <a href="<?php echo $setUrl; ?>" onclick="<?php echo $setaClick; if($masterMenu[$menu_id]['name'] == "Projects"){ ?> resetProjectFilterItem(); <?php  } ?> return trackEventLeadTracker('Left Panel','<?php echo $masterMenu[$menu_id]['name'] ;?>','<?php echo $_SESSION['SES_EMAIL_USER_LOGIN'];?>');">
                         <?php echo $masterMenu[$menu_id]['menu_icon']; ?>
                         <span class="mini-sidebar-label"><?php echo __($setMenuName);?></span>
                         <?php if($v['id'] == 57){ ?>

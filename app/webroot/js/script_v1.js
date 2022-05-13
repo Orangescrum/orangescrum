@@ -16227,8 +16227,15 @@ function setDefaultProjectView(type) {
     }
     var cookie_value = SES_ID + "_" + value;
     remember_filters('PROJECTVIEW_TYPE', cookie_value);
+    resetProjectFilterItem();
     window.location = HTTP_ROOT + 'projects/manage/' + value;
 }
+function resetProjectFilterItem() {
+    localStorage.removeItem('PROJECTMANAGETYPE');
+    localStorage.removeItem('PROJECTMANAGETYPEVAL');
+    localStorage.removeItem('PROJECTMANAGESTATUS');
+    localStorage.removeItem('PROJECTMANAGESTATUSVAL');
+};
 function open_recent_activity() {
     if (!$('#new_recent_activities').is(':visible')) {
         $('.activity-txt').animate({
@@ -21697,6 +21704,141 @@ $(function() {
     });
 });
 
+function project_allfiltervalue(type) {
+    if (arguments[1]) {
+        var event = arguments[1];
+        event.preventDefault();
+        event.stopPropagation();
+    }
+    $('.dropdown_status').hide();
+    $('#dropdown_menu_' + type + '_div').show();
+    $('#dropdown_menu_' + type).show();
+    var li_ldr = "<li><center><img src='" + HTTP_ROOT + "img/images/del.gif' alt='loading...' title='loading...'/><center></li>";
+    $('#dropdown_menu_' + type).html(li_ldr);
+    if (type == 'project_type') {
+        $(".dropdown-menu").css('visibility', 'visible');
+        $.post(HTTP_ROOT + "projects/ajax_project_type_flt", {
+            'page': PAGE_NAME
+        }, function(data) {
+            if (data) {
+                $('#dropdown_menu_project_type').show();
+                $('#dropdown_menu_project_type').html(data);
+                if (PAGE_NAME == 'manage') {
+                    var project_type = localStorage.getItem('PROJECTMANAGETYPE');
+                } else {
+                    var project_type = localStorage.getItem('PROJECTTYPE');
+                }
+                var str = '';
+                if (project_type != '' && project_type != null) {
+                    var diyArr = JSON.parse(project_type);
+                    for (var i = 0; i < diyArr.length; i++) {
+                        var diyId = diyArr[i];
+                        if (PAGE_NAME == 'manage') {
+                            document.getElementById('dprojectmanageType_' + diyId).checked = true;
+                        } else {
+                            document.getElementById('dprojectType_' + diyId).checked = true;
+                        }
+                    }
+                }
+            }
+        });
+    } else if (type == 'project_sub_type') {
+        $(".dropdown-menu").css('visibility', 'visible');
+        $.post(HTTP_ROOT + "projects/ajax_project_subtype_flt", {}, function(data) {
+            if (data) {
+                $('#dropdown_menu_project_sub_type').html(data);
+                var project_sub_type = localStorage.getItem('PROJECTSUBTYPE');
+                if (project_sub_type != '' && project_sub_type != null) {
+                    var dsArr = JSON.parse(project_sub_type);
+                    for (var i = 0; i < dsArr.length; i++) {
+                        var dsId = dsArr[i];
+                        document.getElementById('tprojsubtype_' + dsId).checked = true;
+                    }
+                }
+            }
+        });
+    } else if (type == 'project_status') {
+        $(".dropdown-menu").css('visibility', 'visible');
+        $.post(HTTP_ROOT + "projects/ajax_project_status_flt", {
+            "page": PAGE_NAME
+        }, function(data) {
+            if (data) {
+                $('#dropdown_menu_project_status').html(data);
+                if (PAGE_NAME == 'manage') {
+                    var created_by = localStorage.getItem('PROJECTMANAGESTATUS');
+                } else {
+                    var created_by = localStorage.getItem('PROJECTSTATUS');
+                }
+                if (created_by != '' && created_by != null) {
+                    var dpArr = JSON.parse(created_by);
+                    for (var i = 0; i < dpArr.length; i++) {
+                        var dpId = dpArr[i];
+                        if (PAGE_NAME == 'manage') {
+                            document.getElementById('dprojstatusmange_' + dpId).checked = true;
+                        } else {
+                            document.getElementById('dprojstatus_' + dpId).checked = true;
+                        }
+                    }
+                }
+            }
+        });
+    } else if (type == 'clients') {
+        $(".dropdown-menu").css('visibility', 'visible');
+        $.post(HTTP_ROOT + "projects/ajax_project_clients_flt", {}, function(data) {
+            if (data) {
+                $('#dropdown_menu_clients').html(data);
+                var clients = localStorage.getItem('PROJECTCLIENTS');
+                if (clients != '' && clients != null) {
+                    var dcArr = JSON.parse(clients);
+                    for (var i = 0; i < dcArr.length; i++) {
+                        var dcId = dcArr[i];
+                        document.getElementById('dclients_' + dcId).checked = true;
+                    }
+                }
+            }
+        });
+    } else if (type == 'project_manager') {
+        $(".dropdown-menu").css('visibility', 'visible');
+        $.post(HTTP_ROOT + "projects/ajax_project_project_manager_flt", {}, function(data) {
+            if (data) {
+                $('#dropdown_menu_project_manager').html(data);
+                var project_manager = localStorage.getItem('PROJECTMANAGER');
+                if (project_manager != '' && project_manager != null) {
+                    var dcArr = JSON.parse(project_manager);
+                    for (var i = 0; i < dcArr.length; i++) {
+                        var dcId = dcArr[i];
+                        document.getElementById('dproject_manager_' + dcId).checked = true;
+                    }
+                }
+            }
+        });
+    } else if (type == 'project_start_date') {
+        $(".dropdown-menu").css('visibility', 'visible');
+        $('#dropdown_menu_project_start_date').html(tmpl("project_startdt_tmpl"));
+        iniStDateFilter();
+        var project_start_date = localStorage.getItem('PROJECTSTARTDATE');
+        if (project_start_date != '' && project_start_date != null) {
+            var dcArr = JSON.parse(project_start_date);
+            for (var i = 0; i < dcArr.length; i++) {
+                var dcId = dcArr[i];
+                document.getElementById('prodate_' + dcId).checked = true;
+            }
+        }
+    } else if (type == 'project_end_date') {
+        $(".dropdown-menu").css('visibility', 'visible');
+        $('#dropdown_menu_project_end_date').html(tmpl("project_enddt_tmpl"));
+        iniStDateFilter();
+        var project_end_date = localStorage.getItem('PROJECTENDDATE');
+        if (project_end_date != '' && project_end_date != null) {
+            var dcArr = JSON.parse(project_end_date);
+            for (var i = 0; i < dcArr.length; i++) {
+                var dcId = dcArr[i];
+                document.getElementById('projdate_' + dcId).checked = true;
+            }
+        }
+    }
+}
+
 function checkboxProjectType(id, typ, diyVal, diyLab) {
     var x = "";
     var totid = $("#totPtypId").val();
@@ -21741,8 +21883,12 @@ function checkboxProjectType(id, typ, diyVal, diyLab) {
 
 function checkboxProjectStatus(id, typ, diyVal, diyLab) {
     var x = "";
-    var totid = $("#totprojstsId").val();
-    var actArr = JSON.parse(totid);
+    if (CONTROLLER != 'projects' && PAGE_NAME != 'manage') {
+        var totid = $("#totprojstsId").val();
+    } else if (CONTROLLER == 'projects' && PAGE_NAME == 'manage') {
+        var totid = $("#totprojstsmanageId").val();
+    }
+    var actArr = (totid !== undefined) ? JSON.parse(totid) : "";
     if (id == 'types_all') {} else {
         if (typ == "check") {
             if (document.getElementById(id).checked == true) {
@@ -21758,12 +21904,23 @@ function checkboxProjectStatus(id, typ, diyVal, diyLab) {
             }
         }
     }
-    for (var j = 0; j < actArr.length; j++) {
-        var checkboxid = "dprojstatus_" + actArr[j];
-        if (document.getElementById(checkboxid).checked == true) {
-            var typeid = "dprojstatus_" + actArr[j];
-            var typevalue = document.getElementById(typeid).value;
-            x = typevalue + "-" + x;
+    if (CONTROLLER !== 'projects' && PAGE_NAME !== 'manage') {
+        for (var j = 0; j < actArr.length; j++) {
+            var checkboxid = "dprojstatus_" + actArr[j];
+            if (document.getElementById(checkboxid).checked == true) {
+                var typeid = "dprojstatus_" + actArr[j];
+                var typevalue = document.getElementById(typeid).value;
+                x = typevalue + "-" + x;
+            }
+        }
+    } else if (CONTROLLER == 'projects' && PAGE_NAME == 'manage') {
+        for (var j = 0; j < actArr.length; j++) {
+            var checkboxid = "dprojstatusmange_" + actArr[j];
+            if (document.getElementById(checkboxid).checked == true) {
+                var typeid = "dprojstatusmange_" + actArr[j];
+                var typevalue = document.getElementById(typeid).value;
+                x = typevalue + "-" + x;
+            }
         }
     }
     if (x == "") {
@@ -21772,12 +21929,18 @@ function checkboxProjectStatus(id, typ, diyVal, diyLab) {
         var Diy = x.substring(0, x.length - 1);
     }
     if ($("#" + id).is(':checked')) {
-        project_remember_filters('PROJECTSTATUS', diyVal, diyLab);
-        reloadtble();
+        if (CONTROLLER !== 'projects' && PAGE_NAME !== 'manage') {
+            project_remember_filters('PROJECTSTATUS', diyVal, diyLab);
+            reloadtble();
+        } else if (CONTROLLER == 'projects' && PAGE_NAME == 'manage') {
+            project_remember_filters('PROJECTMANAGESTATUS', diyVal, diyLab);
+        }
         checkProjFltSelect();
     } else {
         project_common_reset_filter('project_status', diyVal, '', diyLab);
-        reloadtble();
+        if (CONTROLLER != 'projects' && PAGE_NAME != 'manage') {
+            reloadtble();
+        }
     }
 }
 
@@ -21995,6 +22158,70 @@ function project_remember_filters(name, value, label) {
             localStorage.setItem(name, JSON.stringify(dpArr));
             localStorage.setItem('PROJECTSTATUSVAL', JSON.stringify(dpArrLab));
             $('#grid-profitable-report').bootgrid('reload');
+        } else if (name == 'PROJECTMANAGESTATUS') {
+            var dpArr = new Array();
+            var dpArrLab = new Array();
+            var project_status = localStorage.getItem('PROJECTMANAGESTATUS');
+            var project_status_label = localStorage.getItem('PROJECTMANAGESTATUSVAL');
+            if (project_status != '' && project_status != null) {
+                dpArr = JSON.parse(project_status);
+                dpArrLab = JSON.parse(project_status_label);
+                dpArr.push(value);
+                dpArrLab.push(label);
+            } else {
+                dpArr.push(value);
+                dpArrLab.push(label);
+            }
+            localStorage.setItem(name, JSON.stringify(dpArr));
+            localStorage.setItem('PROJECTMANAGESTATUSVAL', JSON.stringify(dpArrLab));
+            $('#projectLoader').show();
+            var param = '';
+            var ptype = new Array();
+            var client = new Array();
+            var pm = new Array();
+            var project_type = localStorage.getItem('PROJECTMANAGETYPE');
+            ptype = JSON.parse(project_type);
+            if (dpArr.length !== 0) {
+                param += 'fil-type=' + dpArr.toString();
+                dpArr = [];
+            }
+            if (project_type != '' && project_type != null) {
+                param += '&proj-type=' + ptype.toString();
+                ptype = [];
+            }
+            window.location = HTTP_ROOT + 'projects/manage?' + param;
+        } else if (name == 'PROJECTMANAGETYPE') {
+            var dpArr = new Array();
+            var dpArrLab = new Array();
+            var project_type = localStorage.getItem('PROJECTMANAGETYPE');
+            var project_type_label = localStorage.getItem('PROJECTMANAGETYPEVAL');
+            if (project_type != '' && project_type != null) {
+                dpArr = JSON.parse(project_type);
+                dpArrLab = JSON.parse(project_type_label);
+                dpArr.push(value);
+                dpArrLab.push(label);
+            } else {
+                dpArr.push(value);
+                dpArrLab.push(label);
+            }
+            localStorage.setItem(name, JSON.stringify(dpArr));
+            localStorage.setItem('PROJECTMANAGETYPEVAL', JSON.stringify(dpArrLab));
+            $('#projectLoader').show();
+            var param = '';
+            var clientArr = new Array();
+            var psArr = new Array();
+            var pmArr = new Array();
+            var project_status = localStorage.getItem('PROJECTMANAGESTATUS');
+            psArr = JSON.parse(project_status);
+            if (dpArr.length != 0) {
+                param += 'proj-type=' + dpArr.toString();
+                dpArr = [];
+            }
+            if (project_status != '' && project_status != null) {
+                param += '&fil-type=' + psArr.toString();
+                psArr = [];
+            }
+            window.location = HTTP_ROOT + 'projects/manage?' + param;
         } else if (name == 'PROJECTCLIENTS') {
             var dcArr = new Array();
             var dcArrLab = new Array();
@@ -22038,7 +22265,9 @@ function project_remember_filters(name, value, label) {
             dusArrLab.push(label);
             localStorage.setItem(name, JSON.stringify(dusArr));
             localStorage.setItem('PROJECTSTARTDATEVAL', JSON.stringify(dusArrLab));
-            $('#grid-profitable-report').bootgrid('reload');
+            if (CONTROLLER != 'projects' && PAGE_NAME != 'manage') {
+                $('#grid-profitable-report').bootgrid('reload');
+            }
         } else if (name == 'PROJECTENDDATE') {
             var dusArr = new Array();
             var dusArrLab = new Array();
@@ -22048,7 +22277,9 @@ function project_remember_filters(name, value, label) {
             dusArrLab.push(label);
             localStorage.setItem(name, JSON.stringify(dusArr));
             localStorage.setItem('PROJECTENDDATEVAL', JSON.stringify(dusArrLab));
-            $('#grid-profitable-report').bootgrid('reload');
+            if (CONTROLLER != 'projects' && PAGE_NAME != 'manage') {
+                $('#grid-profitable-report').bootgrid('reload');
+            }
         } else {
             localStorage.setItem(name, value);
         }
@@ -22058,9 +22289,18 @@ function project_remember_filters(name, value, label) {
 }
 
 function project_common_reset_filter(ftype, id, obj, label) {
+    var param = '';
+    var pmArr = new Array();
+    var psArr = new Array();
+    var cArr = new Array();
     if (ftype == 'project_type') {
-        var project_type = localStorage.getItem('PROJECTTYPE');
-        var project_type_lab = localStorage.getItem('PROJECTTYPEVAL');
+        if (PAGE_NAME == "manage") {
+            var project_type = localStorage.getItem('PROJECTMANAGETYPE');
+            var project_type_lab = localStorage.getItem('PROJECTMANAGETYPEVAL');
+        } else {
+            var project_type = localStorage.getItem('PROJECTTYPE');
+            var project_type_lab = localStorage.getItem('PROJECTTYPEVAL');
+        }
         var str = '';
         if (project_type != '' && project_type != null) {
             var diyArr = JSON.parse(project_type);
@@ -22072,21 +22312,80 @@ function project_common_reset_filter(ftype, id, obj, label) {
                 return labVal != label;
             });
             if (y.length > 0) {
-                localStorage.setItem('PROJECTTYPE', JSON.stringify(y));
-                localStorage.setItem('PROJECTTYPEVAL', JSON.stringify(z));
+                if (PAGE_NAME == "manage") {
+                    localStorage.setItem('PROJECTMANAGETYPE', JSON.stringify(y));
+                    localStorage.setItem('PROJECTMANAGETYPEVAL', JSON.stringify(z));
+                } else {
+                    localStorage.setItem('PROJECTTYPE', JSON.stringify(y));
+                    localStorage.setItem('PROJECTTYPEVAL', JSON.stringify(z));
+                }
+                if (CONTROLLER == 'projects' && PAGE_NAME == 'manage') {
+                    checkProjFltSelect();
+                    project_type = localStorage.getItem('PROJECTMANAGETYPE');
+                    var diyArr = JSON.parse(project_type);
+                    $('#projectLoader').show();
+                    var project_status = localStorage.getItem('PROJECTMANAGESTATUS');
+                    psArr = JSON.parse(project_status);
+                    if (diyArr.length !== 0) {
+                        param += 'proj-type=' + diyArr.toString();
+                        diyArr = [];
+                    }
+                    if (project_status != '' && project_status != null) {
+                        param += '&fil-type=' + psArr.toString();
+                        psArr = [];
+                    }
+                    window.location = HTTP_ROOT + 'projects/manage?' + param;
+                }
                 reloadtble();
                 checkProjFltSelect();
             } else {
-                localStorage.removeItem('PROJECTTYPE');
-                localStorage.removeItem('PROJECTTYPEVAL');
+                if (CONTROLLER == 'projects' && PAGE_NAME == 'manage') {
+                    localStorage.removeItem('PROJECTMANAGETYPE');
+                    localStorage.removeItem('PROJECTMANAGETYPEVAL');
+                    checkProjFltSelect();
+                    var filters = new Object();
+                    $('#projectLoader').show();
+                    var param = '';
+                    var pmArr = new Array();
+                    var psArr = new Array();
+                    var cArr = new Array();
+                    var project_manager = localStorage.getItem('PROJECTMANAGER');
+                    var project_status = localStorage.getItem('PROJECTMANAGESTATUS');
+                    var project_client = localStorage.getItem('PROJECTCLIENTS');
+                    pmArr = JSON.parse(project_manager);
+                    psArr = JSON.parse(project_status);
+                    cArr = JSON.parse(project_client);
+                    if (project_manager != '' && project_manager != null) {
+                        filters['manager'] = pmArr.toString();
+                    }
+                    if (project_status != '' && project_status != null) {
+                        filters['fil-type'] = psArr.toString();
+                    }
+                    if (project_client != '' && project_client != null) {
+                        filters['client'] = cArr.toString();
+                    }
+                    var urlParam = [];
+                    for (var i in filters) {
+                        urlParam.push(encodeURI(i) + "=" + encodeURI(filters[i]));
+                    }
+                    window.location = HTTP_ROOT + 'projects/manage?' + urlParam.join("&");
+                } else {
+                    localStorage.removeItem('PROJECTTYPE');
+                    localStorage.removeItem('PROJECTTYPEVAL');
+                }
                 reloadtble();
                 checkProjFltSelect();
             }
         }
     }
     if (ftype == 'project_status') {
-        var project_status = localStorage.getItem('PROJECTSTATUS');
-        var project_status_lab = localStorage.getItem('PROJECTSTATUSVAL');
+        if (PAGE_NAME == "manage") {
+            var project_status = localStorage.getItem('PROJECTMANAGESTATUS');
+            var project_status_lab = localStorage.getItem('PROJECTMANAGESTATUSVAL');
+        } else {
+            var project_status = localStorage.getItem('PROJECTSTATUS');
+            var project_status_lab = localStorage.getItem('PROJECTSTATUSVAL');
+        }
         var str = '';
         if (project_status != '' && project_status != null) {
             var dpArr = JSON.parse(project_status);
@@ -22098,13 +22397,74 @@ function project_common_reset_filter(ftype, id, obj, label) {
                 return labVal != label;
             });
             if (y.length > 0) {
-                localStorage.setItem('PROJECTSTATUS', JSON.stringify(y));
-                localStorage.setItem('PROJECTSTATUSVAL', JSON.stringify(z));
+                if (PAGE_NAME == "manage") {
+                    localStorage.setItem('PROJECTMANAGESTATUS', JSON.stringify(y));
+                    localStorage.setItem('PROJECTMANAGESTATUSVAL', JSON.stringify(z))
+                } else {
+                    localStorage.setItem('PROJECTSTATUS', JSON.stringify(y));
+                    localStorage.setItem('PROJECTSTATUSVAL', JSON.stringify(z));
+                }
+                if (CONTROLLER == 'projects' && PAGE_NAME == 'manage') {
+                    checkProjFltSelect();
+                    project_status = localStorage.getItem('PROJECTMANAGESTATUS');
+                    var dpArr = JSON.parse(project_status);
+                    var project_manager = localStorage.getItem('PROJECTMANAGER');
+                    var project_type = localStorage.getItem('PROJECTMANAGETYPE');
+                    var project_client = localStorage.getItem('PROJECTCLIENTS');
+                    pmArr = JSON.parse(project_manager);
+                    ptArr = JSON.parse(project_type);
+                    cArr = JSON.parse(project_client);
+                    if (dpArr.length !== 0) {
+                        param += 'fil-type=' + dpArr.toString();
+                        dpArr = [];
+                    }
+                    if (project_type != '' && project_type != null) {
+                        param += '&proj-type=' + ptArr.toString();
+                        ptArr = [];
+                    }
+                    if (project_client != '' && project_client != null) {
+                        param += '&client=' + cArr.toString();
+                        cArr = [];
+                    }
+                    if (project_manager != '' && project_manager != null) {
+                        param += '&manager=' + pmArr.toString();
+                        pmArr = [];
+                    }
+                    window.location = HTTP_ROOT + 'projects/manage?' + param;
+                }
                 reloadtble();
                 checkProjFltSelect();
             } else {
-                localStorage.removeItem('PROJECTSTATUS');
-                localStorage.removeItem('PROJECTSTATUSVAL');
+                if (CONTROLLER == 'projects' && PAGE_NAME == 'manage') {
+                    localStorage.removeItem('PROJECTMANAGESTATUS');
+                    localStorage.removeItem('PROJECTMANAGESTATUSVAL');
+                    checkProjFltSelect();
+                    var filters = new Object();
+                    $('#projectLoader').show();
+                    var project_manager = localStorage.getItem('PROJECTMANAGER');
+                    var project_type = localStorage.getItem('PROJECTMANAGETYPE');
+                    var project_client = localStorage.getItem('PROJECTCLIENTS');
+                    pmArr = JSON.parse(project_manager);
+                    psArr = JSON.parse(project_type);
+                    cArr = JSON.parse(project_client);
+                    if (project_manager != '' && project_manager != null) {
+                        filters['manager'] = pmArr.toString();
+                    }
+                    if (project_type != '' && project_type != null) {
+                        filters['proj-type'] = psArr.toString();
+                    }
+                    if (project_client != '' && project_client != null) {
+                        filters['client'] = cArr.toString();
+                    }
+                    var urlParam = [];
+                    for (var i in filters) {
+                        urlParam.push(encodeURI(i) + "=" + encodeURI(filters[i]));
+                    }
+                    window.location = HTTP_ROOT + 'projects/manage?' + urlParam.join("&");
+                } else {
+                    localStorage.removeItem('PROJECTSTATUS');
+                    localStorage.removeItem('PROJECTSTATUSVAL');
+                }
                 reloadtble();
                 checkProjFltSelect();
             }
@@ -22233,7 +22593,9 @@ function getdtlabel(dt) {
 }
 
 function reloadtble() {
-    $('#grid-profitable-report').bootgrid('reload');
+    if (CONTROLLER != 'projects' && PAGE_NAME != 'manage') {
+        $('#grid-profitable-report').bootgrid('reload');
+    }
 }
 
 function iniStDateFilter() {
@@ -22363,15 +22725,24 @@ function projendcheckboxrange() {
 }
 
 function checkProjFltSelect() {
-    var project_type = localStorage.getItem('PROJECTTYPE');
-    var project_status = localStorage.getItem('PROJECTSTATUS');
-    var project_clients = localStorage.getItem('PROJECTCLIENTS');
-    var project_manager = localStorage.getItem('PROJECTMANAGER');
+    if (CONTROLLER !== 'projects' && PAGE_NAME !== 'manage') {
+        var project_type = localStorage.getItem('PROJECTTYPE');
+        var project_status = localStorage.getItem('PROJECTSTATUS');
+        var project_clients = localStorage.getItem('PROJECTCLIENTS');
+        var project_manager = localStorage.getItem('PROJECTMANAGER');
+    } else {
+        var project_status = localStorage.getItem('PROJECTMANAGESTATUS');
+        var project_type = localStorage.getItem('PROJECTMANAGETYPE');
+    }
     var project_start_date = localStorage.getItem('PROJECTSTARTDATE');
     var project_end_date = localStorage.getItem('PROJECTENDDATE');
     var str = '';
     if (project_type != '' && project_type != null) {
-        var project_type_lab = localStorage.getItem('PROJECTTYPEVAL');
+        if (CONTROLLER !== 'projects' && PAGE_NAME !== 'manage') {
+            var project_type_lab = localStorage.getItem('PROJECTTYPEVAL');
+        } else {
+            var project_type_lab = localStorage.getItem('PROJECTMANAGETYPEVAL');
+        }
         $("#tckt_reset_btn").show();
         var diyArr = JSON.parse(project_type);
         var diyArrLab = JSON.parse(project_type_lab);
@@ -22415,7 +22786,11 @@ function checkProjFltSelect() {
         }
     }
     if (project_status != '' && project_status != null) {
-        var project_status_lab = localStorage.getItem('PROJECTSTATUSVAL');
+        if (CONTROLLER !== 'projects' && PAGE_NAME !== 'manage') {
+            var project_status_lab = localStorage.getItem('PROJECTSTATUSVAL');
+        } else {
+            var project_status_lab = localStorage.getItem('PROJECTMANAGESTATUSVAL');
+        }
         $("#tckt_reset_btn").show();
         var dpArr = JSON.parse(project_status);
         var dpArrLab = JSON.parse(project_status_lab);

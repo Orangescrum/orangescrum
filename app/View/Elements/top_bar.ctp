@@ -118,7 +118,7 @@
         <div class="wrap_top_tlbar">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="col-lg-8 col-sm-8">
+                    <div class="<?php if($projtype !== 'active-grid') { ?> col-lg-6 col-sm-6  <?php  } else{ ?> col-lg-8 col-sm-8 <?php  } ?>">
                         <ul id="tour_crt_proj_swtch" class="lft_tab_tasklist fl">
                             <li class="all-list-glyph <?php if (($projtype == '' || $projtype == 'active-grid') && $filtype == '') { ?>active-list<?php } ?>">
                                 <a href="javascript:void(0)" class="all-list" onclick="setDefaultProjectView('<?php echo $act_grid_view_opt; ?>');
@@ -156,8 +156,67 @@
                         <?php } ?>
                         </ul>
                     </div>
-                    <div class="col-lg-4 col-sm-4">
+                   
+                    <div class="col-lg-3 col-sm-3">
+					    <div id="proj_filtered_items" class="filter_tag_items"></div>
+				    </div>
+                    <div class="<?php if($projtype !== 'active-grid') { ?> col-lg-3 col-sm-3  <?php  } else{ ?> col-lg-4 col-sm-4 <?php  } ?>">
                         <div id="tour_proj_view" class="fr pfl-icon-dv gidview-proj-menu">
+                           
+        
+                        <span class="dropdown cursor">
+						    <a class="dropdown-toggle" data-toggle="dropdown"  data-target="#" rel="tooltip" title="<?php echo __('Filter');?>">
+						    <i class="glyphicon glyphicon-filter"></i>
+						    </a>
+                            <ul class="dropdown-menu case-filter-menu kanbanview-filter profitable-report-filter drop_menu_mc dropdown_menu_all_filters_ul" style="z-index:1">
+                                <!-- <li class="drop_menu_mc">
+                                    <a class="dropdown-toggle" data-toggle="dropdown"  data-target="#" href="javascript:void(0)" onclick="project_allfiltervalue('project_type');"><i class="material-icons">&#xE916;</i><?php echo __('Project Type');?></a>
+                                    <div class="dropdown_status" id="dropdown_menu_project_type_div">
+                                        <i class="status_arrow_new"></i>
+                                        <ul class="dropdown-menu" id="dropdown_menu_project_type" style="max-height: 200px;overflow-y: scroll;margin-right:160px;"></ul>
+                                        </div>
+                                </li> -->
+						
+						        <li class="drop_menu_mc dropdown">
+                                    <a href="javascript:void(0)" class="dropdown-toggle"  data-target="#" data-toggle="dropdown" onclick="project_allfiltervalue('project_status');"><i class="material-icons">&#xE88B;</i><?php echo __('Project Status');?></a>
+                                    <div class="dropdown_status" id="dropdown_menu_project_status_div">
+                                        <i class="status_arrow_new"></i>
+                                        <ul class="dropdown-menu" id="dropdown_menu_project_status" style="max-height: 200px;overflow-y: scroll;margin-right:160px;"></ul>
+                                    </div>
+						        </li>
+						        <!-- <li class="drop_menu_mc">
+                                    <a class="dropdown-toggle" data-toggle="dropdown"  data-target="#" href="javascript:void(0)" onclick="project_allfiltervalue('clients');"><i class="material-icons">&#xE8F9;</i><?php echo __('Client');?></a>
+                                    <div class="dropdown_status" id="dropdown_menu_clients_div">
+                                        <i class="status_arrow_new"></i>
+                                        <ul class="dropdown-menu" id="dropdown_menu_clients" style="max-height: 200px;overflow-y: scroll;margin-right:160px;"></ul>
+                                    </div>
+						        </li> -->
+							<!-- <?php if($this->Format->isAllowed('View All Resource',$roleAccess)){ ?>
+                                <li class="drop_menu_mc dropdown">
+                                    <a href="javascript:void(0)" class="dropdown-toggle"  data-target="#" data-toggle="dropdown" onclick="project_allfiltervalue('project_manager');"><i class="material-icons">&#xE90F;</i><?php echo __('Project Manager');?></a>
+                                    <div class="dropdown_status" id="dropdown_menu_project_manager_div">
+                                        <i class="status_arrow_new"></i>
+                                        <ul class="dropdown-menu" id="dropdown_menu_project_manager" style="max-height: 200px;overflow-y: scroll;margin-right:160px;"></ul>
+                                    </div>
+                                </li>
+					        <?php } ?> -->
+                            <!-- <li class="drop_menu_mc dropdown">
+                                <a href="javascript:void(0)" class="dropdown-toggle"  data-target="#" data-toggle="dropdown" onclick="project_allfiltervalue('project_start_date');"><i class="material-icons">label</i><?php echo __('Project Start Date');?></a>
+                                <div class="dropdown_status" id="dropdown_menu_project_start_date_div">
+                                    <i class="status_arrow_new"></i>
+                                    <ul class="dropdown-menu" id="dropdown_menu_project_start_date" style="max-height: 200px;overflow-y: scroll;margin-right:160px;"></ul>
+                                </div>
+                            </li>
+                            <li class="drop_menu_mc dropdown">
+                            <a href="javascript:void(0)" class="dropdown-toggle"  data-target="#" data-toggle="dropdown" onclick="project_allfiltervalue('project_end_date');"><i class="material-icons">local_atm</i><?php echo __('Project End Date');?></a>
+                                    <div class="dropdown_status" id="dropdown_menu_project_end_date_div">
+                                    <i class="status_arrow_new"></i>
+                                    <ul class="dropdown-menu" id="dropdown_menu_project_end_date" style="max-height: 200px;overflow-y: scroll;margin-right:160px;"></ul>
+                                </div>
+                            </li> -->
+					    </ul>
+				    </span>
+                            
 							<span id="task_impExp" class="dropdown task_expPrnt case-filter-menu">
                                 <a class="dropdown-toggle dropdown_menu_exp_print_togl pdf_export" data-toggle="dropdown" href="javascript:void(0);" data-target="#" >
                                     <span class="export_file_icon"></span>
