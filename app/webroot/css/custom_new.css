@@ -250,7 +250,7 @@ transition: all 0.5s ease-in-out;-webkit-transition: all 0.5s ease-in-out;-moz-t
 180deg);-webkit-transform: rotate(180deg);-moz-transform: rotate(180deg)}
 .task_details_popup .left_detail .heading_title{display:inline-block;font-size:16px;line-height:20px;color:#183247;padding-left:35px;position:relative}
 .task_details_popup .left_detail .sec_icon{width:24px;height:24px;display: inline-block;background:#EBEFF3;border-radius:50%;position:absolute;left:0;top:0}
-.task_details_popup .left_detail .sec_icon::before{content:'';width:18px;height:18px;display: inline-block;background:url(../../img/tools/taskdetails-icon.png) no-repeat 0px 0px;position: absolute;
+.task_details_popup .left_detail .sec_icon::before{content:'';width:18px;height:18px;display: inline-block;background:url(../img/tools/taskdetails-icon.png) no-repeat 0px 0px;position: absolute;
 left: 0;right: 0;top: 0; bottom: 0;margin: auto;}
 .task_details_popup .left_detail .cf_icon::before{background-position:-225px -123px}
 .task_details_popup .left_detail .desc_icon::before{background-position:-226px -148px}
@@ -342,7 +342,7 @@ line-height: 20px; color: #183247;font-weight: 500;padding:8px 8px;vertical-alig
 .task_details_popup .detail_list_table table td.action_td a:hover{color:#1A73E8}
 .task_details_popup .detail_list_table table td.action_td .delete_icon:hover{color:#fa5a73}
 .task_details_popup .download_icon{width: 20px;height: 20px;
-    display: inline-block;vertical-align: middle;background: url(../../img/tools/taskdetails-icon.png) no-repeat 0px -308px;background-size:230px auto;cursor:pointer}
+    display: inline-block;vertical-align: middle;background: url(../img/tools/taskdetails-icon.png) no-repeat 0px -308px;background-size:230px auto;cursor:pointer}
 .task_details_popup .download_icon:hover{background-position:-32px -308px}
 .task_details_popup .detail_list_table table td .billable .material-icons{color:#11cf97;opacity:1}
 .task_details_popup .detail_list_table table td .nonbillable .material-icons{color:#fa5a73;opacity:1}
@@ -441,7 +441,7 @@ transition: all 0.5s ease-in-out;-webkit-transition: all 0.5s ease-in-out;-moz-t
     width: 5px;height: 1px;background: #444e58;position: absolute;
     top: 2px;bottom: 0;right: 0;margin: auto;transform: rotate(-45deg);-webkit-transform: rotate(-45deg);-moz-transform: rotate(-45deg);-ms-transform: rotate(-45deg);-o-transform: rotate(-45deg);display: inline-block;}
 .task_details_popup .back-frwd-btn .back-frwd{width:auto}
-.task_details_popup .back-frwd .glyphicon{width:35px;height:35px;display:inline-block;vertical-align:middle;background:url(../../img/tools/taskdetails-icon.png) no-repeat !important;font-size:0px;padding: 0;border-radius: 0px !important;border:none}
+.task_details_popup .back-frwd .glyphicon{width:35px;height:35px;display:inline-block;vertical-align:middle;background:url(../img/tools/taskdetails-icon.png) no-repeat !important;font-size:0px;padding: 0;border-radius: 0px !important;border:none}
 .task_details_popup .back-frwd .glyphicon.prev{background-position:0px 0px !important}
 .task_details_popup .back-frwd .glyphicon.prev:hover{background-position:0px -38px !important}
 .task_details_popup .back-frwd .glyphicon.next{background-position:-52px 0px !important;margin-left:10px}
@@ -462,7 +462,7 @@ transition: all 0.5s ease-in-out;-webkit-transition: all 0.5s ease-in-out;-moz-t
 .task_details_popup .vdot_action_menu .dropdown a .material-icons:hover{color:#1A73E8}
 .task_details_popup .detail_sec_border{border-top: 1px solid #eee;padding-top: 15px}
 .details_item_tab li.item_li .link_item span,
-.task_details_popup .cmn_detail_sp,.task_details_popup .task_action_status .icon-menu-bar .cmn_tskd_sp{width:22px;height:22px;display:inline-block;vertical-align:middle;background:url(../../img/tools/taskdetails-icon.png) no-repeat 0px 0px;position: relative;}
+.task_details_popup .cmn_detail_sp,.task_details_popup .task_action_status .icon-menu-bar .cmn_tskd_sp{width:22px;height:22px;display:inline-block;vertical-align:middle;background:url(../img/tools/taskdetails-icon.png) no-repeat 0px 0px;position: relative;}
 .task_details_popup .task_action_status .icon-menu-bar .cmn_tskd_sp{   background-size: 200px auto;height: 18px;width: 18px;}
 .task_details_popup .cmn_detail_sp.reload_icon,.task_details_popup .icon-menu-bar .cmn_tskd_sp.reload_icon{background-position:-1px -246px}
 .task_details_popup .cmn_detail_sp.reload_icon:hover,.task_details_popup .icon-menu-bar .cmn_tskd_sp.reload_icon:hover{background-position:-29px -246px}
@@ -564,7 +564,7 @@ background-size: 250px auto;top: -0.5px;}
 .details_item_tab li.item_li.active .link_item .integration_icon{background-position:-95px -196px}
 
 .task_details_popup .cmn_sec_head .label_icon{width:24px;height:24px;display:inline-block;background:transparent;position:absolute;left:10px;top:0;bottom: 0;margin: auto;border-radius:50%}
-.task_details_popup .cmn_sec_head .label_icon::before{content:'';width:18px;height:18px;display:inline-block;background:url(../../img/tools/taskdetails-icon.png) no-repeat 0px 0px;position:absolute;left:0;right:0;top:0;bottom: 0;margin: auto;}
+.task_details_popup .cmn_sec_head .label_icon::before{content:'';width:18px;height:18px;display:inline-block;background:url(../img/tools/taskdetails-icon.png) no-repeat 0px 0px;position:absolute;left:0;right:0;top:0;bottom: 0;margin: auto;}
 .task_details_popup .cmn_sec_head .date_icon::before{background-position: -226px -250px}
 .task_details_popup .cmn_sec_head .people_icon::before{background-position:-225px -278px}
 .task_details_popup .cmn_sec_head .tags_icon::before{background-position:-225px -305px}
