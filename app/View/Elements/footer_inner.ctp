@@ -96,7 +96,7 @@ if(defined('RELEASE_V') && RELEASE_V){ ?>
 			<div class="row footer_wrapper">
 				<div class="col-lg-4 text-left cmn_foot_cont" id="csTotalHours" style="padding:0px;">
 				</div>
-				<div class="col-lg-2  text-center cmn_foot_cont">
+				<div class="col-lg-4  text-center cmn_foot_cont">
                     <?php echo $this->element('need_help');?>	
 				</div>
                                 

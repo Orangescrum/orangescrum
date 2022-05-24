@@ -25,6 +25,11 @@
 	.custom-navbar.nav_inr_menu .right_pfl_menu .left_trial.upgrd {
     padding: 0;position: absolute;left: -59px;right: 0;
     margin: auto;display: inline-block;width: 95px; top: 15px;float: none;}
+
+	.custom-navbar.nav_inr_menu .right_pfl_menu .profile-bar > li.upgrade_plan_li {padding: 5px 15px;}
+	.custom-navbar.nav_inr_menu .right_pfl_menu .profile-bar > li.upgrade_plan_li .upgrd_btn{ border-radius: 4px;
+    padding: 4px 10px;top:0}
+
 	
 	
 	<?php if(isset($showExtraCoupon) && $showExtraCoupon ==1 && SES_TYPE==1 && CONTROLLER != 'ganttchart' && 0){ ?>
@@ -254,9 +259,12 @@
 									</form>
 								<?php } ?>
 						</li>
+						<li class="upgrade_plan_li">
+							<a href="https://www.orangescrum.com/pricing" target="_blank" title="Upgrade" class="quick_link_btn upgrd_btn">Upgrade</a>
+						</li>
 						<?php if(PAGE_NAME != "updates" && PAGE_NAME != "help" && PAGE_NAME != "tour" && PAGE_NAME != "customer_support" && PAGE_NAME !='onbording'){ ?>
 							<?php if(SES_TYPE == 1 || SES_TYPE == 2 || SES_TYPE == 3){ ?>
-								<li class="nav-profile-dropdown dropdown hover-menu quick-add-drop cmn_parent_navli">
+								<li class="nav-profile-dropdown dropdown hover-menu quick-add-drop cmn_parent_navli vline">
 									<div class="gray-out-quick"></div>
 									<a class="dropdown-toggle quick_link_ellip quick_link_btn" data-toggle="dropdown" href="javascript:void(0)" data-target="#" title="<?php echo __('Quick Links');?>" onclick="trackEventLeadTracker('Header Link','Quick Link','<?php echo $_SESSION['SES_EMAIL_USER_LOGIN']; ?>'); quicklinkclk();"><?php echo __('Quick Links');?> </a>
 									<?php if(ACCOUNT_STATUS!=2){ ?>
@@ -559,7 +567,7 @@
 										<li><a href="javascript:void(0)" class="grp_ttle togle_link"><span class="cmn_cstm_set"><i class="material-icons">info</i></span> <?php echo __('Orangescrum Info');?></a>
 											<ul class="grp_sub_item">
 												<li><a href="javascript:void(0);" onclick="trackEventLeadTracker('Top Setting','Getting Started Page','<?php echo $_SESSION['SES_EMAIL_USER_LOGIN'];?>');gettingStarted();"><?php echo __('Getting Started');?></a></li> 
-												
+												<li><a href="https://www.orangescrum.com/schedule-a-demo" title="Talk to an Expert">Talk to an Expert</a></li> 
 												
 											</ul>
 										</li>
