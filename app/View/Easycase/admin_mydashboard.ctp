@@ -284,7 +284,7 @@
         <div class="col-lg-6 padrht-non">
             <div class="width100 cmn_bdr_shadow dasht-log">
                 <div class="top_ttl_box">
-                    <h2><a href="<?php echo HTTP_ROOT . 'dashboard#calendar_timelog'; ?>" onclick="return trackEventLeadTracker('Admin Dashboard','Time Log','<?php echo $_SESSION['SES_EMAIL_USER_LOGIN']; ?>');"><?php echo __('Time Log');?></a></h2>
+                    <h2><a href="<?php echo HTTP_ROOT . 'dashboard#timelog'; ?>" onclick="return trackEventLeadTracker('Admin Dashboard','Time Log','<?php echo $_SESSION['SES_EMAIL_USER_LOGIN']; ?>');"><?php echo __('Time Log');?></a></h2>
                 </div>
                 <div class="loader_dv_db" id="dashboard_timelog_ldr" style="position:absolute;display: none;margin-top: 150px;margin-left:250px;"><center><img src="<?php echo HTTP_IMAGES; ?>images/case_loader2.gif" alt="Loading..." title="<?php echo __('Loading');?>..." /></center></div>
                 <div class="time_log_dboard time_log" id="dashboard_timelog">
