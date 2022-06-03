@@ -204,7 +204,7 @@
                         </a>
                     </div>
                     <div  class="width20 fl">
-                        <a href="<?php echo HTTP_ROOT . 'dashboard#calendar_timelog'; ?>" onclick="return trackEventLeadTracker('Admin Dashboard','Spent And Still Counting','<?php echo $_SESSION['SES_EMAIL_USER_LOGIN']; ?>');">
+                        <a href="<?php echo HTTP_ROOT . 'dashboard#timelog'; ?>" onclick="return trackEventLeadTracker('Admin Dashboard','Spent And Still Counting','<?php echo $_SESSION['SES_EMAIL_USER_LOGIN']; ?>');">
                         <h4 class="ellipsis-view mx-width-95" rel="tooltip" title="<?php echo $this->Format->format_time_hr_min($totalhours,'',1) != '' ? $this->Format->format_time_hr_min($totalhours,'',1) : '00 hrs & 00 mins'; ?>"><span class="os_sprite spent_scount"></span><?php echo $this->Format->format_time_hr_min($totalhours,'',1) != '' ? $this->Format->format_time_hr_min($totalhours,'',1) : '00 hrs & 00 mins'; ?></h4>
                         <h6><?php echo __('Spent and still counting');?></h6>
                         </a>
