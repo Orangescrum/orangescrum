@@ -316,7 +316,7 @@
 																</a>
 															</li>
 														<?php } ?>
-														<?php if($_SESSION['project_methodology'] != 'scrum'){ ?>
+														<?php /*if($_SESSION['project_methodology'] != 'scrum'){ ?>
 															<?php if($this->Format->isAllowed('Create Milestone',$roleAccess)){ ?> 
 																<li class="qadd-tg-icon">
 																	<a href="javascript:void(0)" onclick="setSessionStorage('Quick Links','Create Task Group');addEditMilestone('','','','','','');">
@@ -324,7 +324,7 @@
 																	</a>
 																</li>
 															<?php } ?>
-														<?php } ?>
+														<?php }*/ ?>
 														<?php if($GLOBALS['user_subscription']['subscription_id'] != CURRENT_EXPIRED_PLAN){ ?>
 															<?php if($this->Format->isAllowed('Manual Time Entry',$roleAccess)){ ?>
 																<li>

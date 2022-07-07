@@ -85,13 +85,13 @@
                             <?php } ?>
                       <?php } ?>
         <?php //if($_SESSION['project_methodology'] != 'scrum'){ ?>
-                           <?php if($this->Format->isAllowed('Create Milestone',$roleAccess)){ ?>
+                           <?php /*if($this->Format->isAllowed('Create Milestone',$roleAccess)){ ?>
                       <li class="qadd-tg-icon hide-in-scrum" <?php if($_SESSION['project_methodology'] == 'scrum'){ echo "style='display:none;'";}?>>
                                 <a href="javascript:void(0)" onclick="setSessionStorage('Left Panel New Button', 'Create Task Group');addEditMilestone('', '', '', '', '', '');">
                                     <i class="material-icons cmn-icon-prop">&#xE065;</i><?php echo __('Task Group');?>
                                 </a>
                             </li>
-							<?php } ?>
+							<?php }*/ ?>
         <?php //} ?>
                       <?php if ($this->Format->isAllowed('Add New User',$roleAccess)) { ?>
                           <?php if($this->Format->isAllowed('Add New User',$roleAccess)){ ?>

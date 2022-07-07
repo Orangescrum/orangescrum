@@ -279,13 +279,13 @@ if( $is_active_proj || (SES_TYPE==3)){
                                     </li>
                                 <?php } ?>
 									<?php if($_SESSION['project_methodology'] != 'scrum'){ ?>
-                                          <?php if($this->Format->isAllowed('Create Milestone',$roleAccess)){ ?> 
+                                          <?php /*if($this->Format->isAllowed('Create Milestone',$roleAccess)){ ?>
                                     <li class="qadd-tg-icon">
                                         <a href="javascript:void(0)" onclick="setSessionStorage('Quick Links','Create Task Group');addEditMilestone('','','','','','');">
                                             <i class="material-icons cmn-icon-prop">&#xE065;</i><?php echo __('Task Group');?>
                                         </a>
                                     </li>
-									<?php } ?>
+									<?php }*/ ?>
                                 <?php } ?>
 									<?php if($GLOBALS['user_subscription']['subscription_id'] != CURRENT_EXPIRED_PLAN){ ?>
                                         <?php if($this->Format->isAllowed('Manual Time Entry',$roleAccess)){ ?>

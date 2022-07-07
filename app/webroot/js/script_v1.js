@@ -1691,6 +1691,9 @@ function routeOSHash() {
                 $(".caseMenuLeft ul li > a,.caseMenuLeft ul li > a,.projectReportMenuLeft ul li > a,.menu-logs ul li > a,.miscellaneous_li ul li > a,.miscellaneous_li ul li > a").removeClass(th_text_class_str);
                 $('#topactions').show();
                 $('.new_calendar_icon_on_top').show();
+                if($('.qadd-tg-icon').length){
+                    $('.qadd-tg-icon').hide();
+                }
                 calendarView('hash');
                 break;
             case 'calendar_timelog':
