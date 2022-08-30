@@ -104,14 +104,14 @@ class UsersController extends AppController {
                 } elseif (PAGE_NAME == 'tour') {
                     // $this->redirect(HTTP_ROOT."easycases/download/".$file);
                 } else {
-					// $_SESSION['setredirectcasedetl'] = 1;
+					          // $_SESSION['setredirectcasedetl'] = 1;
                     $this->redirect(HTTP_ROOT . "dashboard");
                 }
             }
         }
     }
-    public function verifySubDomain()
-    {
+    
+    public function verifySubDomain() {
         $this->layout = 'ajax';
         $retResp['status'] = 'success';
         $retResp['msg'] = '';
@@ -146,24 +146,20 @@ class UsersController extends AppController {
         echo json_encode($retResp);
         exit;
     }
-    function gdrive()
-		{
-			
-		}
-
-    function testnefield() {
-        //$this->loadmodel('Easycase');
-        //$ea = $this->Easycase->find('first');
-        //$this->loadmodel('ChatSetting');
-        //$cs = $this->ChatSetting->find('first');
-        $this->loadmodel('User');
-        $nn = $this->User->find('first');
-        echo "<pre>";
-        //print_r($ea);
-        //print_r($cs);
-        print_r($nn);
-        exit;
-    }
+    
+    // function testnefield() {
+    //     //$this->loadmodel('Easycase');
+    //     //$ea = $this->Easycase->find('first');
+    //     //$this->loadmodel('ChatSetting');
+    //     //$cs = $this->ChatSetting->find('first');
+    //     $this->loadmodel('User');
+    //     $nn = $this->User->find('first');
+    //     echo "<pre>";
+    //     //print_r($ea);
+    //     //print_r($cs);
+    //     print_r($nn);
+    //     exit;
+    // }
 
     function unsubscribe($uniq_id = NULL) {
         if (isset($uniq_id)) {
@@ -186,19 +182,6 @@ class UsersController extends AppController {
         }
     }
 
-    function getlogin() {
-        $this->login(NULL, 'prakash.satpathy@andolasoft.com', '73803249c6667c5af2d51c0dedfae487');
-        exit;
-    }
-
-    function test() {
-        //echo md5(111);exit;
-        //$this->layout = 'ajax';
-    }
-
-    function search_test() {
-        
-    }
 		function get_mobile_device(){			
 		}
 
@@ -953,97 +936,97 @@ class UsersController extends AppController {
     function ajax_check_user_exists() {
         $this->layout = 'ajax';
         $this->User->recursive = -1;
-			$role_id = $this->request->data['role_id'];
-            if ($this->request->data['email']) { // && $this->request->data['uniq_id']
-			if ( stristr( $this->request->data['email'], ",")){
-				$stremails = $this->request->data['email'];
-			} else {
-				$stremails = urldecode($this->request->data['email']);
-			}
-                if (stristr($stremails, ",")) {
-                $str = "";
-                $CompanyUser = ClassRegistry::init('CompanyUser');
-                $UserInvitation = ClassRegistry::init('UserInvitation');
-                $mail_arr1 = explode(",", urldecode(trim(trim($this->request->data['email']), ",")));
-                $cnt = 0;
-                $mail_arr = array();
-                foreach ($mail_arr1 AS $key => $val) {
-                    if (trim($val) != "") {
-                        $cnt ++;
-                        $mail_arr[] = $val;
-                    }
-                }
-                //Checking limitation of users 
-                $totalusers_cnt = $cnt + $GLOBALS['usercount'];
-                    if ((strtolower(trim($GLOBALS['Userlimitation']['user_limit'])) != "unlimited") && $totalusers_cnt > $GLOBALS['Userlimitation']['user_limit'] && $role_id != 699) {
-                    echo "errorlimit";
-                    exit;
-                }
-                    if($role_id == 699){
-                        if($this->User->allowedGuestUserCount($cnt) == "excess"){
-                            echo "errorlimit";
-                            exit;
-                        }
-                    }
-
-                for ($i = 0; $i < count($mail_arr); $i++) {
-                    if (trim($mail_arr[$i]) != "") {
-                        $mail_arr[$i] = trim($mail_arr[$i]);
-                        $checkUsr = $this->User->find('first', array('conditions' => array('User.email' => $mail_arr[$i]), 'fields' => array('User.id')));
-							if(!empty($checkUsr)){
-                        $user_id = $checkUsr['User']['id'];
-                        if ($user_id) {
-                            $ui = $UserInvitation->find('first', array('conditions' => array('UserInvitation.company_id' => SES_COMP, 'UserInvitation.user_id' => $user_id), 'fields' => array('UserInvitation.user_id')));
-                            if ($ui['UserInvitation']['user_id']) {
-                                $str = $mail_arr[$i] . ",";
-                                break;
-                            } else {
-                                $cu = $CompanyUser->find('first', array('conditions' => array('CompanyUser.company_id' => SES_COMP, 'CompanyUser.user_id' => $user_id, 'CompanyUser.is_active !=3'), 'fields' => array('CompanyUser.id')));
-                                if ($cu['CompanyUser']['id']) {
-                                    $str = $mail_arr[$i] . ",";
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                }
-                    }
-                $str = trim($str);
-                $str = trim($str, ",");
-                if (trim($str) == "") {
-                    echo "success";
-                    exit;
-                } else {
-                    echo $str;
-                    exit;
-                }
-            } else {
-                $checkUsr = $this->User->find('first', array('conditions' => array('User.email' => urldecode($this->request->data['email'])), 'fields' => array('User.id')));
-                $user_id = $checkUsr['User']['id'];
-
-                if ($user_id) {
-                    if ($user_id == SES_ID) {
-                        echo "account";
-                        exit;
-                    }
-                    $UserInvitation = ClassRegistry::init('UserInvitation');
-                    $ui = $UserInvitation->find('first', array('conditions' => array('UserInvitation.company_id' => SES_COMP, 'UserInvitation.user_id' => $user_id), 'fields' => array('UserInvitation.id')));
-                    if ($ui['UserInvitation']['id']) {
-                        echo "invited";
-                    } else {
-                        $CompanyUser = ClassRegistry::init('CompanyUser');
-                        $cu = $CompanyUser->find('first', array('conditions' => array('CompanyUser.company_id' => SES_COMP, 'CompanyUser.user_id' => $user_id, 'CompanyUser.user_type' => 1), 'fields' => array('CompanyUser.id')));
-                        if ($cu['CompanyUser']['id']) {
-                            echo "owner";
-                        } else {
-                            $chku = $CompanyUser->find('first', array('conditions' => array('CompanyUser.company_id' => SES_COMP, 'CompanyUser.user_id' => $user_id, 'CompanyUser.is_active !=3'), 'fields' => array('CompanyUser.id')));
-                            if ($chku['CompanyUser']['id']) {
-                                echo "exists";
-                            }
-                        }
-                    }
-                }
-            }
+			  $role_id = $this->request->data['role_id'];
+        if ($this->request->data['email']) { // && $this->request->data['uniq_id']
+			          if ( stristr( $this->request->data['email'], ",")){
+				          $stremails = $this->request->data['email'];
+			          } else {
+				          $stremails = urldecode($this->request->data['email']);
+			          }
+              if (stristr($stremails, ",")) {
+              $str = "";
+              $CompanyUser = ClassRegistry::init('CompanyUser');
+              $UserInvitation = ClassRegistry::init('UserInvitation');
+              $mail_arr1 = explode(",", urldecode(trim(trim($this->request->data['email']), ",")));
+              $cnt = 0;
+              $mail_arr = array();
+              foreach ($mail_arr1 AS $key => $val) {
+                  if (trim($val) != "") {
+                      $cnt ++;
+                      $mail_arr[] = $val;
+                  }
+              }
+              //Checking limitation of users 
+              $totalusers_cnt = $cnt + $GLOBALS['usercount'];
+                  if ((strtolower(trim($GLOBALS['Userlimitation']['user_limit'])) != "unlimited") && $totalusers_cnt > $GLOBALS['Userlimitation']['user_limit'] && $role_id != 699) {
+                  echo "errorlimit";
+                  exit;
+              }
+                  if($role_id == 699){
+                      if($this->User->allowedGuestUserCount($cnt) == "excess"){
+                          echo "errorlimit";
+                          exit;
+                      }
+                  }
+      
+              for ($i = 0; $i < count($mail_arr); $i++) {
+                  if (trim($mail_arr[$i]) != "") {
+                      $mail_arr[$i] = trim($mail_arr[$i]);
+                      $checkUsr = $this->User->find('first', array('conditions' => array('User.email' => $mail_arr[$i]), 'fields' => array('User.id')));
+			      if(!empty($checkUsr)){
+                      $user_id = $checkUsr['User']['id'];
+                      if ($user_id) {
+                          $ui = $UserInvitation->find('first', array('conditions' => array('UserInvitation.company_id' => SES_COMP, 'UserInvitation.user_id' => $user_id), 'fields' => array('UserInvitation.user_id')));
+                          if ($ui['UserInvitation']['user_id']) {
+                              $str = $mail_arr[$i] . ",";
+                              break;
+                          } else {
+                              $cu = $CompanyUser->find('first', array('conditions' => array('CompanyUser.company_id' => SES_COMP, 'CompanyUser.user_id' => $user_id, 'CompanyUser.is_active !=3'), 'fields' => array('CompanyUser.id')));
+                              if ($cu['CompanyUser']['id']) {
+                                  $str = $mail_arr[$i] . ",";
+                                  break;
+                              }
+                          }
+                      }
+                  }
+              }
+                  }
+              $str = trim($str);
+              $str = trim($str, ",");
+              if (trim($str) == "") {
+                  echo "success";
+                  exit;
+              } else {
+                  echo $str;
+                  exit;
+              }
+          } else {
+              $checkUsr = $this->User->find('first', array('conditions' => array('User.email' => urldecode($this->request->data['email'])), 'fields' => array('User.id')));
+              $user_id = $checkUsr['User']['id'];
+      
+              if ($user_id) {
+                  if ($user_id == SES_ID) {
+                      echo "account";
+                      exit;
+                  }
+                  $UserInvitation = ClassRegistry::init('UserInvitation');
+                  $ui = $UserInvitation->find('first', array('conditions' => array('UserInvitation.company_id' => SES_COMP, 'UserInvitation.user_id' => $user_id), 'fields' => array('UserInvitation.id')));
+                  if ($ui['UserInvitation']['id']) {
+                      echo "invited";
+                  } else {
+                      $CompanyUser = ClassRegistry::init('CompanyUser');
+                      $cu = $CompanyUser->find('first', array('conditions' => array('CompanyUser.company_id' => SES_COMP, 'CompanyUser.user_id' => $user_id, 'CompanyUser.user_type' => 1), 'fields' => array('CompanyUser.id')));
+                      if ($cu['CompanyUser']['id']) {
+                          echo "owner";
+                      } else {
+                          $chku = $CompanyUser->find('first', array('conditions' => array('CompanyUser.company_id' => SES_COMP, 'CompanyUser.user_id' => $user_id, 'CompanyUser.is_active !=3'), 'fields' => array('CompanyUser.id')));
+                          if ($chku['CompanyUser']['id']) {
+                              echo "exists";
+                          }
+                      }
+                  }
+              }
+          }
         }
         exit;
     }
