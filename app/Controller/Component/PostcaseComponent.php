@@ -564,7 +564,24 @@ class PostcaseComponent extends CookieComponent
                             }
                         }
                     } else {
+                        $Mconditions = array('EasycaseMention.easycase_id' => $mtask_id, 'EasycaseMention.comment_id' => 0,'EasycaseMention.project_id' => $postParam['Easycase']['project_id']);
+                        $EasycaseMention->deleteAll($Mconditions);
                         // $easycaseMentionList = $EasycaseMention->find('list',array('conditions'=>array('easycase_id'=>$mtask_id,'comment_id'=>0),'fields'=>array('id')));
+                    }
+                    if ($is_save_mention == 0) {
+                        foreach ($mention_array['mention_type_id'] as $mk=>$mv) {
+                            $marray = array();
+                            $marray['EasycaseMention']['company_id'] = SES_COMP;
+                            $marray['EasycaseMention']['project_id'] = $postParam['Easycase']['project_id'];
+                            $marray['EasycaseMention']['mention_type_id'] = $mv;
+                            $marray['EasycaseMention']['mention_type'] = $mention_array['mention_type'][$mk] == "task" ? 2: 1 ;
+                            $marray['EasycaseMention']['easycase_id'] = $mtask_id;
+                            $marray['EasycaseMention']['comment_id'] = $mcomment_id;
+                            $marray['EasycaseMention']['mention_message'] = $postParam['Easycase']['message'];
+                            $marray['EasycaseMention']['created'] = GMT_DATETIME;
+                            $marray['EasycaseMention']['mention_by'] = SES_ID;
+                            $EasycaseMention->saveAll($marray);
+                        }
                     }
                 }
             }

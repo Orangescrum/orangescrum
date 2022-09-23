@@ -48,6 +48,11 @@
                 <span title="<?php echo __('Activities');?>"><i class="material-icons">&#xE922;</i><?php echo __('Activities');?></span>
             </a>
         </li>
+        <li>
+            <a id="actvt_btns" class="" href="<?php echo HTTP_ROOT . 'dashboard#mentioned_list'; ?>" onclick="trackEventLeadTracker('Top Bar Navigation','Mention','<?php echo $_SESSION['SES_EMAIL_USER_LOGIN'];?>');return checkHashLoad('mentioned_list');">
+                <span title="<?php echo __('Mentions');?>"><i class="material-icons">alternate_email</i><?php echo __('Mentions');?></span>
+            </a>
+        </li>
         <?php if($this->Format->isAllowed('View Calendar',$roleAccess)){ ?> 
         <li><a id="calendar_btn" class="" href="<?php echo HTTP_ROOT . 'dashboard#calendar'; ?>" onclick="trackEventLeadTracker('Top Bar Navigation','Calendar','<?php echo $_SESSION['SES_EMAIL_USER_LOGIN'];?>');return calendarView('calendar');">
                 <span title="<?php echo __('Calendar');?>"><i class="material-icons">&#xE916;</i><?php echo __('Calendar');?></span>

@@ -1316,6 +1316,11 @@ PAGE_NAME == 'groupupdatealerts' || PAGE_NAME == 'importexport' || PAGE_NAME == 
                                  </a>
                                
                             </li>
+                            <li class="mentionlist_breadcrumb mntn_li">
+                               <a href="<?php echo HTTP_ROOT; ?>dashboard#/mentioned_list" onclick="trackEventLeadTracker('Breadcrumb Navigation','Mentioned','<?php echo $_SESSION['SES_EMAIL_USER_LOGIN'];?>');return checkHashLoad('mentioned_list');">
+                                    <i class="material-icons">&#xE8EF;</i> <?php echo __('Mentions');?>
+                                </a> 
+                            </li>
                             </ul>
                         </div>
                         <div class="calendar-bar-text">

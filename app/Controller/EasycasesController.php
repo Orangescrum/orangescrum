@@ -8359,7 +8359,7 @@ class EasycasesController extends AppController
         }
         echo json_encode($arr);
         exit;
-    }
+    } 
     public function edit_task_details()
     {
         $this->layout = 'ajax';
@@ -8429,6 +8429,16 @@ class EasycasesController extends AppController
                     foreach ($AllchklstDtl as $key => $val) {
                         $arr['checklists'][$key] = $val;
                         $arr['checklists'][$key]['CheckList']['title'] = $frmt->formatCms($val['CheckList']['title']);
+                    }
+                }
+                $arr['mention_array'] = array();
+                $this->loadModel('EasycaseMention');
+                $case_mntn_lst = $this->EasycaseMention->find("all",array("conditions"=>array("EasycaseMention.easycase_id"=>$casedetails['Easycase']['id'],"EasycaseMention.comment_id"=>0)));
+                if(!empty($case_mntn_lst)){
+                    foreach($case_mntn_lst as $km =>$vm){
+                        $arr['mention_array']["mention_id"][$km] = $vm["EasycaseMention"]["id"]; 
+                        $arr['mention_array']["mention_type_id"][$km] = $vm["EasycaseMention"]["mention_type_id"]; 
+                        $arr['mention_array']["mention_type"][$km] = $vm["EasycaseMention"]["mention_type"] == 1 ? "user" : "task" ; 
                     }
                 }
                 // Fetch custom field values of task

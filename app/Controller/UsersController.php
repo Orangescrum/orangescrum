@@ -8133,7 +8133,79 @@ function getSkills(){
 
 		exit;
 	}
-        
+    public function ajax_mentioned_list()
+    {
+        $this->layout = 'ajax';
+        $limit1 = $this->params->data['limit1'];
+        $limit2 = $this->params->data['limit2'];
+        $project_id = $this->params->data['projid'];
+        if ($project_id == 'all') {
+            $cond = '';
+            $prj = array();
+        } else {
+            $cond = "AND `Project`.`uniq_id` = '" . $project_id . "'";
+            $prj = $this->Project->findByUniqId($project_id);
+        }
+
+        if (!$this->Format->isAllowed('View All Task', $roleAccess)) {
+            //  $cond .= " AND (Easycase.assign_to=" . SES_ID . " OR Easycase.user_id=".SES_ID.") ";
+        }
+        if (SES_TYPE < 3) {
+            if ($project_id == 'all') {
+                $cond .= " AND EasycaseMention.mention_type='1' AND EasycaseMention.company_id='".SES_COMP."'";
+            } else {
+                $cond .= " AND EasycaseMention.mention_type='1' AND EasycaseMention.project_id ='".$prj["Project"]["id"]."' AND EasycaseMention.company_id='".SES_COMP."'";
+            }
+        } else {
+            if ($project_id == 'all') {
+                $cond .= " AND EasycaseMention.mention_type_id=" . SES_ID . " AND EasycaseMention.mention_type='1' AND EasycaseMention.company_id='".SES_COMP."'";
+            } else {
+                $cond .= " AND EasycaseMention.mention_type_id=" . SES_ID . " AND EasycaseMention.mention_type='1' AND EasycaseMention.project_id ='".$prj["Project"]["id"]."' AND EasycaseMention.company_id='".SES_COMP."'";
+            }
+        }
+            
+        $clt_sql = 1;
+        if ($this->Auth->user('is_client') == 1) {
+            $clt_sql = "((Easycase.client_status = " . $this->Auth->user('is_client') . " AND Easycase.user_id = " . $this->Auth->user('id') . ") OR Easycase.client_status != " . $this->Auth->user('is_client') . ")";
+        }
+
+        //  $sql = "SELECT SQL_CALC_FOUND_ROWS `Easycase`.*,DATE_FORMAT(Easycase.actual_dt_created,'%d%m%Y') AS ddate ,`User`.id,`User`.name,`User`.short_name,`User`.photo,`Project`.id,`Project`.uniq_id,`Project`.name FROM `easycases` AS `Easycase` inner JOIN users AS `User` ON (`Easycase`.`user_id` = `User`.`id`) inner JOIN projects AS `Project` ON (`Easycase`.`project_id` = `Project`.`id`) inner JOIN project_users AS `ProjectUser` ON (`Easycase`.`project_id` = `ProjectUser`.`project_id` AND `ProjectUser`.`user_id` = '" . SES_ID . "' AND `ProjectUser`.`company_id` = '" . SES_COMP . "') WHERE Project.isactive='1' AND " . $clt_sql . " AND Easycase.isactive='1' $cond ORDER BY Easycase.actual_dt_created DESC LIMIT $limit1,$limit2";
+        $sql = "SELECT SQL_CALC_FOUND_ROWS EasycaseMention.*,DATE_FORMAT(EasycaseMention.created,'%d%m%Y') AS ddate ,`Easycase`.id,`Easycase`.uniq_id,`Easycase`.title,`Easycase`.case_no,`MentionedUser`.id,`MentionedUser`.name,`MentionedUser`.short_name,`MentionedUser`.photo,`MentionedByUser`.id,`MentionedByUser`.name,`MentionedByUser`.short_name,`MentionedByUser`.photo,`Project`.id,`Project`.uniq_id,`Project`.name FROM easycase_mentions AS EasycaseMention  inner JOIN `easycases` AS `Easycase`  ON (Easycase.id = EasycaseMention.easycase_id) inner JOIN users AS `MentionedByUser` ON (`EasycaseMention`.`mention_by` = `MentionedByUser`.`id`) inner JOIN users as MentionedUser ON (`EasycaseMention`.`mention_type_id` = `MentionedUser`.`id`) inner JOIN projects AS `Project` ON (`EasycaseMention`.`project_id` = `Project`.`id`)  WHERE Project.isactive='1' AND " . $clt_sql . " AND Easycase.isactive='1' $cond ORDER BY EasycaseMention.created DESC LIMIT $limit1,$limit2";
+        // echo $sql;exit;
+        $activity = $this->User->query($sql);
+        $tot = $this->User->query("SELECT FOUND_ROWS() as total");
+        //  echo "<pre>";echo $sql;print_r($activity);exit;
+        $total = $tot[0][0]['total'];
+
+        /*$parent_task_id = array_filter(Hash::combine($activity, '{n}.Easycase.id', '{n}.Easycase.parent_task_id'));
+        $related_tasks = !empty($parent_task_id) ? $this->Easycase->getSubTasks($parent_task_id) : array();*/
+        $related_tasks = array();
+
+        //This section is meant for json loading.
+        //Load the helpers
+        $view = new View($this);
+        $tz = $view->loadHelper('Tmzone');
+        $dt = $view->loadHelper('Datetime');
+        $csq = $view->loadHelper('Casequery');
+        $fmt = $view->loadHelper('Format');
+        if ($total != 0) {
+            $frmtActivity['activity'] = array();
+            // echo "<pre>";print_r($activity);exit;
+            $frmtActivity = $this->User->formatMentionList($activity, $total, $fmt, $dt, $tz, $csq, $related_tasks, 1);
+            //   echo "<pre>";print_r($frmtActivity);exit;
+            //Making one array to send in json format.
+            $lastDate = '';
+            $repeatDate = $frmtActivity['activity']['0']['EasycaseMention']['lastDate'];
+            $ajax_activity['activity'] = $frmtActivity['activity'];
+            $ajax_activity['total'] = $frmtActivity['total'];
+        } else {
+            $ajax_activity['activity'] = "";
+            $ajax_activity['total'] = $total;
+        }
+        $this->set('ajax_activity', json_encode($ajax_activity));
+        $this->set('related_tasks', $related_tasks);
+        //End
+    }   
     public function ajax_get_location($whitelist = ['127.0.0.1', '::1']){
     	$ip = $this->Format->getRealIpAddr();
     	#$ip = '182.66.61.253';

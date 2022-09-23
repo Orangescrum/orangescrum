@@ -8708,7 +8708,7 @@ function openEditor(editormessage, basic_or_free) {
         } else {
             tinymce.init({
                 selector: "#CS_message",
-                plugins: 'paste importcss autolink image directionality fullscreen link  template  charmap hr pagebreak nonbreaking anchor advlist lists wordcount autoresize help',
+                plugins: 'paste importcss autolink image directionality fullscreen link  template  charmap hr pagebreak nonbreaking anchor advlist lists wordcount autoresize help mention',
                 menubar: false,
                 branding: false,
                 statusbar: false,
@@ -8730,6 +8730,29 @@ function openEditor(editormessage, basic_or_free) {
                 autoresize_on_init: true,
                 autoresize_bottom_margin: 20,
                 content_css: HTTP_ROOT + 'css/tinymce.css',
+                mentions: {
+                    source: function(query, process, delimiter) {
+                        var proj_uniq_id = $('.prj-select').val();
+                        var murl = HTTP_ROOT + "requests/getUserTaskList";
+                        $.post(murl, {
+                            proj_uniq_id: proj_uniq_id,
+                            search_query: query
+                        }, function(data) {
+                            if (data) {
+                                process(data);
+                            }
+                        }, 'json');
+                    },
+                    insert: function(item) {
+                        mention_array['mention_type_id'].push(item.id);
+                        mention_array['mention_type'].push(item.type);
+                        if (item.type == "task") {
+                            return '<span class="task_mention" data-id="' + item.id + '" data-tskuniqid="' + item.uniq_id + '" style="color: #3598db;">' + item.name + '</span>&nbsp;';
+                        } else {
+                            return '<span class="user_mention" data-id="' + item.id + '" style="color: #3598db;">@' + item.name + '</span>&nbsp;';
+                        }
+                    }
+                },
                 setup: function(ed) {
                     ed.on('Click', function(ed, e) {
                         $('#start_time').timepicker('hide');

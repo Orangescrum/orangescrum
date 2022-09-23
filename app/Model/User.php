@@ -1586,7 +1586,83 @@ class User extends AppModel {
 		}
 		return $dumy_users;
 	}
-    
+    function formatMentionList($activity, $total, $fmt, $dt, $tz, $csq, $related_tasks = array(), $flg=0) {
+        if ($total) {
+            App::import('Component', 'Format');
+            $format = new FormatComponent(new ComponentCollection);
+            
+            $dateCurnt = $tz->GetDateTime(SES_TIMEZONE, TZ_GMT, TZ_DST, TZ_CODE, GMT_DATETIME, "date");
+            foreach ($activity as $k => $v) {
+                $updated = $tz->GetDateTime(SES_TIMEZONE, TZ_GMT, TZ_DST, TZ_CODE, $v['EasycaseMention']['created'], "datetime");
+                $lastDate = $dt->dateFormatOutputdateTime_day($updated, $dateCurnt, '', 1);
+                $lastDateArr = explode(',', $lastDate);
+                $activity[$k]['MentionedUser']['profile_bg_clr'] = $this->getProfileBgColr($v['MentionedUser']['id']);
+                $activity[$k]['MentionedByUser']['profile_bg_clr'] = $this->getProfileBgColr($v['MentionedByUser']['id']);
+                $activity[$k]['Easycase']['id'] = $v['Easycase']['id'];
+
+                $id = $v['Easycase']['id'];
+                $activity[$k]['MentionedUser']['full_name'] = ucfirst($fmt->formatText($v['MentionedUser']['name']));
+                $activity[$k]['MentionedByUser']['full_name'] = ucfirst($fmt->formatText($v['MentionedByUser']['name']));
+
+                $activity[$k]['MentionedUser']['name'] = ucfirst($fmt->formatText($v['MentionedUser']['name']));
+                $activity[$k]['MentionedByUser']['name'] = ucfirst($fmt->formatText($v['MentionedByUser']['name']));
+
+                $activity[$k]['EasycaseMention']['lastDate'] = $lastDate;
+                //$activity[$k]['Easycase']['uniqId'] = $csq->getCaseUniqId($v['Easycase']['case_no'], $v['Easycase']['project_id']);
+                $msg = '';
+                //$casetitle = $csq->getTaskTitle($v['Easycase']['id'], $v['Easycase']['istype'], $v['Easycase']['case_no'], $v['Project']['id']);
+                $casetitle = $v['Easycase']['title'];
+
+                $frmt_title_data = $fmt->formatText($casetitle);
+                $frmt_title_data = $fmt->formatTitle($fmt->convert_ascii($fmt->longstringwrap($frmt_title_data)));
+
+                //$frmt_title_data = $fmt->showSubtaskTitle($frmt_title_data, $id, $related_tasks, 1, $activity[$k]['Easycase']);
+				
+                $eTitle = '<a href="javascript:void(0);" class="mention-task-dtls" data-uniqid="'.$activity[$k]['Easycase']['uniq_id'].'">#' . $v['Easycase']['case_no'] . ": " . $frmt_title_data . '</a>';
+				//$eTitle = $frmt_title_data;
+                $activity[$k]['Easycase']['title_data'] = $eTitle;
+                $new_mesg = '';
+                $new_text = '';
+                    $msg = ' <span class="col-crt">'.__('Created',true).'</span> <p>' . $eTitle . '</p>';
+                    if($activity[$k]['EasycaseMention']['mention_type_id'] == SES_ID){
+                        $mntn_user = __("You have been mentioned");
+                    } else{
+                        $mntn_user = $activity[$k]['MentionedUser']['full_name']." ".__("have been mentioned");
+                    }
+                    if($activity[$k]['EasycaseMention']['comment_id'] == 0){
+                        $mntn_typ = __("in a task description");
+                    }else {
+                         $mntn_typ = __("in a comment");
+                    }
+                    if($activity[$k]['EasycaseMention']['mention_by'] == SES_ID){
+                        if($activity[$k]['EasycaseMention']['mention_type_id'] == SES_ID){
+                            $mntn_by = "";
+                        } else{
+                            $mntn_by = __("by Me");
+                        }
+                       
+                    } else {
+                        $mntn_by = __("by")." ".$activity[$k]['MentionedByUser']['full_name'];
+                    }
+                    $new_mesg = '<span class="col-crt"><b>'.$mntn_user.' '.$mntn_typ.' '.$mntn_by .'</b></span>';
+					
+						$new_mesg .= '<p>' . $eTitle . '</p>';
+                  //  $new_text = $eTitle;
+                $activity[$k]['EasycaseMention']['msg'] = $activity[$k]['EasycaseMention']['mention_message'];
+                $activity[$k]['EasycaseMention']['nmsg'] = $new_mesg;
+             //   $activity[$k]['Easycase']['ntxt'] = $new_text;
+                if ($project_id != 'all') {
+                    if ($project_id == $v['Project']['id']) {
+                        $activity[$k]['Project']['name'] = '';
+                    } else {
+                        $activity[$k]['Project']['name'] = $v['Project']['name'];
+                    }
+                }
+            }
+            $activity = array_values($activity);
+        }
+        return array('activity' => $activity, 'total' => $total);
+    }
     function getUserDtls($uid) {
         $this->recursive = -1;
         $usrDtls = $this->find('first', array('conditions' => array('User.id' => $uid), 'fields' => array('User.name', 'User.photo', 'User.email', 'User.last_name', 'User.dt_created', 'User.dt_last_login','User.btprofile_id','User.uniq_id')));

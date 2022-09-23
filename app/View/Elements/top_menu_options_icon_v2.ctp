@@ -20,5 +20,10 @@
                 <span title="<?php echo __('Activities');?>"><i class="material-icons">&#xE922;</i><?php echo __('Activities');?></span>
             </a>
         </li>
+        <li>
+			<a id="actvt_btns" class="" href="<?php echo HTTP_ROOT . 'dashboard#mentioned_list'; ?>" onclick="trackEventLeadTracker('Top Bar Navigation','Mention','<?php echo $_SESSION['SES_EMAIL_USER_LOGIN'];?>');return checkHashLoad('mentioned_list');">
+                <span title="<?php echo __('Mentions');?>"><i class="material-icons">alternate_email</i><?php echo __('Mentions');?></span>
+            </a>
+        </li>
     </ul>
 </span>

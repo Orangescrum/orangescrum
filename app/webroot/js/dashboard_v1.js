@@ -1997,7 +1997,7 @@ easycase.loadTinyMce = function(csAtId) {
     } else {
         tinymce.init({
             selector: "#txa_comments" + csAtId,
-            plugins: 'image paste importcss autolink directionality fullscreen link  template  table charmap hr pagebreak nonbreaking anchor advlist lists wordcount autoresize help',
+            plugins: 'image paste importcss autolink directionality fullscreen link  template  table charmap hr pagebreak nonbreaking anchor advlist lists wordcount autoresize help mention',
             menubar: false,
             branding: false,
             statusbar: false,
@@ -2019,6 +2019,32 @@ easycase.loadTinyMce = function(csAtId) {
             autoresize_on_init: true,
             autoresize_bottom_margin: 20,
             content_css: HTTP_ROOT + 'css/tinymce.css',
+            mentions: {
+                source: function(query, process, delimiter) {
+                    var proj_uniq_id = $('#projFil').val();
+                    var murl = HTTP_ROOT + "requests/getUserTaskList";
+                    $.post(murl, {
+                        proj_uniq_id: proj_uniq_id,
+                        search_query: query
+                    }, function(data) {
+                        if (data) {
+                            process(data);
+                            $(".rte-autocomplete").css({
+                                "z-index": "999999 !important"
+                            });
+                        }
+                    }, 'json');
+                },
+                insert: function(item) {
+                    mention_array['mention_type_id'].push(item.id);
+                    mention_array['mention_type'].push(item.type);
+                    if (item.type == "task") {
+                        return '<span class="task_mention" data-id="' + item.id + '" data-tskuniqid="' + item.uniq_id + '" style="color: #3598db;">' + item.name + '</span>&nbsp;';
+                    } else {
+                        return '<span class="user_mention" data-id="' + item.id + '" style="color: #3598db;">@' + item.name + '</span>&nbsp;';
+                    }
+                }
+            },
             setup: function(ed) {
                 ed.on('Click', function(ed, e) {
                     $('#start_time' + csAtId).timepicker('hide');
@@ -2390,7 +2416,29 @@ easycase.showMentionList = function() {
         loadMentionList('');
     }
 }
-
+function loadMentionList(type) {
+    var displayed = $("#display_mention").val();
+    var prj_id = $("#projFil").val();
+    var limit1, limit2, projid;
+    if (type == "more") {
+        limit1 = displayed;
+        limit2 = 10;
+        projid = prj_id;
+    } else {
+        limit1 = 0;
+        limit2 = 29;
+        projid = prj_id;
+    }
+    if (type == "more") {
+        $(".morebar").show();
+    } else {
+        $("#caseLoader").show();
+    }
+    $("#ajax_mentioned_tmpl").show();
+    var strURL = HTTP_ROOT + "users/ajax_mentioned_list/";
+    angular.element(document.getElementById('mentionController')).scope().getMentionList(strURL, type, limit1, limit2, projid);
+    angular.element(document.getElementById('mentionController')).scope().$apply();
+}
 function activityDetail(caseNo, cas, no, popup) {
     $("#myModalDetail").modal();
     $(".task_details_popup").show();
@@ -11029,7 +11077,7 @@ function editmessage(obj, id, projid) {
         } else {
             tinymce.init({
                 selector: "#edit_reply_txtbox" + id,
-                plugins: 'image paste importcss autolink directionality fullscreen link  template  table charmap hr pagebreak nonbreaking anchor advlist lists wordcount autoresize help',
+                plugins: 'image paste importcss autolink directionality fullscreen link  template  table charmap hr pagebreak nonbreaking anchor advlist lists wordcount autoresize help mention',
                 menubar: false,
                 branding: false,
                 statusbar: false,
