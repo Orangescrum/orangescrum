@@ -295,7 +295,7 @@
         <div class="col-lg-6">
             <div class="width100 cmn_bdr_shadow dash-pwrs">
                 <div class="top_ttl_box">
-                    <h2><a href="<?php echo HTTP_ROOT . 'resource-utilization'; ?>" onclick="return trackEventLeadTracker('Admin Dashboard','Project wise Resource Utilization','<?php echo $_SESSION['SES_EMAIL_USER_LOGIN']; ?>');"><?php echo __('Project wise Resource Utilization');?></a></h2>
+                    <h2><a href="" onclick=""><?php echo __('Project wise Resource Utilization');?></a></h2>
                 </div>
                 <!--<div class="loader_dv_db" id="project_resource_utilization_ldr" style="display: none;margin-top: 90px;"><center><img src="<?php echo HTTP_IMAGES; ?>images/case_loader2.gif" alt="Loading..." title="Loading..." /></center></div>-->
                 <div id="project_resource_utilization" class="project-utilization">

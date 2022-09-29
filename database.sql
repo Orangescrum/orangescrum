@@ -1978,6 +1978,7 @@ INSERT INTO `menus` (`id`, `parent_id`, `name`, `is_active`, `menu_type`, `menu_
 (38, 0, 'More', 1, 0, '<i class=\"left-menu-icon material-icons\">&#xE53B;</i>', 9, 1, 0, '{\"url\":\"#\",\"li_id\":\"\",\"a_id\":\"\",\"li_class\":\"\",\"a_class\":\"\",\"a_click\":\"\",\"li_click\":\"\",\"cnt_span\":\"\",\"a_tooltip\":\"\"}', '2020-01-10 00:00:00', '2020-01-10 00:00:00'),
 (39, 38, 'Files', 1, 0, '<i class=\"left-menu-icon material-icons\">&#xE53B;</i>', 4, 1, 0, '{\"url\":\"dashboard#files\",\"li_id\":\"\",\"a_id\":\"\",\"li_class\":\"menu-files\",\"a_class\":\"menu-files\",\"a_click\":\"return checkHashLoad(\'files\');\",\"li_click\":\"\",\"cnt_span\":\"<span class=\'cmn_count_no\' id=\'fileCnt\' style=\'\'>0</span>\",\"a_tooltip\":\"\"}', '2020-01-10 00:00:00', '2020-01-10 00:00:00'),
 (42, 38, 'Archive', 1, 0, '<i class=\"left-menu-icon material-icons\">&#xE53B;</i>', 7, 1, 0, '{\"url\":\"archives/listall#caselist\",\"li_id\":\"\",\"a_id\":\"\",\"li_class\":\"\",\"a_class\":\"\",\"a_click\":\"\",\"li_click\":\"\",\"cnt_span\":\"\",\"a_tooltip\":\"\"}', '2020-01-10 00:00:00', '2020-01-10 00:00:00'),
+(46, 38, 'Kanban', 1, 0, '<i class=\"left-menu-icon material-icons\">&#xE8F0;</i>', 2, 1, 0, '{\"url\":\"dashboard#/milestonelist\",\"li_id\":\"\",\"a_id\":\"\",\"li_class\":\"\",\"a_class\":\"\",\"a_click\":\"\",\"li_click\":\"\",\"cnt_span\":\"\",\"a_tooltip\":\"\"}\n', '2020-01-10 00:00:00', '2020-01-10 00:00:00'),
 (57, 0, 'Mention', 1, 0, '<i class=\"left-menu-icon material-icons\">alternate_email</i>', 2, 1, 0, '{\"url\":\"dashboard#mentioned_list\",\"li_id\":\"\",\"a_id\":\"left_menu_nav_tour\",\"li_class\":\"caseMenuLeft menu-mention \",\"a_class\":\"\",\"a_click\":\"return checkHashLoad(\'mentioned_list\');\",\"li_click\":\"\",\"cnt_span\":\"\",\"a_tooltip\":\"\"}', '2020-11-06 12:53:49', '2020-11-06 12:53:49');
 
 -- --------------------------------------------------------
@@ -4287,6 +4288,11 @@ ALTER TABLE `custom_filters`
 --
 ALTER TABLE `custom_statuses`
   ADD PRIMARY KEY (`id`);
+--
+-- Indexes for table `easycase_mentions`
+--
+ALTER TABLE `easycase_mentions`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `dailyupdate_notifications`
@@ -5294,7 +5300,11 @@ ALTER TABLE `modules`
 --
 ALTER TABLE `new_pricing_users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
+--
+-- AUTO_INCREMENT for table `easycase_mentions`
+--
+ALTER TABLE `easycase_mentions`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `notifications`
 --

@@ -1605,6 +1605,15 @@
 											<i class="material-icons">&#xE8EF;</i> <?php echo __('Task List');?>
 										</a>
 									</li>
+									<?php if ($this->Format->isAllowed('View Kanban', $roleAccess)) { ?>
+									<li class="kanban_breadcrumb_v2 hide-in-scrum" id="tour_kanban_view" <?php if ($_SESSION['project_methodology'] == 'scrum') {
+											echo "style='display:none;'"; }?>>
+										<a href="<?php echo HTTP_ROOT; ?>dashboard#/kanban"
+											onclick="trackEventLeadTracker('Breadcrumb Navigation','Kanban','<?php echo $_SESSION['SES_EMAIL_USER_LOGIN'];?>');return checkHashLoad('kanban');">
+											<i class="material-icons">&#xE8F0;</i> <?php echo $this->Format->displayKanbanOrBoard();//__('Kanban');?>
+										</a>
+									</li>
+									<?php } ?>
 									<?php if ($this->Format->isAllowed('View Calendar', $roleAccess)) { ?>
 									<li class="calendar_breadcrumb_v2" id="tour_calendar_view">
 										<a href="<?php echo HTTP_ROOT; ?>dashboard#/calendar"

@@ -13561,7 +13561,7 @@ function showTasks(arg) {
         createCookie("CURRENT_FILTER", 'cases', 365, DOMAIN_COOKIE);
     } else if (arg == 'activities') {
         var prjunid = $('#pname_dashboard_hid').val();
-        if (prjunid.toLowerCase() == 'all') {
+        if (prjunid != undefined && prjunid.toLowerCase() == 'all') {
             showTopErrSucc('error', _('Oops! You are in') + " " + _('All') + " " + _('project. Please choose a project.'));
             return false;
         } else {

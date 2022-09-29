@@ -13388,7 +13388,6 @@ Easycase.dt_created, Easycase.actual_dt_created, Easycase.custom_status_id,Easyc
                 . "AND Easycase.project_id!=0 " . $projQry . " "
                 . "GROUP BY Easycase.custom_status_id, if(Easycase.type_id=10,10,Easycase.legend)";
         $common_qry = $this->Easycase->query($sql);
-        
         $csts_arr = array();
         $status = array();
         if ($common_qry) {
@@ -13403,7 +13402,7 @@ Easycase.dt_created, Easycase.actual_dt_created, Easycase.custom_status_id,Easyc
         }
         //always custom status should start after 20 auto increment id for above
         //$status = Hash::combine($common_qry, '{n}.0.legend', '{n}.0.tot_count');
-
+        
         $total = array_sum($status);
         $extra = $this->data['extra'];
         $this->set(compact('status', 'total', 'fragment', 'extra', 'common_qry', 'csts_arr'));
@@ -13443,6 +13442,7 @@ Easycase.dt_created, Easycase.actual_dt_created, Easycase.custom_status_id,Easyc
                         $json_data['data'][$i]['name'] = $legend[$val[0]['legend']];
                         $json_data['data'][$i]['y'] = $val[0]['tot_count'];
                         $json_data['data'][$i]['color'] = $color[$val[0]['legend']];
+                        $i++;
                     }
                     //$i++;
                 }
