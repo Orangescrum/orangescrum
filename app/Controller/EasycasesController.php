@@ -9387,7 +9387,16 @@ class EasycasesController extends AppController
             }
         }
         $msQuery1 = " ";
-
+        $frmTz = '+00:00';
+        $toTz = $this->Tmzone->getGmtTz(TZ_GMT, TZ_DST);
+        $GMT_DATE =$this->Tmzone->GetDateTime(SES_TIMEZONE, TZ_GMT, TZ_DST, TZ_CODE, GMT_DATETIME, "datetime");
+        if($this->Format->isAllowed('View All Task', $roleAccess)) {
+            $over_due_task_count = $this->Easycase->query("SELECT COUNT(*) as cnt from easycases as Easycase WHERE istype='1' AND " . $clt_sql . " " . $cond_easycase_actuve . " AND Easycase.project_id=".$curProjId." AND  Easycase.project_id<>0 AND (DATE(CONVERT_TZ(Easycase.due_date,'".$frmTz."','".$toTz."')) <'" . $GMT_DATE . "') AND (DATE(CONVERT_TZ(Easycase.due_date,'".$frmTz."','".$toTz."')) !='0000-00-00') AND (Easycase.legend !=3)");
+        }else{
+            $over_due_task_count = $this->Easycase->query("SELECT COUNT(*) as cnt from easycases as Easycase WHERE istype='1' AND " . $clt_sql . " " . $cond_easycase_actuve . " AND Easycase.project_id=".$curProjId." AND  Easycase.project_id<>0 AND (DATE(CONVERT_TZ(Easycase.due_date,'".$frmTz."','".$toTz."')) <'" . $GMT_DATE . "') AND (DATE(CONVERT_TZ(Easycase.due_date,'".$frmTz."','".$toTz."')) !='0000-00-00') AND (Easycase.legend !=3) AND (Easycase.user_id = ".SES_ID." OR Easycase.assign_to = ".SES_ID.")");
+        }
+        $over_due_task_count = $over_due_task_count[0][0]['cnt'];
+        $resCaseProj['over_due_task_count'] = $over_due_task_count;
         $resCaseProj['page_limit'] = $page_limit;
         $resCaseProj['csPage'] = $casePage;
         $resCaseProj['caseUrl'] = $caseUrl;

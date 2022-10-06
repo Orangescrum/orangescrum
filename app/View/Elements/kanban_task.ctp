@@ -46,7 +46,8 @@ var rel_arr = new Array();
 		<?php } ?>	
         
 	</div>
-    <div class="view_list_refresh" id="task_view_types" style="padding-right: 20px;margin-top: -20px;">
+    <span style="display: flex;flex-direction: row-reverse;padding: 20px 70px 0px 0px;"><div style="font-size:18px;color:#2d6dc4;"onclick="showOverDueTask();"><?php echo __("Overdue Tasks : ")  ?><%= over_due_task_count %></div></span>
+    <div class="view_list_refresh" id="task_view_types" style="padding-right: 30px;margin-top: -29px;">
 					<span class="reload_icon">
 							<a class="" href="javascript:void(0);" onclick="reloadTasks();">
 								<span title="<?php echo __('Reload');?>" rel="tooltip"><i class="material-icons">&#xE5D5;</i></span>

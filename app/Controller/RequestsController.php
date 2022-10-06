@@ -1588,7 +1588,17 @@ class RequestsController extends AppController
                     $caseAll = $this->Easycase->query("SELECT SQL_CALC_FOUND_ROWS Easycase.*,User.short_name,IF((Easycase.assign_to =" . SES_ID . "),'Me',User.short_name) AS Assigned  ,(SELECT parent_task_id from easycases where id=Easycase.parent_task_id AND Easycase.project_id='$curProjId' AND Easycase.project_id!=0 ) AS is_sub_sub_task,(SELECT count(parent_task_id) from easycases as E1 where E1.parent_task_id IN (SELECT id from easycases as E2 where E2.parent_task_id = Easycase.id AND Easycase.project_id='$curProjId' AND Easycase.project_id!=0) AND E1.project_id!=0 AND E1.project_id='$curProjId') AS sub_sub_task FROM ( SELECT  Easycase.*,EasycaseMilestone.id AS Emid, EasycaseMilestone.milestone_id AS Em_milestone_id,EasycaseMilestone.user_id AS Em_user_id,EasycaseMilestone.id_seq,EasycaseMilestone.m_order,Milestone.id as Mid,Milestone.title AS Mtitle ,Milestone.end_date,Milestone.isactive AS Misactive,Milestone.project_id AS Mproject_id,Milestone.uniq_id AS Muinq_id FROM easycases as Easycase,easycase_milestones AS EasycaseMilestone,milestones AS Milestone WHERE EasycaseMilestone.easycase_id=Easycase.id AND Milestone.id=EasycaseMilestone.milestone_id AND Easycase.istype='1' AND " . $clt_sql . " " . $cond_easycase_actuve . " AND " . $qrycheck . " AND Easycase.project_id!=0 AND Easycase.project_id IN (SELECT ProjectUser.project_id FROM project_users AS ProjectUser,projects as Project WHERE ProjectUser.user_id=" . SES_ID . " AND ProjectUser.project_id=Project.id AND Project.isactive='1' AND ProjectUser.company_id='" . SES_COMP . "') " . $searchcase . " " . trim($qry) . " AND EasycaseMilestone.easycase_id=Easycase.id AND EasycaseMilestone.project_id IN (SELECT ProjectUser.project_id FROM project_users AS ProjectUser,projects as Project WHERE ProjectUser.user_id=" . SES_ID . " AND ProjectUser.project_id=Project.id AND Project.isactive='1')" . $msQuery . " ) AS Easycase LEFT JOIN users User ON Easycase.assign_to=User.id ORDER BY Easycase.end_date ASC,Easycase.Mtitle ASC," . $orderby . " LIMIT $limit1,$limit2");
                 }
             } else {
+                $frmTz = '+00:00';
+                $toTz = $this->Tmzone->getGmtTz(TZ_GMT, TZ_DST);
+                $GMT_DATE =$this->Tmzone->GetDateTime(SES_TIMEZONE, TZ_GMT, TZ_DST, TZ_CODE, GMT_DATETIME, "date");
                 if ($projUniq == 'all') {
+                    if ($this->Format->isAllowed('View All Task', $roleAccess)) {
+                        $over_due_task_count = $this->Easycase->query("SELECT COUNT(*) as cnt from easycases as Easycase WHERE istype='1' AND " . $clt_sql . " " . $cond_easycase_actuve . " AND  Easycase.project_id<>0 AND (DATE(CONVERT_TZ(Easycase.due_date,'".$frmTz."','".$toTz."')) <'" . $GMT_DATE . "') AND (DATE(CONVERT_TZ(Easycase.due_date,'".$frmTz."','".$toTz."')) !='0000-00-00') AND (Easycase.legend !=3)");
+                    }else{
+                        $over_due_task_count = $this->Easycase->query("SELECT COUNT(*) as cnt from easycases as Easycase WHERE istype='1' AND " . $clt_sql . " " . $cond_easycase_actuve . " AND  Easycase.project_id<>0 AND (DATE(CONVERT_TZ(Easycase.due_date,'".$frmTz."','".$toTz."')) <'" . $GMT_DATE . "') AND (DATE(CONVERT_TZ(Easycase.due_date,'".$frmTz."','".$toTz."')) !='0000-00-00') AND (Easycase.legend !=3) AND (Easycase.user_id = ".SES_ID." OR Easycase.assign_to = ".SES_ID.")");
+                    }
+                    
+                    $over_due_task_count = $over_due_task_count[0][0]['cnt'];
                     if ($caseMenuFilters == "latest") {
                         // Target_4
                         
@@ -1649,6 +1659,12 @@ class RequestsController extends AppController
                         }
                     }
                 } else {
+                    if($this->Format->isAllowed('View All Task', $roleAccess)) {
+                        $over_due_task_count = $this->Easycase->query("SELECT COUNT(*) as cnt from easycases as Easycase WHERE istype='1' AND " . $clt_sql . " " . $cond_easycase_actuve . " AND Easycase.project_id=".$curProjId." AND  Easycase.project_id<>0 AND (DATE(CONVERT_TZ(Easycase.due_date,'".$frmTz."','".$toTz."')) <'" . $GMT_DATE . "') AND (DATE(CONVERT_TZ(Easycase.due_date,'".$frmTz."','".$toTz."')) !='0000-00-00') AND (Easycase.legend !=3)");
+                    }else{
+                        $over_due_task_count = $this->Easycase->query("SELECT COUNT(*) as cnt from easycases as Easycase WHERE istype='1' AND " . $clt_sql . " " . $cond_easycase_actuve . " AND Easycase.project_id=".$curProjId." AND  Easycase.project_id<>0 AND (DATE(CONVERT_TZ(Easycase.due_date,'".$frmTz."','".$toTz."')) <'" . $GMT_DATE . "') AND (DATE(CONVERT_TZ(Easycase.due_date,'".$frmTz."','".$toTz."')) !='0000-00-00') AND (Easycase.legend !=3) AND (Easycase.user_id = ".SES_ID." OR Easycase.assign_to = ".SES_ID.")");
+                    }
+                   $over_due_task_count = $over_due_task_count[0][0]['cnt'];
                     /*
                     //Existing Query
 
@@ -2162,6 +2178,7 @@ class RequestsController extends AppController
     */   
     /* --End-- */
         $resCaseProj['field_name_arr'] = $field_name_arr;
+        $resCaseProj['over_due_task_count'] = $over_due_task_count;
         $resCaseProj['ajax_group_by'] = $ajax_group_by;
         if (!empty($inactiveFlag)) {
             return $resCaseProj;

@@ -131,7 +131,8 @@ var task_parent_ids = JSON.stringify(task_parent_ids);
 						</li>
 					</ul>
 				</div>
-			</span>		  
+			</span>
+			<span><div onclick="showOverDueTask();" style="font-size:18px;color:#2d6dc4;"><?php echo __("Overdue Tasks : ")  ?><%= over_due_task_count %></div></span>		  
           <?php if($this->Format->displayHelpVideo()){ ?>
           <span style="line-height:30px;">    
           <a href="javascript:void(0);" class="help-video-pop"  video-url = "https://www.youtube.com/embed/G1oCxuSd640" onclick="showVideoHelp(this);" ><i class="material-icons">play_circle_outline</i><?php echo PLAY_VIDEO_TEXT;?></a> 
