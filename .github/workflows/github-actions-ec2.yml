@@ -1,0 +1,23 @@
+name: Push-to-EC2
+
+on: 
+  push:
+    branches: [ develop ]
+
+jobs:
+  deploy:
+    name: Push to OrangeScrum EC2 Instance
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v1
+
+      - name: Deploy to my EC2 instance
+        uses: easingthemes/ssh-deploy@v2.1.5
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
+          SOURCE: "./"
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }} 
+          REMOTE_USER: ${{ secrets.REMOTE_USER }} 
+          TARGET: ${{ secrets.REMOTE_TARGET }}
