@@ -49,7 +49,7 @@ if(stristr($_SERVER['SERVER_NAME'], '/') && substr($_SERVER['SERVER_NAME'], -1) 
 	define('DOMAIN', $_SERVER['SERVER_NAME'] . "/");
 }
 /*Subfolder set up */
-define('SUB_FOLDER', '@SUB_FOLDER');
+define('SUB_FOLDER', 'orangescrum/');
 
 define('HTTP_SERVER', PROTOCOL . DOMAIN);
 if(stristr(HTTP_SERVER, '/') && substr(HTTP_SERVER, -1) == '/' && SUB_FOLDER == '/'){

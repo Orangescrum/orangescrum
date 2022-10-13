@@ -2,7 +2,7 @@ name: Push-to-EC2
 
 on: 
   push:
-    branches: [ develop ]
+    branches: [ master ]
 
 jobs:
   deploy:
@@ -20,4 +20,4 @@ jobs:
           SOURCE: "./"
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }} 
           REMOTE_USER: ${{ secrets.REMOTE_USER }} 
-          TARGET: ${{ secrets.REMOTE_TARGET }}
+          TARGET: ${{ secrets.REMOTE_TARGET }} #remote/path/on/remote
