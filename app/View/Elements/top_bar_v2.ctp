@@ -266,13 +266,14 @@
 								<i class="material-icons">&#xE42A;</i>
 							</a>
 						</span>
-						<?php if(!IS_SKINNY){ ?>
+						
+						<?php if(IS_SKINNY){ ?>
 						<span>
 							<a href="javascript:void(0);" onclick="setDefaultProjectView('<?php echo $cookie_value; ?>');
 								$('#projectLoader').show();"
 								class="<?php if ($projtype == 'active-grid' || $projtype == 'inactive-grid') { ?>active<?php } ?>"
 								rel="tooltip"
-								title="<?php echo __('Grid View');?>">
+								title="<?php echo __('List View');?>">
 								<i class="material-icons">&#xE5D2;</i>
 							</a>
 						</span>

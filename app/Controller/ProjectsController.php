@@ -673,6 +673,7 @@ class ProjectsController extends AppController
                 $fields = json_decode($fields['ProjectField']['field_name']);
             }
             $this->set('fields', $fields);
+            $this->render('manage_list');
         }else{
         $pjid = null;
         if (isset($_GET['id']) && $_GET['id']) {
@@ -923,6 +924,391 @@ class ProjectsController extends AppController
             }
         }
         return 'USD';
+    }
+    public function ajaXGridView(){
+        if($this->request->is('ajax')){
+            $page_limit = 10;
+            $view = new View($this);
+            $tz = $view->loadHelper('Tmzone');
+            $dt = $view->loadHelper('Datetime');
+            $cq = $view->loadHelper('Casequery');
+            $frmt = $view->loadHelper('Format');
+            $projtype = $this->request->data['projtype'];
+            $scrch = $this->request->data['srch'];
+            if($projtype){
+                setcookie('PROJECT_TYPE', $projtype, time() + 3600, '/', DOMAIN_COOKIE, false, false);
+            }else{
+                setcookie('PROJECT_TYPE', '', -1, '/', DOMAIN_COOKIE, false, false);
+            }
+            if (isset($_GET['page']) && $_GET['page']) {
+                $page = $_GET['page'];
+            }
+            $this->Project->recursive = -1;	
+            $project_order_by = "ORDER BY dt_created DESC";
+            $action = "";
+            $uniqid = "";
+            $query = "";
+            $sort_by = '';
+            $order_sort = '';
+            $order_by = '';
+            $filtype = "";
+           
+            if (isset($this->request->data['filtype']) && $this->request->data['filtype']) {
+                $filtype = $this->request->data['filtype'];
+            }
+            if (isset($filtype) && $filtype == 'started') {
+                $query = "AND Project.status='1' AND Project.isactive!='2'";
+               
+                $filtype = 'started';
+            } else if (isset($filtype) && $filtype == 'on-hold') {
+                $query = "AND Project.status='2' AND Project.isactive!='2'";
+                $filtype = 'on-hold';
+            } else if (isset($filtype) && $filtype == 'stack') {
+                $query = "AND Project.status='3' AND Project.isactive!='2'";
+                $filtype = 'stack';
+            }
+            $gridViewarr = array();
+            if ($projtype == "inactive" || $projtype == "inactive-grid") {
+                $query = "AND Project.isactive=2";
+            } else {
+                //$query = "AND Project.isactive='1' AND Project.status!='4'";
+            }
+            $page = 1;
+            $pageprev = 1;
+            if (isset($this->request->data['page']) && $this->request->data['page']) {
+                $page = $this->request->data['page'];
+            }
+            $limit1 = $page * $page_limit - $page_limit;
+            $limit2 = $page_limit;
+            $limit = "LIMIT $limit1,$limit2";
+            //pr($this->request->data['page']); exit;
+            if (!empty($scrch)) {
+                //$_GET['prj'] = Sanitize::clean($_GET['prj'], array('encode' => false));
+                $pj = $scrch . "%";
+                $query .= " AND Project.name LIKE '%" . addslashes($scrch) . "%'";
+            }
+            $query .= " AND Project.company_id='" . SES_COMP . "'";
+            $prjselect = $this->Project->query("SELECT name FROM projects AS Project WHERE name!='' " . $query . " ORDER BY dt_created DESC");
+            $arrprj = array();
+            foreach ($prjselect as $pjall) {
+                if (isset($pjall['Project']['name']) && !empty($pjall['Project']['name'])) {
+                    array_push($arrprj, substr(trim($pjall['Project']['name']), 0, 1));
+                }
+            }
+            $all_assigned_proj = null;
+            if (SES_TYPE == 3) {
+                $all_assigned_proj = $this->Project->query('SELECT project_id FROm project_users WHERE user_id=' . $this->Auth->user('id') . ' AND company_id=' . SES_COMP);
+                if ($all_assigned_proj) {
+                    $all_assigned_proj = Hash::extract($all_assigned_proj, '{n}.project_users.project_id');
+                    $all_assigned_proj = array_unique($all_assigned_proj);
+                    $query .= " AND (Project.user_id=" . $this->Auth->user('id') . " OR Project.id IN(" . implode(',', $all_assigned_proj) . "))";
+                } else {
+                    $query .= " AND Project.user_id=" . $this->Auth->user('id');
+                }
+            }
+            $sql = "SELECT SQL_CALC_FOUND_ROWS Project.id,uniq_id,Project.name,Project.user_id,project_type,short_name,Project.description,Project.isactive,Project.status,Project.estimated_hours,Project.priority,Project.dt_created,Project.dt_updated,Project.start_date,Project.end_date,Project.project_methodology_id,Project.status_group_id,PS.name,PML.title,
+                (SELECT COUNT(easycases.id) AS tot FROM easycases WHERE easycases.project_id=Project.id and easycases.istype='1' and easycases.isactive='1') AS totalcase,
+                (SELECT SUM(LogTime.total_hours) AS hours 
+                FROM log_times AS LogTime 
+                LEFT JOIN easycases AS Easycase ON Easycase.id=LogTime.task_id AND LogTime.project_id=Easycase.project_id 
+                WHERE LogTime.project_id=Project.id AND Easycase.isactive=1) AS totalhours,
+                (SELECT COUNT(company_users.id) AS tot FROM company_users, project_users where project_users.user_id = company_users.user_id and project_users.company_id = company_users.company_id and company_users.is_active = 1 and project_users.project_id = Project.id) as totusers,
+                (SELECT SUM(case_files.file_size) AS file_size FROM case_files WHERE case_files.project_id=Project.id) AS storage_used,
+                (SELECT roles.role FROM roles,project_users where project_users.role_id = roles.id and project_users.user_id ='". SES_ID ."' and project_users.company_id = '".SES_COMP."' and project_users.project_id = Project.id group by project_users.id ) as role,
+                (SELECT roles.role FROM roles,company_users where company_users.role_id = roles.id and company_users.user_id ='". SES_ID ."' and company_users.company_id = '".SES_COMP."' group by company_users.id ) as crole
+                FROM projects AS Project LEFT JOIN project_methodologies PML ON PML.id= Project.project_methodology_id LEFT JOIN project_statuses PS ON PS.id= Project.status WHERE Project.name!='' " . $query . " 
+                $project_order_by $limit";
+             //pr($sql);
+             //exit;
+            $prjAllArr = $this->Project->query($sql);
+            $proj_ids = array_filter(array_unique(Hash::extract($prjAllArr, '{n}.Project.id')));
+            $getAllCustomFields = [];
+            if ($proj_ids) {
+                $view = new View($this);
+                $tz = $view->loadHelper('Tmzone');
+                $dt = $view->loadHelper('Datetime');
+                $this->loadModel('CustomFieldValue');
+                $ref_type = 1;
+                $getAllCustomFields = $this->CustomFieldValue->getAllCustomFieldByTaskIds($proj_ids, SES_COMP,$ref_type);
+            }
+            if ($getAllCustomFields) {
+                $getAllCustomFields = $this->CustomFieldValue->reorderCustomFieldArray($getAllCustomFields, 'taskid', $dt, $tz);
+            }
+            // pr($getAllCustomFields); exit;
+            $tot = $this->Project->query("SELECT FOUND_ROWS() as total");
+						/*if(SES_COMP == 19398){
+							pr($sql);
+							pr($prjAllArr);
+							pr($tot);
+							exit;
+						}*/
+            $CaseCount = $tot[0][0]['total'];
+            $active_project_cnt = 0;
+            $inactive_project_cnt = 0;
+            /*if (SES_TYPE == 3) {
+                $ext_cond = 'Project.user_id=' . $this->Auth->user('id');
+                if ($all_assigned_proj) {
+                    $ext_cond = '(Project.user_id=' . $this->Auth->user('id') . ' OR Project.id IN(' . implode(',', $all_assigned_proj) . '))';
+                }
+                $grpcount = $this->Project->query('SELECT count(Project.id) as prjcnt, Project.isactive '
+                        . 'FROM projects AS Project '
+                        . 'WHERE ' . $ext_cond . ' AND Project.company_id=' . SES_COMP . ' GROUP BY Project.isactive');
+                $filcount = $this->Project->query('SELECT count(Project.id) as prjcnt, Project.status '
+                        . 'FROM projects AS Project '
+                        . 'WHERE Project.isactive !=2 AND ' . $ext_cond . ' AND Project.company_id=' . SES_COMP . ' GROUP BY Project.status');
+            } else {
+                $grpcount = $this->Project->query('SELECT count(Project.id) as prjcnt, Project.isactive '
+                        . 'FROM projects AS Project '
+                        . 'WHERE Project.company_id=' . SES_COMP . ' GROUP BY Project.isactive');
+                $filcount = $this->Project->query('SELECT count(Project.id) as prjcnt, Project.status '
+                        . 'FROM projects AS Project '
+                        . 'WHERE Project.isactive !=2 AND Project.company_id=' . SES_COMP . ' GROUP BY Project.status');
+            }*/
+						
+            $this->loadModel('CompanyUser');
+						$Activeparams = array('conditions' => array('CompanyUser.is_active' => 1, 'CompanyUser.company_id' => SES_COMP));
+						$Activeusers = $this->CompanyUser->find('all', $Activeparams);
+						$Activeusers = Hash::extract($Activeusers, '{n}.CompanyUser.user_id');
+			
+            $this->loadModel('ProjectUser');
+            $prjInusers = $this->ProjectUser->find('all', array('conditions' => array('ProjectUser.company_id' => SES_COMP,'ProjectUser.user_id' => $Activeusers), 'fields' => array('ProjectUser.project_id', 'ProjectUser.user_id')));
+            $prjInusers_list = array();
+            $prjuserslist = array();
+            if ($prjInusers) {
+                foreach ($prjInusers as $key => $val) {
+                    if (array_key_exists($val['ProjectUser']['project_id'], $prjInusers_list)) {
+                        array_push($prjInusers_list[$val['ProjectUser']['project_id']], $val['ProjectUser']['user_id']);
+                    } else {
+                        $prjInusers_list[$val['ProjectUser']['project_id']] = array($val['ProjectUser']['user_id']);
+                    }
+										if(!in_array($val['ProjectUser']['user_id'], $prjuserslist)){
+											array_push($prjuserslist, $val['ProjectUser']['user_id']);
+										}
+                }
+            }
+            $this->loadModel('User');
+						$prjInusersDetls = $this->User->find('all', array('conditions' => array('User.id' => $prjuserslist), 'fields' => array('User.id', 'User.name', 'User.last_name', 'User.photo')));
+						if($prjInusersDetls){
+							$prjInusersDetls = Hash::combine($prjInusersDetls, '{n}.User.id', '{n}');
+						}
+            /*if ($grpcount) {
+                foreach ($grpcount as $key => $val) {
+                    if ($val['Project']['isactive'] == 1) {
+                        $active_project_cnt = $val['0']['prjcnt'];
+                    } elseif ($val['Project']['isactive'] == 2) {
+                        $inactive_project_cnt = $val['0']['prjcnt'];
+                    }
+                }
+            }
+            $active_project_cnt = $active_project_cnt + $inactive_project_cnt;
+            if ($filcount) {
+                foreach ($filcount as $key => $val) {
+                    if ($val['Project']['status'] == 1) {
+                        $started_project_cnt = $val['0']['prjcnt'];
+                    } elseif ($val['Project']['status'] == 2) {
+                        $hold_project_cnt = $val['0']['prjcnt'];
+                    } elseif ($val['Project']['status'] == 3) {
+                        $stack_project_cnt = $val['0']['prjcnt'];
+                    }
+                }
+            }*/
+						
+            $csts_arr_grp = array();
+            if ($prjAllArr) {
+                $all_assigned_uids = Hash::extract($prjAllArr, '{n}.Project.user_id');
+                $all_assigned_uids_list = array_unique($all_assigned_uids);
+                $this->loadModel('User');
+                $prjsers_names = $this->User->find('list', array('conditions' => array('User.id' => $all_assigned_uids_list), 'fields' => array('User.id', 'User.name')));
+                $gridViewarr['p_u_name'] = $prjsers_names;
+                //custom status ref for other pages			
+                $sts_ids = array_filter(array_unique(Hash::extract($prjAllArr, '{n}.Project.status_group_id')));
+                if($sts_ids){
+                    $Csts = ClassRegistry::init('StatusGroup');
+                    $csts_arr_grp = $Csts->find('all',array('conditions'=>array('StatusGroup.id'=>$sts_ids)));
+                    if($csts_arr_grp){
+                        $csts_arr_grp = Hash::combine($csts_arr_grp, '{n}.StatusGroup.id', '{n}.StatusGroup');
+                    }
+                }
+            }
+            //Code to correct the Project Progress Calculation
+            $this->loadModel('Easycase');
+            $update_prjAllArr=$prjAllArr;
+            
+           
+            $startDate = [];
+            $endDate = [];						
+            foreach($prjAllArr as $pkey => $pval){
+                if (isset($getAllCustomFields[$pval['Project']['id']])) {
+                    foreach($getAllCustomFields[$pval['Project']['id']] as $key => $value){
+                    if($value['CustomField']['field_type'] == 11){
+                        $User = ClassRegistry::init('User');
+                        $cutom_user_value =  $User->find('first',array('conditions' => array('User.id'=>$value['CustomFieldValue']['value']), 'fields' => array('User.id', 'User.name')));
+                        $getAllCustomFields[$pval['Project']['id']][$key]['CustomFieldValue']['value'] = $cutom_user_value['User']['name'];
+                    }
+
+                    }
+                    $update_prjAllArr[$pkey]['Project']['custom_fields'] = $getAllCustomFields[$pval['Project']['id']];
+                } else {
+                    $update_prjAllArr[$pkey]['Project']['custom_fields'] = [];
+                }
+                $project_id=!empty($pval['Project']['id'])?$pval['Project']['id']:'';
+                $this->loadModel('ProjectMeta');
+                $Prjname = ucwords(trim($update_prjAllArr[$pkey]['Project']['name']));
+                $update_prjAllArr[$pkey]['Prjname'] = $Prjname;
+                $len = 15;
+                $short_project_name = $this->Format->shortLength($Prjname, $len);
+                //array_push($prj_name_shrt, $short_project_name);
+                $value_format = $this->Format->formatText($Prjname);
+                $value_raw = html_entity_decode($value_format, ENT_QUOTES);
+                $tooltip_value = '';
+                if (strlen($value_raw) > $len) {
+                    $tooltip_value = $Prjname;
+                }
+                $update_prjAllArr[$pkey]['tooltip'] = $tooltip_value;
+                $prio_value = $frmt->getPriority($update_prjAllArr[$pkey]['Project']['priority']);
+                $getactivity = $cq->getlatestactivitypid($update_prjAllArr[$pkey]['Project']['id'], 1);
+                $curCreated = $this->Tmzone->GetDateTime(SES_TIMEZONE, TZ_GMT, TZ_DST, TZ_CODE, GMT_DATETIME, "datetime");
+                $updated = $this->Tmzone->GetDateTime(SES_TIMEZONE, TZ_GMT, TZ_DST, TZ_CODE, $getactivity, "datetime");
+                $localActivityDT = $dt->dateFormatOutputdateTime_day($updated, $curCreated);
+                $update_prjAllArr[$pkey]['getactivity'] = $getactivity;
+                $update_prjAllArr[$pkey]['localActivityDTArr'] = $localActivityDT;
+                
+                $proj_start_date = $this->Tmzone->GetDateTime(SES_TIMEZONE, TZ_GMT, TZ_DST, TZ_CODE, $update_prjAllArr[$pkey]['Project']['start_date'], "date");
+                $proj_end_date = $this->Tmzone->GetDateTime(SES_TIMEZONE, TZ_GMT, TZ_DST, TZ_CODE, $update_prjAllArr[$pkey]['Project']['end_date'], "date"); 
+                array_push($startDate,$proj_start_date);
+                array_push($endDate,$proj_end_date);
+                $locDT = $this->Tmzone->GetDateTime(SES_TIMEZONE, TZ_GMT, TZ_DST, TZ_CODE, $prjAllArr[$pkey]['Project']['dt_created'], "datetime");
+                $gmdate = $this->Tmzone->GetDateTime(SES_TIMEZONE, TZ_GMT, TZ_DST, TZ_CODE, GMT_DATETIME, "date");
+                $dateTime = $dt->dateFormatOutputdateTime_day($locDT, $gmdate, 'time');
+                // to fecth start date and end date and time stamp  start
+                    $project_tz_startdate = $this->Tmzone->GetDateTime(SES_TIMEZONE, TZ_GMT, TZ_DST, TZ_CODE, $prjAllArr[$pkey]['Project']['start_date'], "date");
+                    $stdatestamp = strtotime($project_tz_startdate);
+                    $project_tz_startdate = date('d M',strtotime($project_tz_startdate));
+                    $project_tz_enddate = $this->Tmzone->GetDateTime(SES_TIMEZONE, TZ_GMT, TZ_DST, TZ_CODE, $prjAllArr[$pkey]['Project']['end_date'], "date");
+                    $endatestamp = strtotime($project_tz_enddate);
+                    $total_spenthours = $frmt->formatHour($prjAllArr[$pkey]['0']['totalhours']);
+                    $project_tz_enddate = date('d M',strtotime($project_tz_enddate));
+                    $update_prjAllArr[$pkey]['project_tz_startdate'] = $project_tz_startdate;
+                    $update_prjAllArr[$pkey]['project_tz_enddate'] = $project_tz_enddate;
+                    $update_prjAllArr[$pkey]['stdatestamp'] = $stdatestamp;
+                    $update_prjAllArr[$pkey]['endatestamp'] = $endatestamp;
+                    $update_prjAllArr[$pkey]['total_spenthours'] = $total_spenthours;
+                    $update_prjAllArr[$pkey]['Project']['prio'] = $prio_value;
+                // to fecth start date and end date end
+                $update_prjAllArr[$pkey]['dateTime'] = $dateTime;
+                $ProjectMeta=array();
+                $ProjectMeta = $this->ProjectMeta->find('first', array('conditions' => array('ProjectMeta.project_id' => $project_id)));
+                
+                $update_prjAllArr[$pkey]['prj_name_shrt'] = $short_project_name;
+                $update_prjAllArr[$pkey]['ProjectMeta']=$ProjectMeta;
+                $description = $this->Format->formatTitle($prjAllArr[$pkey]['Project']['description']);
+                $update_prjAllArr[$pkey]['frmt_description'] = $description;
+                $project_progress_details = $this->Easycase->query('SELECT legend, count(legend) as cnt FROM `easycases` WHERE `project_id`='.$pval['Project']['id'].' AND `istype`=1 AND `isactive`=1 GROUP BY legend ORDER BY id DESC');
+                    if($project_progress_details){
+                            $complt = 0;
+                            $not_complt = 0;
+                            foreach($project_progress_details as $k => $v){
+                                    if(in_array($v['easycases']['legend'], array(3))){ //5
+                                        $complt += $v[0]['cnt'];
+                                    } else {
+                                        $not_complt += $v[0]['cnt'];
+                                    }
+                            }       
+                            $project_progress_data[$pval['Project']['id']] = ($complt/($complt+$not_complt))*100;
+                    }else{
+                            $project_progress_data[$pval['Project']['id']] = 0;
+                    }
+            }
+						##pr($update_prjAllArr);
+						
+						$prjmanager_names = [];						
+						$inv_user_list = [];
+						$user_list = [];
+						$industries = [];						
+						if(!empty($update_prjAllArr)){
+							$all_pmetas = Hash::extract($update_prjAllArr, '{n}.ProjectMeta.ProjectMeta');						
+							$all_pms = array_filter(array_unique(Hash::extract($all_pmetas, '{n}.project_manager')));						
+							$all_clients = array_filter(array_unique(Hash::extract($all_pmetas, '{n}.client')));						
+							$all_industries = array_filter(array_unique(Hash::extract($all_pmetas, '{n}.industry')));
+							//Code to correct the Project Progress Calculation
+							$this->loadModel('User');
+							if(!empty($all_pms)){
+								$prjmanager_names = $this->User->find('list', array('conditions' => array('User.uniq_id' => $all_pms),'fields' => array('User.uniq_id', 'User.name')));
+							}
+							
+							$this->loadModel('InvoiceCustomer');
+							if(!empty($all_clients)){
+								$inv_user_list = $this->InvoiceCustomer->find('all', array('conditions' => array('InvoiceCustomer.id' => $all_clients),'fields' => array("id", "first_name","last_name")));
+								$user_list=array();
+								foreach($inv_user_list as $key=>$val){
+									$user_list[$val['InvoiceCustomer']['id']]=$val['InvoiceCustomer']['first_name'].' '.$val['InvoiceCustomer']['last_name'];	
+								}
+							}
+							
+							$this->loadModel('Industry');
+							if(!empty($all_industries)){
+								$industries = $this->Industry->find('list', array('conditions' => array('Industry.id' => $all_industries,'Industry.is_display' => 1),'fields' => array('Industry.id', 'Industry.name')));
+							}
+						}
+						
+            $this->loadModel('ProjectType');
+            $ProjectType = $this->ProjectType->find('list', array('conditions' => array('ProjectType.company_id' => SES_COMP,'ProjectType.is_active' => 1),'fields' => array('ProjectType.id', 'ProjectType.title')));
+						
+            $this->loadModel('ProjectStatus');
+            $All_status = $this->ProjectStatus->getAllProjectStatus(SES_COMP);
+            ksort($All_status);
+            
+            $count_grid = count($prjAllArr);
+            /*$this->loadModel("ProjectMethodology");
+            $methodologies = $this->ProjectMethodology->find('list',array('fields'=>array('id','title'),'order'=>array('seq_no'=>'ASC')));*/
+            $this->loadModel('ProjectField');
+            $fields = array();
+            $fields = $this->ProjectField->find('first', array('conditions' => array('ProjectField.user_id' => SES_ID)));
+            if(!empty($fields)){
+                $fields = json_decode($fields['ProjectField']['field_name']);
+            }
+            $pgShLbl = $frmt->pagingShowRecords($CaseCount, $page_limit, $page);
+            // spr($CaseCount); exit;
+            $this->loadModel('CustomField');
+            $gridViewarr['allCustomFields'] = $this->CustomField->getAllActiveCustomFields($is_associated = 1);
+            $gridViewarr['custom_field_ids'] = array_keys($gridViewarr['allCustomFields']);
+            $gridViewarr['custom_field_head'] = array_values($gridViewarr['allCustomFields']);
+            $gridViewarr['project_progress_data'] = $project_progress_data;
+            $gridViewarr['csts_arr_grp'] = $csts_arr_grp;
+            $gridViewarr['prjAllArr'] = $update_prjAllArr;
+            $gridViewarr['caseCount'] = $CaseCount;
+            $gridViewarr['proj_users_list'] = $prjInusers_list;
+            $gridViewarr['proj_users_dtllist'] = $prjInusersDetls;
+            $gridViewarr['projecttype'] = $ProjectType ; 
+            $gridViewarr['industries'] = $industries; 
+            //$gridViewarr['inactive_project_cnt'] = $inactive_project_cnt; 
+            //$gridViewarr['active_project_cnt'] = $active_project_cnt; 
+            //$gridViewarr['started_project_cnt'] = $started_project_cnt ; 
+            //$gridViewarr['hold_project_cnt'] = $hold_project_cnt; 
+            //$gridViewarr['stack_project_cnt'] = $stack_project_cnt ; 
+            $gridViewarr['filtype'] = $filtype ;
+            $gridViewarr['ProjectStatus'] = $All_status ;
+            $gridViewarr['user_list'] = $user_list ;
+            $gridViewarr['prjmanager_names'] = $prjmanager_names ;
+            $gridViewarr['total_records'] = $prjAllArr ;
+            $gridViewarr['page_limit'] = $page_limit ;
+            $gridViewarr['count_grid'] = $count_grid ;
+            $gridViewarr['projtype'] = $projtype ;
+            $gridViewarr['uniqid'] = $uniqid ;
+            $gridViewarr['arrprj'] = $arrprj ;
+            //$gridViewarr['methodologies'] = $methodologies ;
+            $gridViewarr['fields'] = $fields ;
+            $gridViewarr['sort_by'] = $sort_by;
+            $gridViewarr['order'] = $order_sort;
+            $gridViewarr['startDate'] = $startDate ;
+            $gridViewarr['endDate'] = $endDate ;
+            $gridViewarr['page'] = $page ;
+            $gridViewarr['csPage'] = $page ;
+            $gridViewarr['pgShLbl'] = $pgShLbl ;
+            echo json_encode($gridViewarr, JSON_INVALID_UTF8_IGNORE); 
+            exit;
+
+        }
     }
         
     public function addCustomer($project_id, $data)
