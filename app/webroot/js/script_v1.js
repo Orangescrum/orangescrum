@@ -297,11 +297,12 @@ $(document).ready(function() {
             localStorage.setItem('plannedVsactual_type', nxtprev);
             localStorage.setItem('plannedVsactual_page', '');
             localStorage.setItem('plannedVsactual_date', cur_date);
-            globalTimeoutProj = setTimeout(function() {
-                fetchPlannedVsActualReportView(localStorage.getItem('plannedVsactual_filter'));
-            }, 1000);
-        }
-    });
+                globalTimeoutProj = setTimeout(function() {
+                    fetchPlannedVsActualReportView(localStorage.getItem('plannedVsactual_filter'));
+                    ajaxGridViewLoad(localStorage.getItem("PROJECTVIEW_TYPE"), srch, page, filtype, '', '', '');
+                }, 1000);
+            }
+        });
     $("#caseViewSpan").on('keyup', '#inner-search-backlog', function(e) {
         var unicode = e.charCode ? e.charCode : e.keyCode;
         if (unicode != 13 && unicode != 40 && unicode != 38) {
@@ -16255,6 +16256,57 @@ function setDefaultProjectView(type) {
     remember_filters('PROJECTVIEW_TYPE', cookie_value);
     resetProjectFilterItem();
     window.location = HTTP_ROOT + 'projects/manage/' + value;
+}
+
+function resetProjectFilterItem() {
+    localStorage.removeItem('PROJECTMANAGETYPE');
+    localStorage.removeItem('PROJECTMANAGETYPEVAL');
+    localStorage.removeItem('PROJECTCLIENTSVAL');
+    localStorage.removeItem('PROJECTMANAGECLIENTS');
+    localStorage.removeItem('PROJECTMANAGEMANAGER');
+    localStorage.removeItem('PROJECTMANAGEMANAGERVAL');
+    localStorage.removeItem('PROJECTMANAGESTATUS');
+    localStorage.removeItem('PROJECTMANAGESTATUSVAL');
+};
+function ajaxGridViewLoad(type, srch = null, page = null, filtype = null, order = null, sortby = null, tcls = null) {
+    var value = '';
+    switch (type) {
+        case 'inactive':
+            value = 'inactive';
+            break;
+        case 'active-grid':
+            value = 'active-grid';
+            break;
+        case 'inactive-grid':
+            value = 'inactive-grid';
+            break;
+        default:
+            break;
+    }
+    var cookie_value = SES_ID + "_" + value;
+    remember_filters('PROJECTVIEW_TYPE', value);
+    remember_filters('PROJECTLISTVIEW_PAGE', page);
+    remember_filters('PROJECTLISTVIEW_FILTYPE', filtype);
+    str_url = HTTP_ROOT + 'projects/ajaXGridView';
+    $('#caseLoader').show();
+    $.post(str_url, {
+        'projtype': value,
+        'srch': srch,
+        'page': page,
+        'filtype': filtype,
+        'order': order,
+        'sortby': sortby
+    }, function(data) {
+        if (data) {
+            $('#ajax_list_view_tmp_load').html(tmpl('ajax_list_view_tmpl', data));
+            $('[rel=tooltip]').tipsy({
+                gravity: 's',
+                fade: true
+            });
+           
+        }
+        $('#caseLoader').hide();
+    }, "json");
 }
 function resetProjectFilterItem() {
     localStorage.removeItem('PROJECTMANAGETYPE');
