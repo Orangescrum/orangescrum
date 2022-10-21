@@ -137,7 +137,7 @@ class AppController extends Controller
             }
         } else {
             //setcookie('helpdesk_uniq_agent', '-1', time()+60*60*24*30*12,'/',DOMAIN_COOKIE,false,false);
-            $act_arr = array('login','test_email','forgotpassword','ajaxpostcase','ajaxemail','invoicePdf','project_overview_pdf','export_pdf_timelog','timesheetPDF','pdfsprint_report','ssoSetting','authenticateSaml', 'metadata', 'ssoLogin');
+            $act_arr = array('login','test_email','forgotpassword','ajaxpostcase','ajaxemail','invoicePdf','project_overview_pdf','export_pdf_timelog','timesheetPDF','pdfsprint_report','ssoSetting','authenticateSaml', 'metadata', 'ssoLogin','pdfcase_project');
             if ($user_cnt && !in_array($this->action, $act_arr) && $this->params['controller'] !='v2_rests') {
                 $this->redirect(HTTP_ROOT . 'users/login');
                 exit;

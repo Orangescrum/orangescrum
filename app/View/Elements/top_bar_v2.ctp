@@ -2085,6 +2085,9 @@
 										onclick="openTaskListExportPopup();trackEventLeadTracker('Top Bar', 'Export To CSV', '<?php echo $_SESSION['SES_EMAIL_USER_LOGIN']; ?>');">
 										<?php echo __('Export as CSV');?>
 									</li>
+									<li onclick="pdfCaseView(this);trackEventLeadTracker('Top Bar', 'Export To PDF', '<?php echo $_SESSION['SES_EMAIL_USER_LOGIN']; ?>');"
+										class="expPDFList"><?php echo __('Export as PDF');?>
+									</li>
 								</ul>
 							</a>
 							<?php /* <ul class="dropdown-menu dropdown_menu_exp_print_ul" id="dropdown_menu_exp_print">

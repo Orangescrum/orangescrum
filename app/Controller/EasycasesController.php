@@ -10264,6 +10264,44 @@ class EasycasesController extends AppController
      * @author Sunil
      * @return json
      */
+    function export_pdf_tasklist(){
+        ini_set('memory_limit','128M');
+        set_time_limit(0);
+        $this->layout='ajax';
+        $postparams=$this->params->query;
+        $uid=$this->Auth->user(id);
+        $postparams['user_id']=$uid;
+        if(isset($_COOKIE['TASKGROUPBY']) && $_COOKIE['TASKGROUPBY'] == 'milestone') { 
+            $postparams['filter_taskgroup'] = 1;
+            $filename="taskgroup_".$uid.".pdf";
+        }else{
+            $filename="tasklist_".$uid.".pdf";
+        }
+		$postparams['SES_ID'] = SES_ID;
+		$postparams['SES_TYPE'] = SES_TYPE;
+		$postparams['SES_COMP'] = SES_COMP;
+        $content = http_build_query($postparams); 		
+        $filepath='"'.WWW_ROOT."pdfreports/tasks/".$filename.'"';
+        $url='"'.HTTP_ROOT_INVOICE."requests/pdfcase_project?".$content.'"';
+        $cmdpath='"'.PDF_LIB_PATH.'"';
+        #$adcommand = '--user-style-sheet "'.WWW_ROOT.'css/pdf.css" ';
+        $adcommand = '';
+        $cmd=$cmdpath ." -O landscape ".$url." ".$filepath;
+        exec($cmd);   
+        $this->viewClass = 'Media';
+        $params = array(
+            'id'        => $filename,
+            'name'      => $filename,
+            'download'  => true,
+            'extension' => 'pdf',
+            'mimeType'  => array(
+                'pdf' => 'application/pdf'
+            ),
+            'path'      => WWW_ROOT."pdfreports/tasks/"
+        );
+        $this->set($params);
+    }
+    
     public function recent_activities($args = null)
     {
         $this->layout = 'ajax';

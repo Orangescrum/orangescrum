@@ -1034,6 +1034,91 @@ function TaskGroupByItem() {
         $("#task_groupby_items_list").hide();
     }
 }
+function pdfCaseView(page) {
+    var strURL = HTTP_ROOT;
+    var isUrl = 0;
+    isUrl = getURLParameter('project');
+    if (isUrl != "0" && isUrl) {
+        parent.location.hash = "cases";
+    }
+    strURL = strURL + "easycases/";
+    var projFil = $('#projFil').val();
+    var cko = getCookie('TASKGROUPBY');
+    var caseId = $('#caseId').val();
+    var startCaseId = $('#caseStart').val();
+    var caseResolve = $('#caseResolve').val();
+    var caseNew = $('#caseNew').val();
+    var caseChangeType = $('#caseChangeType').val();
+    var caseChangePriority = $('#caseChangePriority').val();
+    var caseChangeDuedate = $('#caseChangeDuedate').val();
+    var caseChangeAssignto = $('#caseChangeAssignto').val();
+    var customfilter = $('#customFIlterId').val();
+    var caseStatus = $('#caseStatus').val();
+    var priFil = $('#priFil').val();
+    var caseTypes = $('#caseTypes').val();
+    var caseLabel = $('#caseLabel').val();
+    var caseMember = $('#caseMember').val();
+    var caseComment = $('#caseComment').val();
+    var caseTaskGroup = $('#caseTaskgroup').val();
+    var caseAssignTo = $('#caseAssignTo').val();
+    var caseDate = $('#caseDate').val();
+    var case_date = $('#caseDateFil').val();
+    var case_due_date = $('#casedueDateFil').val();
+    var taskgroup_fil = '';
+    var hashtag = parseUrlHash(urlHash);
+    var caseSearch = $("#case_search").val();
+    if (caseSearch.trim() == '') {
+        caseSearch = $('#caseSearch').val();
+    } else {
+        $("#caseSearch").val(caseSearch);
+    }
+    $("#case_search").val("");
+    var caseTitle = $('#caseTitle').val();
+    var caseDueDate = $('#caseDueDate').val();
+    var caseNum = $('#caseNum').val();
+    var caseLegendsort = $('#caseLegendsort').val();
+    var caseAtsort = $('#caseAtsort').val();
+    var caseMenuFilters = $('#caseMenuFilters').val();
+    var milestoneIds = $('#milestoneIds').val();
+    var case_srch = $('#case_srch').val();
+    var caseCreateDate = $('#caseCreatedDate').val();
+    var projIsChange = $('#projIsChange').val();
+    var caseUrl = "";
+    var detailscount = 0;
+    var reply = 0;
+    if (caseMenuFilters == 'milestone') {
+        var mstype = "";
+        var mlstype = $('#checktype').val();
+        if (mlstype == 'completed') {
+            var mstype = 0;
+        } else {
+            var mstype = 1;
+        }
+    }
+    var menu_filter = caseMenuFilters;
+    var hashtag = parseUrlHash(urlHash);
+    var strAction = ((page == 'taskgroup' || hashtag[0] == 'taskgroup') && page != 'tasks') ? 'case_taskgroup' : 'case_project';
+    if (page == 'taskgroup')
+        window.location.hash = 'taskgroup';
+    else if (page == 'tasks')
+        window.location.hash = 'tasks';
+    var searchMilestoneUid = '';
+    if (strAction == 'case_taskgroup') {
+        if (typeof hashtag[1] != 'undefined') {
+            searchMilestoneUid = hashtag[1];
+        }
+    }
+    if (strAction == 'case_project') {
+        strURL = HTTP_ROOT + 'easycases/'
+    }
+    if (hashtag == 'taskgroups') {
+        var pdfexporturl = strURL + "export_taskgroup_pdf_tasklist?projFil=" + projFil + "&caseStatus=" + caseStatus + "&customfilter=" + customfilter + "&caseChangeAssignto=" + caseChangeAssignto + "&caseChangeDuedate=" + caseChangeDuedate + "&caseChangePriority=" + caseChangePriority + "&caseChangeType=" + caseChangeType + "&mstype=" + mstype + "&priFil=" + priFil + "&caseTypes=" + caseTypes + "&caseLabel=" + caseLabel + "&caseMember=" + caseMember + "&caseComment=" + caseComment + "&caseAssignTo=" + caseAssignTo + "&caseDate=" + caseDate + "&caseSearch=" + caseSearch + "&casePage=" + casePage + "&caseId=" + caseId + "&caseTitle=" + caseTitle + "&caseDueDate=" + caseDueDate + "&caseNum=" + caseNum + "&caseLegendsort=" + caseLegendsort + "&caseAtsort=" + caseAtsort + "&startCaseId=" + startCaseId + "&caseResolve=" + caseResolve + "&caseNew=" + caseNew + "&caseMenuFilters=" + caseMenuFilters + "&caseUrl=" + caseUrl + "&detailscount=" + detailscount + "&milestoneIds=" + milestoneIds + "&case_srch=" + case_srch + "&case_date=" + case_date + "&case_due_date=" + case_due_date + "&caseCreateDate=" + caseCreateDate + "&projIsChange=" + projIsChange + "&searchMilestoneUid=" + searchMilestoneUid + "&caseNew=" + caseNew;
+    } else {
+        var pdfexporturl = strURL + "export_pdf_tasklist?projFil=" + projFil + "&caseStatus=" + caseStatus + "&customfilter=" + customfilter + "&caseChangeAssignto=" + caseChangeAssignto + "&caseChangeDuedate=" + caseChangeDuedate + "&caseChangePriority=" + caseChangePriority + "&caseChangeType=" + caseChangeType + "&mstype=" + mstype + "&priFil=" + priFil + "&caseTypes=" + caseTypes + "&caseLabel=" + caseLabel + "&caseMember=" + caseMember + "&caseComment=" + caseComment + "&caseTaskGroup=" + caseTaskGroup + "&caseAssignTo=" + caseAssignTo + "&caseDate=" + caseDate + "&caseSearch=" + caseSearch + "&casePage=" + casePage + "&caseId=" + caseId + "&caseTitle=" + caseTitle + "&caseDueDate=" + caseDueDate + "&caseNum=" + caseNum + "&caseLegendsort=" + caseLegendsort + "&caseAtsort=" + caseAtsort + "&startCaseId=" + startCaseId + "&caseResolve=" + caseResolve + "&caseNew=" + caseNew + "&caseMenuFilters=" + caseMenuFilters + "&caseUrl=" + caseUrl + "&detailscount=" + detailscount + "&milestoneIds=" + milestoneIds + "&case_srch=" + case_srch + "&case_date=" + case_date + "&case_due_date=" + case_due_date + "&caseCreateDate=" + caseCreateDate + "&projIsChange=" + projIsChange + "&searchMilestoneUid=" + searchMilestoneUid + "&caseNew=" + caseNew;
+    }
+    var win = window.open(pdfexporturl, '_blank');
+    win.focus();
+}
 
 function task_common_reset_group() {
     localStorage.removeItem('AJAX_TASK_GROUPBY');
