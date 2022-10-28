@@ -173,6 +173,14 @@
 						</div>
 					</div>
 				</div>
+				<div class="w_a project-field-11 mtop15 project-field-all">
+						<div class="select2__wrapper" id="">
+							<select name="data[ProjectMeta][project_manager]" class="form-control floating-label proj_manager" placeholder="<?php echo __('Project Manager');?>" data-dynamic-opts=true>
+								<option value='1' selected><?php echo __('Project Manager');?></option>
+								<option value='2' ><?php echo __('Scrum');?></option>
+							</select>
+                    </div>
+					</div>
 				<div class="w_b project-field-10 mtop15 project-field-all time_range_fld" id="ProjStartDate">
 						<div class="input-daterange">
 							<div class="col-lg-6 col-sm-6 padlft-non">
