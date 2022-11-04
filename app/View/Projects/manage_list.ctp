@@ -72,6 +72,236 @@ if ($projtype == 'active-grid') {
 								<img src="<?php echo HTTP_ROOT; ?>img/images/del.gif" alt="loading" title="<?php echo __('loading');?>" id="srch_inner_load1">
 								<div id="ajax_project_inner_search" class="ajx-srch-inner-dv1"></div>
 							</span> 
+              <div class="showhide_search">
+            <span class="pfl-icon-dv show_hide_column_filter cmn_list_sh_filter_dropdown">
+              <span id="showhide_drpdwn postion-fixed" class="dropdown">
+                <a href="javascript:jsVoid();" title="<?php echo __('Show/Hide Columns');?>" onclick="showColumnPreferences();" class="dropdown-toggle" data-toggle="dropdown">
+                <i class="material-icons">visibility_off</i> <?php echo __("Show/Hide");?><div class="ripple-container"></div></a>
+                <ul class="dropdown-menu drop_menu_mc" id="dropdown_menu_taskcolumns">
+                  <?php if(!empty($fields)){ ?>
+                    <li class="li_check_radio">
+                          <div class="checkbox">
+                            <label>
+                              <input type="checkbox" <?php if(count($fields) == 12 ){ ?> checked="checked" <?php } ?> class="selectedcls" value="All" id="column_all"  style="cursor:pointer" onchange="checkboxCol(this);"> <?php echo __('Show/Hide All');?>
+                            </label>
+                          </div>
+                      </li>
+                      <li class="li_check_radio"> 
+                          <div class="checkbox">
+                            <label>
+                              <input type="checkbox" <?php if(in_array("Template", $fields)){ ?> checked="checked" <?php } ?> class="selectedcls clmn_chkbx" value="Template" id="column_template" style="cursor:pointer" onchange="checkboxProjectColumn(this);" data-column="2"> <?php echo __('Template');?>
+                            </label>
+                          </div>
+                      </li>
+                      <li class="li_check_radio"> 
+                          <div class="checkbox">
+                            <label>
+                              <input type="checkbox" <?php if(in_array("Description", $fields)){ ?> checked="checked" <?php } ?> class="selectedcls clmn_chkbx" value="Description" id="column_description" style="cursor:pointer" onchange="checkboxProjectColumn(this);" data-column="4"> <?php echo __('Description');?>
+                            </label>
+                          </div>
+                      </li>
+                      <li class="li_check_radio"> 
+                          <div class="checkbox">
+                            <label>
+                              <input type="checkbox" <?php if(in_array("Status", $fields)){ ?> checked="checked" <?php } ?> class="selectedcls clmn_chkbx" value="Status" id="column_status" style="cursor:pointer" onchange="checkboxProjectColumn(this);" data-column="7"> <?php echo __('Status');?>
+                            </label>
+                          </div>
+                      </li>
+                        <li class="li_check_radio"> 
+                          <div class="checkbox">
+                            <label>
+                              <input type="checkbox" <?php if(in_array("Status Workflow", $fields)){ ?> checked="checked" <?php } ?> class="selectedcls clmn_chkbx" value="Status Workflow" id="column_statusworkflow" style="cursor:pointer" onchange="checkboxProjectColumn(this);" data-column="8"> <?php echo __('Status Workflow');?>
+                            </label>
+                          </div>
+                      </li>
+
+                      <li class="li_check_radio"> 
+                          <div class="checkbox">
+                            <label>
+                              <input type="checkbox" <?php if(in_array("Tasks", $fields)){ ?> checked="checked" <?php } ?> class="selectedcls clmn_chkbx" value="Tasks" id="column_tasks" style="cursor:pointer" onchange="checkboxProjectColumn(this);" data-column="9"> <?php echo __('Tasks');?>
+                            </label>
+                          </div>
+                      </li>
+                      <li class="li_check_radio"> 
+                          <div class="checkbox">
+                            <label>
+                              <input type="checkbox" <?php if(in_array("Users", $fields)){ ?> checked="checked" <?php } ?> class="selectedcls clmn_chkbx" value="Users" id="column_users" style="cursor:pointer" onchange="checkboxProjectColumn(this);" data-column="10"> <?php echo __('Users');?>
+                            </label>
+                          </div>
+                      </li>
+                      <?php if($this->Format->isAllowed('Budget',$roleAccess)){ ?>
+                      <li class="li_check_radio"> 
+                          <div class="checkbox">
+                            <label>
+                              <input type="checkbox" <?php if(in_array("Budget", $fields)){ ?> checked="checked" <?php } ?> class="selectedcls clmn_chkbx" value="Budget" id="column_budget" style="cursor:pointer" onchange="checkboxProjectColumn(this);" data-column="13"> <?php echo __('Budget');?>
+                            </label>
+                          </div>
+                      </li>
+                      <?php  } ?>
+                      <?php if($this->Format->isAllowed('Cost Appr',$roleAccess)){ ?>
+                      <li class="li_check_radio"> 
+                          <div class="checkbox">
+                            <label>
+                              <input type="checkbox" <?php if(in_array("Cost Approved", $fields)){ ?> checked="checked" <?php } ?> class="selectedcls clmn_chkbx" value="Cost Approved" id="column_costapproved" style="cursor:pointer" onchange="checkboxProjectColumn(this);" data-column="14"> <?php echo __('Cost Approved');?>
+                            </label>
+                          </div>
+                      </li>
+                      <?php  } ?>
+                      <li class="li_check_radio"> 
+                          <div class="checkbox">
+                            <label>
+                              <input type="checkbox" <?php if(in_array("Project Type", $fields)){ ?> checked="checked" <?php } ?> class="selectedcls clmn_chkbx" value="Project Type" id="column_projecttype" style="cursor:pointer" onchange="checkboxProjectColumn(this);" data-column="15"> <?php echo __('Project Type');?>
+                            </label>
+                          </div>
+                      </li>
+                      <li class="li_check_radio"> 
+                          <div class="checkbox">
+                            <label>
+                              <input type="checkbox" <?php if(in_array("Industry", $fields)){ ?> checked="checked" <?php } ?> class="selectedcls clmn_chkbx" value="Industry" id="column_industry" style="cursor:pointer" onchange="checkboxProjectColumn(this);" data-column="16"> <?php echo __('Industry');?>
+                            </label>
+                          </div>
+                      </li>
+                      <li class="li_check_radio"> 
+                          <div class="checkbox">
+                            <label>
+                              <input type="checkbox" <?php if(in_array("Last Activity", $fields)){ ?> checked="checked" <?php } ?> class="selectedcls clmn_chkbx" value="Last Activity" id="column_lastactivity" style="cursor:pointer" onchange="checkboxProjectColumn(this);" data-column="17"> <?php echo __('Last Activity');?>
+                            </label>
+                          </div>
+                      </li>
+                      <li class="li_check_radio"> 
+                          <div class="checkbox">
+                            <label>
+                              <input type="checkbox" <?php if(in_array("Custom Field", $fields)){ ?> checked="checked" <?php } ?> class="selectedcls clmn_chkbx" value="Custom Field" id="column_custom_field" style="cursor:pointer" onchange="checkboxProjectColumn(this);" data-column="17"> <?php echo __('Custom Field');?>
+                            </label>
+                          </div>
+                      </li>
+                  <?php }else{ ?>
+                    <li class="li_check_radio">
+                          <div class="checkbox">
+                            <label>
+                              <input type="checkbox" checked="checked" class="selectedcls" value="All" id="column_all"  style="cursor:pointer" onchange="checkboxCol(this);"> <?php echo __('Show/Hide All');?>
+                            </label>
+                          </div>
+                      </li>
+                      <li class="li_check_radio"> 
+                          <div class="checkbox">
+                            <label>
+                              <input type="checkbox" checked="checked" class="selectedcls clmn_chkbx" value="Template" id="column_template" style="cursor:pointer" onchange="checkboxProjectColumn(this);"> <?php echo __('Template');?>
+                            </label>
+                          </div>
+                      </li>
+                      <li class="li_check_radio"> 
+                          <div class="checkbox">
+                            <label>
+                              <input type="checkbox" checked="checked" class="selectedcls clmn_chkbx" value="Description" id="column_description" style="cursor:pointer" onchange="checkboxProjectColumn(this);"> <?php echo __('Description');?>
+                            </label>
+                          </div>
+                      </li>
+                      <li class="li_check_radio"> 
+                          <div class="checkbox">
+                            <label>
+                              <input type="checkbox" checked="checked" class="selectedcls clmn_chkbx" value="Start Date" id="column_startdate" style="cursor:pointer" onchange="checkboxProjectColumn(this);"> <?php echo __('Start Date');?>
+                            </label>
+                          </div>
+                      </li>
+                      <li class="li_check_radio"> 
+                          <div class="checkbox">
+                            <label>
+                              <input type="checkbox" checked="checked" class="selectedcls clmn_chkbx" value="End Date" id="column_enddate" style="cursor:pointer" onchange="checkboxProjectColumn(this);"> <?php echo __('End Date');?>
+                            </label>
+                          </div>
+                      </li>
+                      <li class="li_check_radio"> 
+                          <div class="checkbox">
+                            <label>
+                              <input type="checkbox" checked="checked" class="selectedcls clmn_chkbx" value="Status" id="column_status" style="cursor:pointer" onchange="checkboxProjectColumn(this);"> <?php echo __('Status');?>
+                            </label>
+                          </div>
+                      </li>
+                        <li class="li_check_radio"> 
+                          <div class="checkbox">
+                            <label>
+                              <input type="checkbox" checked="checked" class="selectedcls clmn_chkbx" value="Status Workflow" id="column_statusworkflow" style="cursor:pointer" onchange="checkboxProjectColumn(this);"> <?php echo __('Status Workflow');?>
+                            </label>
+                          </div>
+                      </li>
+
+                      <li class="li_check_radio"> 
+                          <div class="checkbox">
+                            <label>
+                              <input type="checkbox" checked="checked" class="selectedcls clmn_chkbx" value="Tasks" id="column_tasks" style="cursor:pointer" onchange="checkboxProjectColumn(this);"> <?php echo __('Tasks');?>
+                            </label>
+                          </div>
+                      </li>
+                      <li class="li_check_radio"> 
+                          <div class="checkbox">
+                            <label>
+                              <input type="checkbox" checked="checked" class="selectedcls clmn_chkbx" value="Progress" id="column_progress" style="cursor:pointer" onchange="checkboxProjectColumn(this);"> <?php echo __('Users');?>
+                            </label>
+                          </div>
+                      </li>
+                      <?php if($this->Format->isAllowed('Budget',$roleAccess)){ ?>
+                      <li class="li_check_radio"> 
+                          <div class="checkbox">
+                            <label>
+                              <input type="checkbox" checked="checked" class="selectedcls clmn_chkbx" value="Budget" id="column_budget" style="cursor:pointer" onchange="checkboxProjectColumn(this);"> <?php echo __('Budget');?>
+                            </label>
+                          </div>
+                      </li>
+                      <?php  } ?>
+                      <?php if($this->Format->isAllowed('Cost Appr',$roleAccess)){ ?>
+                      <li class="li_check_radio"> 
+                          <div class="checkbox">
+                            <label>
+                              <input type="checkbox" checked="checked" class="selectedcls clmn_chkbx" value="Cost Approved" id="column_costapproved" style="cursor:pointer" onchange="checkboxProjectColumn(this);"> <?php echo __('Cost Approved');?>
+                            </label>
+                          </div>
+                      </li>
+                      <?php  } ?>
+                      <li class="li_check_radio"> 
+                          <div class="checkbox">
+                            <label>
+                              <input type="checkbox" checked="checked" class="selectedcls clmn_chkbx" value="Project Type" id="column_projecttype" style="cursor:pointer" onchange="checkboxProjectColumn(this);"> <?php echo __('Project Type');?>
+                            </label>
+                          </div>
+                      </li>
+                      <li class="li_check_radio"> 
+                          <div class="checkbox">
+                            <label>
+                              <input type="checkbox" checked="checked" class="selectedcls clmn_chkbx" value="Industry" id="column_industry" style="cursor:pointer" onchange="checkboxProjectColumn(this);"> <?php echo __('Industry');?>
+                            </label>
+                          </div>
+                      </li>
+                      <li class="li_check_radio"> 
+                          <div class="checkbox">
+                            <label>
+                              <input type="checkbox" checked="checked" class="selectedcls clmn_chkbx" value="Last Activity" id="column_lastactivity" style="cursor:pointer" onchange="checkboxProjectColumn(this);"> <?php echo __('Last Activity');?>
+                            </label>
+                          </div>
+                      </li>
+                      <li class="li_check_radio"> 
+                          <div class="checkbox">
+                            <label>
+                              <input type="checkbox" checked="checked" class="selectedcls clmn_chkbx" value="Custom Field" id="column_custom_field" style="cursor:pointer" onchange="checkboxProjectColumn(this);"> <?php echo __('Custom Field');?>
+                            </label>
+                          </div>
+                      </li>
+                  <?php } ?>
+                  <li class="li_check_radio"> 
+                      <div class="save_sh_btn">
+                        <label>
+                          <input type="button" class="btn btn_cmn_efect cmn_bg btn-info show_btn" value="<?php echo __('Save');?>" onclick="saveAllowedColumns();">
+                        </label>
+                      </div>
+                  </li>
+                </ul>
+                <!-- Custom code Ends -->
+              </span>
+            </span>
+						</div>
+						</div>
+						</div>
+
 
             <div class="m-cmn-flow min-height-400 pr" id ="list_view_project_page">
             

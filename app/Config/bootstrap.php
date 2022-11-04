@@ -79,7 +79,7 @@ Configure::write('PROJECT_FIELDS', array(
     )
 );
 Configure::write('PROJECT_FIELDS_DEFAULT', array('1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21'));
-
+Configure::write('PROJECT_FIELDS_LISTING', array("Project Name","Short Name","Description","Project Manager","Client","Budget","Status","Cost Approved","Estimated","Spent","Users","Tasks","Template","Workflow","Last Activity","Storage","Project Type","Industry","Custom Field"));
 
 
 define("PLAY_VIDEO_TEXT", 'Watch Video');
