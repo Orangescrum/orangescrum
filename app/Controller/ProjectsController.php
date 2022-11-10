@@ -952,6 +952,35 @@ class ProjectsController extends AppController
             $order_sort = '';
             $order_by = '';
             $filtype = "";
+            if (!empty($this->request->data['sortby']) && !empty($this->request->data['order'])) {
+                $sort_by = (isset($this->request->data['sortby'])) ? trim($this->request->data['sortby']) : '';
+                $order_sort = (isset($this->request->data['order'])) ? trim($this->request->data['order']) : ' ASC';
+                switch ($sort_by) {
+                    case "project_name_field":
+                    $order_by = 'Project.name';
+                    break;
+                    case "project_tmplate_field":
+                    $order_by = 'PML.title';
+                    break;
+                    case "project_shrtnme_field":
+                    $order_by = 'Project.short_name';
+                    break;
+                    case "project_stdate_field":
+                    $order_by = 'Project.start_date';
+                    break;
+                    case "project_enddate_field":
+                    $order_by = 'Project.end_date';
+                    break;
+                    case "project_status_field":
+                    $order_by = 'PS.name';
+                    break;
+                }
+                if($order_by != ''){
+                    $project_order_by = 'ORDER BY' . ' '. $order_by . ' ' . $order_sort;
+                }else{
+                    $project_order_by = "ORDER BY dt_created DESC";
+                }
+            }
            
             if (isset($this->request->data['filtype']) && $this->request->data['filtype']) {
                 $filtype = $this->request->data['filtype'];

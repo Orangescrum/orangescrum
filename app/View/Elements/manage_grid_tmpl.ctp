@@ -5,6 +5,19 @@
         <th id="list_project_name" class="tophead manage-list-th2"><a href="javascript:void(0);"class="sortproject_name"onclick="ajaxProjectSorting(<%= '\'project_name_field\', this' %>);">
         <div class="d-flex pr width-100-per">
         <div><?php echo __('Project Name');?></div>
+        <div id ="prj_name_sort" class="icon tsk_sort"></div>
+        <span class="sorting_arw">
+        <% if(typeof sort_by != 'undefined' && sort_by != "" && sort_by == "project_name_field") { %>
+            <% if(order == 'asc'){ %>
+                    <i class="material-icons tsk_asc">&#xE5CE;</i>
+            <% }else{ %>
+                    <i class="material-icons tsk_desc">&#xE5CF;</i>
+            <% } %>								
+        <% }else{ %>
+                <i class="material-icons">&#xE164;</i>
+        <% } %>
+        </span>	
+        </div>
         </div>
         </a></th>
         <% if(inArray('Template',fields)){ %>
@@ -12,6 +25,19 @@
             <a href="javascript:void(0);" class="sortproject_stdate" onclick="ajaxProjectSorting(<%= '\'project_tmplate_field\', this' %>);">    
                 <div class="d-flex pr width-100-per">    
                     <div><?php echo __('Template');?></div>
+                    <div id ="prj_tmplate_sort" class="icon tsk_sort"></div>
+                    <span class="sorting_arw">
+                        <% if(typeof sort_by != 'undefined' && sort_by != "" && sort_by == "project_tmplate_field") { %>
+                            <% if(order == 'asc'){ %>
+                                    <i class="material-icons tsk_asc">&#xE5CE;</i>
+                            <% }else{ %>
+                                    <i class="material-icons tsk_desc">&#xE5CF;</i>
+                            <% } %>								
+                        <% }else{ %>
+                                <i class="material-icons">&#xE164;</i>
+                        <% } %>
+                    </span>	
+                </div>
             </a>
          </th>
         <% } %>
@@ -27,6 +53,19 @@
             <a href="javascript:void(0);" class="sortproject_stdate" onclick="ajaxProjectSorting(<%= '\'project_shrtnme_field\', this' %>);">    
                 <div class="d-flex pr width-100-per">    
                     <div><?php echo __('Short Name');?></div>
+                    <div id ="prj_shrtnme_sort" class="icon tsk_sort"></div>
+                    <span class="sorting_arw">
+                        <% if(typeof sort_by != 'undefined' && sort_by != "" && sort_by == "project_shrtnme_field") { %>
+                            <% if(order == 'asc'){ %>
+                                    <i class="material-icons tsk_asc">&#xE5CE;</i>
+                            <% }else{ %>
+                                    <i class="material-icons tsk_desc">&#xE5CF;</i>
+                            <% } %>								
+                        <% }else{ %>
+                                <i class="material-icons">&#xE164;</i>
+                        <% } %>
+                    </span>	
+                </div>
             </a>
         </th>
         <% if(inArray('Description',fields)){ %>
@@ -36,12 +75,38 @@
             <a href="javascript:void(0);" class="sortproject_stdate" onclick="ajaxProjectSorting(<%= '\'project_stdate_field\', this' %>);">    
                 <div class="d-flex pr width-100-per">    
                     <div><?php echo __('Start Date');?></div>
+                    <div id ="prj_stdate_sort" class="icon tsk_sort"></div>
+                    <span class="sorting_arw">
+                        <% if(typeof sort_by != 'undefined' && sort_by != "" && sort_by == "project_stdate_field") { %>
+                            <% if(order == 'asc'){ %>
+                                    <i class="material-icons tsk_asc">&#xE5CE;</i>
+                            <% }else{ %>
+                                    <i class="material-icons tsk_desc">&#xE5CF;</i>
+                            <% } %>								
+                        <% }else{ %>
+                                <i class="material-icons">&#xE164;</i>
+                        <% } %>
+                    </span>	
+                </div>
             </a>
         </th>
         <th class="text-center tophead manage-list-th3">
             <a href="javascript:void(0);" class="sortproject_stdate" onclick="ajaxProjectSorting(<%= '\'project_enddate_field\', this' %>);">    
                 <div class="d-flex pr width-100-per">    
                     <div><?php echo __('End Date');?></div>
+                    <div id ="prj_enddate_sort" class="icon tsk_sort"></div>
+                    <span class="sorting_arw">
+                        <% if(typeof sort_by != 'undefined' && sort_by != "" && sort_by == "project_enddate_field") { %>
+                            <% if(order == 'asc'){ %>
+                                    <i class="material-icons tsk_asc">&#xE5CE;</i>
+                            <% }else{ %>
+                                    <i class="material-icons tsk_desc">&#xE5CF;</i>
+                            <% } %>								
+                        <% }else{ %>
+                                <i class="material-icons">&#xE164;</i>
+                        <% } %>
+                    </span>	
+                </div>
             </a>
         </th>
     	<th class="tophead manage-list-th4"><a href="javascript:void(0);"><?php echo __('Project Manager');?></a></th>
@@ -53,6 +118,19 @@
         <a href="javascript:void(0);" class="sortproject_stdate" onclick="ajaxProjectSorting(<%= '\'project_status_field\', this' %>);">    
                 <div class="d-flex pr width-100-per">    
                     <div><?php echo __('Status');?></div>
+                    <div id ="prj_status_sort" class="icon tsk_sort"></div>
+                    <span class="sorting_arw">
+                        <% if(typeof sort_by != 'undefined' && sort_by != "" && sort_by == "project_status_field") { %>
+                            <% if(order == 'asc'){ %>
+                                    <i class="material-icons tsk_asc">&#xE5CE;</i>
+                            <% }else{ %>
+                                    <i class="material-icons tsk_desc">&#xE5CF;</i>
+                            <% } %>								
+                        <% }else{ %>
+                                <i class="material-icons">&#xE164;</i>
+                        <% } %>
+                    </span>	
+                </div>
             </a>
         </th>
         <% } %>

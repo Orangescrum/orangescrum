@@ -16303,11 +16303,116 @@ function ajaxGridViewLoad(type, srch = null, page = null, filtype = null, order 
                 gravity: 's',
                 fade: true
             });
+            $('#srch_inner_load1').hide();
+            if (sortby == 'project_name_field') {
+                $('#prj_name_sort').removeClass('tsk_asc tsk_desc');
+                $("#prj_name_sort").addClass(tcls);
+            } else if (sortby == 'project_tmplate_field') {
+                $('#prj_tmplate_sort').removeClass('tsk_asc tsk_desc');
+                $("#prj_tmplate_sort").addClass(tcls);
+            } else if (sortby == 'project_shrtnme_field') {
+                $('#prj_shrtnme_sort').removeClass('tsk_asc tsk_desc');
+                $("#prj_shrtnme_sort").addClass(tcls);
+            } else if (sortby == 'project_stdate_field') {
+                $('#prj_stdate_sort').removeClass('tsk_asc tsk_desc');
+                $("#prj_stdate_sort").addClass(tcls);
+            } else if (type == 'project_enddate_field') {
+                $('#prj_enddate_sort').removeClass('tsk_asc tsk_desc');
+                $("#prj_enddate_sort").addClass(tcls);
+            } else if (sortby == 'project_status_field') {
+                $('#prj_status_sort').removeClass('tsk_asc tsk_desc');
+                $("#prj_status_sort").addClass(tcls);
+            }
            
         }
         $('#caseLoader').hide();
     }, "json");
 }
+function ajaxProjectSorting(type, obj) {
+    remember_filters('PROJECTLISTVIEW_SORTBY', type);
+    page = localStorage.getItem("PROJECTLISTVIEW_PAGE");
+    filtype = localStorage.getItem("PROJECTLISTVIEW_FILTYPE");
+    if (type == 'project_name_field') {
+        var sort_val = $("#prj_name_sort").attr('class');
+        if (sort_val.indexOf("tsk_asc") > 1) {
+            var order = 'desc';
+            var tcls = 'tsk_desc';
+        } else if (sort_val.indexOf("tsk_desc") > 1) {
+            var order = 'asc';
+            var tcls = 'tsk_asc';
+        } else {
+            var order = 'desc';
+            var tcls = 'tsk_desc';
+        }
+    } else if (type == 'project_tmplate_field') {
+        var sort_val = $("#prj_tmplate_sort").attr('class');
+        if (sort_val.indexOf("tsk_asc") > 1) {
+            var order = 'desc';
+            var tcls = 'tsk_desc';
+        } else if (sort_val.indexOf("tsk_desc") > 1) {
+            var order = 'asc';
+            var tcls = 'tsk_asc';
+        } else {
+            var order = 'desc';
+            var tcls = 'tsk_desc';
+        }
+    } else if (type == 'project_shrtnme_field') {
+        var sort_val = $("#prj_shrtnme_sort").attr('class');
+        if (sort_val.indexOf("tsk_asc") > 1) {
+            var order = 'desc';
+            var tcls = 'tsk_desc';
+        } else if (sort_val.indexOf("tsk_desc") > 1) {
+            var order = 'asc';
+            var tcls = 'tsk_asc';
+        } else {
+            var order = 'desc';
+            var tcls = 'tsk_desc';
+        }
+    } else if (type == 'project_stdate_field') {
+        var sort_val = $("#prj_stdate_sort").attr('class');
+        if (sort_val.indexOf("tsk_asc") > 1) {
+            var order = 'desc';
+            var tcls = 'tsk_desc';
+        } else if (sort_val.indexOf("tsk_desc") > 1) {
+            var order = 'asc';
+            var tcls = 'tsk_asc';
+        } else {
+            var order = 'desc';
+            var tcls = 'tsk_desc';
+        }
+    } else if (type == 'project_enddate_field') {
+        var sort_val = $("#prj_enddate_sort").attr('class');
+        if (sort_val.indexOf("tsk_asc") > 1) {
+            var order = 'desc';
+            var tcls = 'tsk_desc';
+        } else if (sort_val.indexOf("tsk_desc") > 1) {
+            var order = 'asc';
+            var tcls = 'tsk_asc';
+        } else {
+            var order = 'desc';
+            var tcls = 'tsk_desc';
+        }
+    } else if (type == 'project_status_field') {
+        var sort_val = $("#prj_status_sort").attr('class');
+        if (sort_val.indexOf("tsk_asc") > 1) {
+            var order = 'desc';
+            var tcls = 'tsk_desc';
+        } else if (sort_val.indexOf("tsk_desc") > 1) {
+            var order = 'asc';
+            var tcls = 'tsk_asc';
+        } else {
+            var order = 'desc';
+            var tcls = 'tsk_desc';
+        }
+    }
+    $('#caseLoader').show();
+    remember_filters('PROJECTLISTVIEW_ORDER', order);
+    remember_filters('PROJECTLISTVIEW_TCLS', tcls);
+    var projtype = localStorage.getItem("PROJECTVIEW_TYPE");
+    var srch = localStorage.getItem("PROJECTLISTVIEW_SCRH");
+    ajaxGridViewLoad(projtype, srch, page, filtype, order, type, tcls);
+}
+
 function resetProjectFilterItem() {
     localStorage.removeItem('PROJECTMANAGETYPE');
     localStorage.removeItem('PROJECTMANAGETYPEVAL');
