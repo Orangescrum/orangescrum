@@ -33,6 +33,11 @@ if (!defined('NO_PASSWORD')) {
                            <i class="material-icons">&#xE0BE;</i> <?php echo __('Email Reports');?>
                         </a>
                     </li>
+                    <li <?php if (PAGE_NAME == 'default_view') { ?>class="active-list" <?php } ?>>
+                        <a id="sett_dflt_view_prof" href="<?php echo HTTP_ROOT . 'users/default_view'; ?>" class="all-list" onclick="return trackEventLeadTracker('Personal Settings','Default View','<?php echo $_SESSION['SES_EMAIL_USER_LOGIN'];?>');">
+                            <i class="material-icons">&#xE417;</i> <?php echo __('My Default View');?>
+                        </a>
+                    </li>
                     <li <?php if (CONTROLLER =="UserQuicklinks" && PAGE_NAME == 'index') { ?>class="active-list" <?php } ?>>
                         <a id="sett_dflt_view_prof" href="<?php echo HTTP_ROOT . 'quick-link-settings'; ?>" class="all-list" onclick="return trackEventLeadTracker('Quick Link Settings','Default View','<?php echo $_SESSION['SES_EMAIL_USER_LOGIN'];?>');">
                             <i class="material-icons">link</i> <?php echo __('Quick Links');?>

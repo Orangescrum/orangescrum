@@ -7185,7 +7185,7 @@ function getSkills(){
             foreach($project_views as $k=>$v){
               $project_views[$k] = $v." View";  
             }
-            $this->set('project_views', $project_views);
+            $this->set('project_views', $project_views);    
                
             $def_views = $this->TaskView->find('list', array('conditions' => array('TaskView.name' => 'Default task view','TaskView.id'=>array(10,11)), 'fields' => array('TaskView.id', 'TaskView.sub_name')));
 
@@ -7497,6 +7497,65 @@ function getSkills(){
         $upds = $this->ProductUpdate->find('all', array('order' => array('ProductUpdate.id' => 'DESC')));
         $this->set('updates', $upds);
     }
+    public function default_view()
+    {
+        $this->loadModel('TaskView');
+        $this->loadModel('DefaultTaskView');
+        $task_views = $this->TaskView->find('list', array('conditions' => array('TaskView.name' => 'Task'), 'fields' => array('TaskView.id', 'TaskView.sub_name')));
+        $new_task_view=array();
+        foreach ($task_views as $k=>$v) {
+            if ($v == 'List') {
+                $new_task_view[$k] = __('List', true);
+            } elseif ($v == 'Task Group') {
+                //   $new_task_view[$k] = __('Task Group',true);
+                     //   $new_task_view[$k] = __('Subtask View',true);
+            } elseif ($v == 'Subtask View') {
+                $new_task_view[$k] = __('Subtask View', true);
+            }
+        }
+                
+                
+        //	echo "<pre>";
+        //	print_r($new_task_view);exit;
+        
+        $project_views = $this->TaskView->find('list', array('conditions' => array('TaskView.name' => 'Project'), 'fields' => array('TaskView.id', 'TaskView.sub_name')));
+        foreach ($project_views as $k=>$v) {
+            if ($v == 'Card') {
+                $project_views[$k] = __('Card', true);
+            } elseif ($v == 'Grid') {
+                $project_views[$k] = __('Grid', true);
+            }
+        }
+        $this->set('project_views', $project_views);
+            
+        $def_views = $this->TaskView->find('list', array('conditions' => array('TaskView.name' => 'Default task view'), 'fields' => array('TaskView.id', 'TaskView.sub_name'),'order'=>array('TaskView.created ASC')));
+        $this->set('def_views', $def_views);
+            
+            
+        $data = $this->DefaultTaskView->find('first', array('conditions' => array('DefaultTaskView.company_id' => SES_COMP, 'DefaultTaskView.user_id' => SES_ID), 'fields' => array('DefaultTaskView.task_view_id', 'DefaultTaskView.timelog_view_id', 'DefaultTaskView.kanban_view_id', 'DefaultTaskView.project_view_id', 'DefaultTaskView.id','DefaultTaskView.default_view_id')));
+        if (is_array($data) && count($data) > 0) {
+            $taskview = $data['DefaultTaskView']['task_view_id'];
+            $kanbanview = $data['DefaultTaskView']['kanban_view_id'];
+            $timelogview = $data['DefaultTaskView']['timelog_view_id'];
+            $projectview = $data['DefaultTaskView']['project_view_id'];
+            $defview = $data['DefaultTaskView']['default_view_id'];
+            $id = $data['DefaultTaskView']['id'];
+        } else {
+            $taskview = 1; // Default (task group)
+                $kanbanview = 7; // Default (task status)
+                $timelogview = 5; // Default (calendar)
+                $projectview = 8; // Default (card)
+                $defview = 10; // Default (List View)
+                $id = '';
+        }
+        $this->set('taskview', $taskview);
+        $this->set('kanbanview', $kanbanview);
+        $this->set('timelogview', $timelogview);
+        $this->set('projectview', $projectview);
+        $this->set('defview', $defview);
+        $this->set('id', $id);
+    }
+
 
     function saveDefaultView() {
         #pr($this->request->data);exit;

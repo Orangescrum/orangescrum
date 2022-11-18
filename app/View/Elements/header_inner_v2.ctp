@@ -533,6 +533,7 @@
 											<li><a href="<?php echo HTTP_ROOT.'users/changepassword';?>" onclick="return trackEventLeadTracker('Top Setting','Change Password Page','<?php echo $_SESSION['SES_EMAIL_USER_LOGIN'];?>');"><?php echo __('Change Password');?></a></li>
 											<li><a href="<?php echo HTTP_ROOT.'users/email_notifications';?>" onclick="return trackEventLeadTracker('Top Setting','Notifications','<?php echo $_SESSION['SES_EMAIL_USER_LOGIN'];?>');"><?php echo __('Notifications');?></a></li>
 											<li><a href="<?php echo HTTP_ROOT.'users/email_reports';?>" onclick="trackEventLeadTracker('Top Setting','Email Reports Page','<?php echo $_SESSION['SES_EMAIL_USER_LOGIN'];?>');"><?php echo __('Email Reports');?></a></li>
+											<li><a href="<?php echo HTTP_ROOT.'users/default_view';?>" onclick="trackEventLeadTracker('Top Setting','Default View Page','<?php echo $_SESSION['SES_EMAIL_USER_LOGIN'];?>');"><?php echo __('My Default View');?></a></li>
 											    
 											<li>
 												<a href="<?php echo HTTP_ROOT;?>quick-link-settings"><span></span><?php echo __('Quick Links');?></a>

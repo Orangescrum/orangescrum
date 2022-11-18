@@ -4,26 +4,7 @@
 		<div class="row">
 		<div class="col-lg-12">
     <div class="col-lg-4 col-sm-4 padlft-non">
-		<?php if(defined('CMP_CREATED') && CMP_CREATED >= '2018-01-17 00:00:59' && 0){ ?>
-        <div class="form-group custom-drop-lebel cmn-popup dflt-drpdwn">
-            <?php echo $this->Form->select('defaulttaskview', $def_views, array('value' => $defview, 'class' => 'form-control floating-label ', 'placeholder' => 'Show my tasks in', 'data-dynamic-opts' => 'true', 'empty' => false)); ?>
-            <?php echo $this->Form->input('taskviews', array('value' => $taskview, 'type' => 'hidden')); ?>
-            <?php echo $this->Form->input('kanbanview',array('value' => $kanbanview,'type' => 'hidden')); ?>
-        </div>
-		<?php }else{ ?>
-			<div class="form-group custom-drop-lebel cmn-popup dflt-drpdwn">
-				<?php echo $this->Form->select('taskviews', $task_views, array('value' => $taskview, 'class' => 'form-control floating-label', 'placeholder' => __('Tasks',true), 'data-dynamic-opts' => 'true', 'empty' => false)); ?>
-			</div>
-			<?php if(defined('COMP_LAYOUT') && COMP_LAYOUT){ ?>
-			<?php }else{ ?>
-			<div class="form-group custom-drop-lebel cmn-popup dflt-drpdwn">
-				<?php echo $this->Form->select('kanbanview', $kanban_views, array('value' => $kanbanview, 'class' => 'form-control floating-label ', 'placeholder' => __('Kanban',true), 'data-dynamic-opts' => 'true', 'empty' => false)); ?>
-			</div>
-			<?php } ?>
-		<?php } ?>
-        <div class="form-group custom-drop-lebel cmn-popup dflt-drpdwn">
-            <?php echo $this->Form->select('timelogview', $timelog_views, array('value' => $timelogview, 'class' => 'form-control floating-label ', 'placeholder' => __('Time Log',true), 'data-dynamic-opts' => 'true', 'empty' => false)); ?>
-        </div>
+		
         <div class="form-group custom-drop-lebel cmn-popup dflt-drpdwn">
             <?php echo $this->Form->select('projectview', $project_views, array('value' => $projectview, 'class' => 'form-control floating-label ', 'placeholder' => __('Projects',true), 'data-dynamic-opts' => 'true', 'empty' => false)); ?>
         </div>
@@ -70,21 +51,6 @@
         <?php } ?>
         var projectview = $('#DefaultViewProjectview').val();
         var done = 1;
-        if (!taskview) {
-            showTopErrSucc('error', '<?php echo __('Please Select a Task view.');?>');
-            done = 0;
-        }
-        if (!timelogview) {
-            showTopErrSucc('error', '<?php echo __('Please Select a Time Log view.');?>');
-            done = 0;
-        }
-        <?php if(defined('COMP_LAYOUT') && COMP_LAYOUT){ ?>
-            <?php }else{ ?>
-        if (!kanbanview) {
-            showTopErrSucc('error', '<?php echo __('Please Select a Kanban view.');?>');
-            done = 0;
-        }
-    <?php } ?>
         if (!projectview) {
             showTopErrSucc('error', '<?php echo __('Please Select a Project view.');?>');
             done = 0;
