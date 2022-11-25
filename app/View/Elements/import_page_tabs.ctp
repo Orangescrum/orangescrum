@@ -16,7 +16,7 @@
     </div>
     <?php if ($mode == 'importexport') { ?>
         <div class="fr btn_tlog_top">
-            <a><button class="customfile-button btn btn-sm btn_cmn_efect" onclick="ajax_exportCsv(0);" rel="tooltip" title="<?php echo __('Export Task To CSV');?>">
+            <a><button class="customfile-button btn btn-sm btn_cmn_efect" onclick="ajax_exportCsv(0);" data-toggle="tooltip"  title="<?php echo __('Export Task To CSV');?>">
                     <i class="material-icons">&#xE8D5;</i>
                 </button></a>
         </div>

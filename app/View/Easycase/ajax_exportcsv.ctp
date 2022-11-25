@@ -73,14 +73,14 @@ echo $this->Form->create('Easycase', array('name' => 'taskcsvForm', 'id' => 'tas
     <div class="row time_range_fld  padlft-non padrht-non"  id="tr_cst_rng" style="<?php if (count($cst_rng) == 2) { ?>display: show;<?php } else { ?>display:none;<?php } ?>">
         <div class="col-lg-6 ">
             <div class="form-group  label-floating">
-                <label class="control-label" for="cst_frm">From</label>
+                <label class="control-label" for="cst_frm">From</label><br>
                 <input type="text" id="cst_frm" name="data[Easycase][from]" value="<?php if (count($cst_rng) == 2) echo $cst_rng['0']; ?>" class="form-control" placeholder="" />
             </div>
         </div>
         <div class="from_to">to</div>
         <div class="col-lg-6">
             <div class="form-group  label-floating">
-                <label class="control-label blank-label1" for="cst_to"><?php echo __('To');?></label>
+                <label class="control-label blank-label1" for="cst_to"><?php echo __('To');?></label><br>
                 <input type="text" id="cst_to" name="data[Easycase][to]" value="<?php if (count($cst_rng) == 2) echo $cst_rng['1']; ?>" class="form-control" placeholder="" />
             </div>
         </div>
@@ -118,14 +118,7 @@ echo $this->Form->create('Easycase', array('name' => 'taskcsvForm', 'id' => 'tas
             <?php } ?>
         </select>
     </div>
-	 <div class="form-group">
-        <select name="data[Easycase][label]" class="select form-control floating-label" placeholder="Label" data-dynamic-opts=true>
-            <option value="all" <?php if (!$lblsArr || trim($lblsArr) == 'all') { ?>selected="selected"<?php } ?>><?php echo __('All');?></option>
-            <?php foreach ($lblsArr as $key => $value) { ?>
-                <option value="<?php echo $key; ?>"><?php echo $value; ?></option>
-            <?php } ?>
-        </select>
-    </div>
+	
     <div class="form-group" id="tr_priority">
         <?php $priority = $_COOKIE['PRIORITY']; ?>
         <select name="data[Easycase][priority]" class="select form-control floating-label" placeholder="Priority" data-dynamic-opts=true>
@@ -137,6 +130,7 @@ echo $this->Form->create('Easycase', array('name' => 'taskcsvForm', 'id' => 'tas
     </div>
     <div class="form-group"  id="tr_members">
         <select name="data[Easycase][members]" class="select form-control floating-label" placeholder="Members" data-dynamic-opts=true>
+            
              <option value="all"><?php echo __('All');?></option>
              <?php if (isset($memArr)) { ?>
                  <?php foreach ($memArr as $mem) { ?>
@@ -148,6 +142,7 @@ echo $this->Form->create('Easycase', array('name' => 'taskcsvForm', 'id' => 'tas
     </div>
     <div class="form-group" id="tr_assign_to">
         <select name="data[Easycase][assign_to]" class="select form-control floating-label" placeholder="<?php echo __('Assign to');?>" data-dynamic-opts=true>
+
             <option value="all"><?php echo __('All');?></option>
             <?php if (isset($asnArr)) { ?>
                 <?php foreach ($asnArr as $Asn) { ?>
@@ -157,16 +152,7 @@ echo $this->Form->create('Easycase', array('name' => 'taskcsvForm', 'id' => 'tas
             <?php } ?>
         </select>
     </div>
-    <div class="form-group" id="tr_milestone_list">
-        <select name="data[Easycase][milestone]" class="select form-control floating-label" placeholder="Task Group" data-dynamic-opts=true id="milestone_list">
-            <option value="all"><?php echo __('All');?></option>
-            <?php if (isset($milestone)) { ?>
-                <?php foreach ($milestone as $key => $Asn) { ?>
-                    <option value="<?php echo $key; ?>" ><?php echo ucfirst($Asn); ?></option>
-                <?php } ?>
-            <?php } ?>
-        </select>
-    </div>
+    
     <div class="form-group" id="tr_comment">
         <select name="data[Easycase][comment]" class="select form-control floating-label" placeholder="Comments" data-dynamic-opts=true id="commentId">
             <option value="1"><?php echo __('Without Comment');?></option>

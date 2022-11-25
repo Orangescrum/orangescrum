@@ -6080,8 +6080,9 @@ class EasycasesController extends AppController
                 $milestones = $this->Milestone->getMilestone($proj_id);
                 $this->set('milestones', $milestones);
             }
-            $this->loadModel('Label');
-            $lblsArr = $this->Label->getProjectLabels($proj_id);
+            //Commet because label feature not added
+            // $this->loadModel('Label');
+            // $lblsArr = $this->Label->getProjectLabels($proj_id);
             $Csts = ClassRegistry::init('CustomStatus');
             $csts_arr = array();
             if ($project['Project']['status_group_id']) {
@@ -6090,8 +6091,8 @@ class EasycasesController extends AppController
                 $csts_arr = Hash::combine($csts_arr, '{n}.CustomStatus.id', '{n}.CustomStatus');
             }
         } else {
-            $this->loadModel('Label');
-            $lblsArr = $this->Label->readLabelDetlfromCache(SES_COMP);
+            // $this->loadModel('Label');
+            // $lblsArr = $this->Label->readLabelDetlfromCache(SES_COMP);
             $Csts = ClassRegistry::init('CustomStatus');
             $csts_arr = $Csts->find('all', array('conditions'=>array('CustomStatus.company_id'=>SES_COMP)));
             if (!empty($csts_arr)) {
@@ -7152,7 +7153,7 @@ class EasycasesController extends AppController
         if ($prj_unq_id == 'all') {
             $isLabel = '';
             if ($this->request->data['Easycase']['label'] != 'all') {
-                $esy_labels = $this->EasycaseLabel->getLabelEcids('all', SES_COMP, $this->request->data['Easycase']['label']);
+               // $esy_labels = $this->EasycaseLabel->getLabelEcids('all', SES_COMP, $this->request->data['Easycase']['label']);
                 if ($esy_labels) {
                     $isLabel = "Easycase.id IN(".implode(',', $esy_labels).") AND ";
                 }
@@ -7184,7 +7185,7 @@ class EasycasesController extends AppController
             if (count($projArr)) {
                 $isLabel = '';
                 if ($this->request->data['Easycase']['label'] != 'all') {
-                    $esy_labels = $this->EasycaseLabel->getLabelEcids($projArr['Project']['id'], SES_COMP, $this->request->data['Easycase']['label']);
+                  //  $esy_labels = $this->EasycaseLabel->getLabelEcids($projArr['Project']['id'], SES_COMP, $this->request->data['Easycase']['label']);
                     if ($esy_labels) {
                         $isLabel = "Easycase.id IN(".implode(',', $esy_labels).") AND ";
                     }
@@ -7211,14 +7212,14 @@ class EasycasesController extends AppController
             $csv_output = "";
         }
         if ($this->request->data['Easycase']['comment'] == 1) {
-            $csv_output .= "Tasks#,Title,Description,Status,Type,Label,TaskGroup,Assigned To,Priority,Due Date,Estimated Hour,Created By,Created Date,Updated Date\n";
+            $csv_output .= "Tasks#,Title,Description,Status,Type,Assigned To,Priority,Due Date,Estimated Hour,Created By,Created Date,Updated Date\n";
         } elseif ($this->request->data['Easycase']['comment'] == 2) {
-            $csv_output .= "Tasks#,Title,Description,Status,Type,Label,TaskGroup,Assigned To,Priority,Due Date,Estimated Hour,Created By,Created Date,Updated Date,Comments\n";
+            $csv_output .= "Tasks#,Title,Description,Status,Type,Assigned To,Priority,Due Date,Estimated Hour,Created By,Created Date,Updated Date,Comments\n";
         }
 
         if ($case_lists) {
             $easy_ids = Hash::extract($case_lists, '{n}.Easycase.id');
-            $esy_labels = $this->EasycaseLabel->geteasyLabels($easy_ids, SES_COMP);
+           // $esy_labels = $this->EasycaseLabel->geteasyLabels($easy_ids, SES_COMP);
         }
         $csts_arr = array();
         $csts_arr = $this->Easycase->getStatusFortasks($case_lists);
@@ -7322,9 +7323,9 @@ class EasycasesController extends AppController
             $estimated_hours = '"' . str_replace('"', '""', $estimated_hours) . '"';
 
             if ($this->request->data['Easycase']['comment'] == 1) {
-                $csv_outputs .= htmlspecialchars_decode($case_no) . "," . htmlspecialchars_decode($title) . "," . $this->getNewlinesInsingle(htmlspecialchars_decode($this->Format->stripHtml($description))) . "," . htmlspecialchars_decode($status) . "," . htmlspecialchars_decode($type) . ",". htmlspecialchars_decode($easy_labelnm) . "," . htmlspecialchars_decode($Milestone) . "," . htmlspecialchars_decode($assignedTo) . "," .$priority . ",". htmlspecialchars_decode($due_date) . "," . htmlspecialchars_decode($estimated_hours) . "," . htmlspecialchars_decode($createdBy) . "," . htmlspecialchars_decode($created) . "," . htmlspecialchars_decode($updated) . "\n";
+                $csv_outputs .= htmlspecialchars_decode($case_no) . "," . htmlspecialchars_decode($title) . "," . $this->getNewlinesInsingle(htmlspecialchars_decode($this->Format->stripHtml($description))) . "," . htmlspecialchars_decode($status) . "," . htmlspecialchars_decode($type) . "," . htmlspecialchars_decode($assignedTo) . "," .$priority . ",". htmlspecialchars_decode($due_date) . "," . htmlspecialchars_decode($estimated_hours) . "," . htmlspecialchars_decode($createdBy) . "," . htmlspecialchars_decode($created) . "," . htmlspecialchars_decode($updated) . "\n";
             } elseif ($this->request->data['Easycase']['comment'] == 2) {
-                $csv_outputs .= htmlspecialchars_decode($case_no) . "," . htmlspecialchars_decode($title) . "," . $this->getNewlinesInsingle(htmlspecialchars_decode($this->Format->stripHtml($description))) . "," . htmlspecialchars_decode($status) . "," . htmlspecialchars_decode($type) . ",". htmlspecialchars_decode($easy_labelnm) . "," . htmlspecialchars_decode($Milestone) . "," . htmlspecialchars_decode($assignedTo) . "," .$priority . "," . htmlspecialchars_decode($due_date) . "," . htmlspecialchars_decode($estimated_hours) . "," . htmlspecialchars_decode($createdBy) . "," . htmlspecialchars_decode($created) . "," . htmlspecialchars_decode($updated) . "," . $this->getNewlinesInsingle(htmlspecialchars_decode($this->Format->stripHtml($desp))) . "\n";
+                $csv_outputs .= htmlspecialchars_decode($case_no) . "," . htmlspecialchars_decode($title) . "," . $this->getNewlinesInsingle(htmlspecialchars_decode($this->Format->stripHtml($description))) . "," . htmlspecialchars_decode($status) . "," . htmlspecialchars_decode($type) . "," . htmlspecialchars_decode($assignedTo) . "," .$priority . "," . htmlspecialchars_decode($due_date) . "," . htmlspecialchars_decode($estimated_hours) . "," . htmlspecialchars_decode($createdBy) . "," . htmlspecialchars_decode($created) . "," . htmlspecialchars_decode($updated) . "," . $this->getNewlinesInsingle(htmlspecialchars_decode($this->Format->stripHtml($desp))) . "\n";
             }
             fwrite($fp, $csv_outputs);
         }
