@@ -320,7 +320,7 @@
         <div class="col-lg-4 padrht-non">
             <div class="width100 cmn_bdr_shadow dash-task-status">
                 <div class="top_ttl_box">
-                    <h2><a href="<?php echo HTTP_ROOT; ?>dashboard#kanban" onclick="return trackEventLeadTracker('Admin Dashboard','Task Status','<?php echo $_SESSION['SES_EMAIL_USER_LOGIN']; ?>');"><?php echo __('Task Status');?></a></h2>
+                    <h2><a href="<?php echo HTTP_ROOT; ?>dashboard#" onclick="return trackEventLeadTracker('Admin Dashboard','Task Status','<?php echo $_SESSION['SES_EMAIL_USER_LOGIN']; ?>');"><?php echo __('Task Status');?> </a></h2>
                 </div>
                 <div class="dash-status-graph">
                     <div>
