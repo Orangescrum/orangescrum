@@ -5463,6 +5463,68 @@ class RequestsController extends AppController
             exit;
         }
     }
+    public function getNewLinkTasks()
+    {
+        $this->layout = 'ajax';
+        $arr = array('status'=>0);
+        $project_uniqid = $this->request->data['project_id'];
+        $task_id = isset($this->request->data['task_id']) ? $this->request->data['task_id'] : '';
+        $this->loadModel('Project');
+        $this->loadModel('Easycase');
+        if ($task_id) {
+            $this->loadModel('EasycaseLinking');
+            $pref = $this->EasycaseLinking->find('list', array('conditions'=>array('easycase_id'=>$task_id),'fields'=>array('id','link_id')));
+        }
+        
+        //print_r($pref); exit;
+        $prefList =" ";
+        if (!empty($pref)) {
+            $prefList = " AND Easycase.id NOT IN('".implode("','", $pref)."')";
+        }
+        $projects =  $this->Project->find('first', array('conditions'=>array('Project.uniq_id'=>$project_uniqid),'fields'=>array('Project.id')));
+        $clt_sql = 1;
+        if ($this->Auth->user('is_client') == 1) {
+            $clt_sql = "((Easycase.client_status = " . $this->Auth->user('is_client') . " AND Easycase.user_id = " . $this->Auth->user('id') . ") OR Easycase.client_status != " . $this->Auth->user('is_client') . ")";
+        }
+        $cond_easycase_actuve = " AND Easycase.isactive=1";
+        if (!empty($task_id)) {
+            $cond_easycase_actuve .= " AND Easycase.id !=".$task_id;
+        }
+        $searchcase = "";
+        if (!empty($this->request->data['searchTerm'])) {
+            //$searchcase =" AND Easycase.title LIKE '%".$this->request->data['searchTerm']."%'";
+            if (strpos($this->request->data['searchTerm'], '#') > -1) {
+                $newSearchText = str_replace("#", "", $this->request->data['searchTerm']);
+                $searchcase =" AND Easycase.case_no = ".$newSearchText;
+            } else {
+                $searchcase = $this->Format->caseKeywordSearch($this->request->data['searchTerm'], 'case_no_title');
+                /*if(stristr($this->request->data['searchTerm'], "'")){
+                     $searchcase =' AND (Easycase.title LIKE "%'.$this->request->data['searchTerm'].'%" || Easycase.case_no LIKE "%'.$this->request->data['searchTerm'].'%")';
+                }else if(stristr($this->request->data['searchTerm'], '"')){
+                    $searchcase =" AND (Easycase.title LIKE '%".$this->request->data['searchTerm']."%' || Easycase.case_no LIKE '%".$this->request->data['searchTerm']."%')";
+                }*/
+            }
+        }
+        $qry = "" ;
+        $orderby = "Easycase.dt_created DESC";
+        $req_sql = "SELECT SQL_CALC_FOUND_ROWS Easycase.id,Easycase.title,Easycase.case_no FROM ( "
+            . "SELECT * FROM easycases as Easycase WHERE istype='1' ".$prefList." AND " . $clt_sql . " " . $cond_easycase_actuve . " AND Easycase.project_id='".$projects['Project']['id']."' AND Easycase.project_id!=0  " . $searchcase . " " . trim($qry) . " ) AS Easycase LEFT JOIN users User ON Easycase.assign_to=User.id ORDER BY " . $orderby . " LIMIT 0,10";
+        $tasks = $this->Easycase->query($req_sql);
+        $view = new View($this);
+        $frmt = $view->loadHelper('Format');
+        if (count($tasks)) {
+            $arr['status'] =1;
+            foreach ($tasks as $k => $v) {
+                $title ='#' . $v['Easycase']['case_no'] . ': '.$frmt->formatTitle($v['Easycase']['title']);
+                $arr['task'][] =array("id"=>$v['Easycase']['id'], "text"=> $title);
+            }
+        } else {
+            $arr['task']=null;
+        }
+
+        echo json_encode($arr);
+        exit;
+    }
     public function showSubTaskList()
     {
         $arr['success'] = 0;

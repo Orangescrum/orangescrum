@@ -420,6 +420,25 @@ top:45px;padding:5px 0px 5px 5px;margin:0;}
                             <div class="cb"></div>
                         </div>
                     </div>
+					<div class="w_b task-field-12 mtop15 <?php if(!$this->Format->isAllowed('Link Task',$roleAccess)){ ?>no-pointer<?php } ?>">
+							<div class="row">
+							<div class="col-md-4">
+								<div id="tour_crt_relate" class="select_field_wrapper">
+								<select class="relates-select form-control floating-label" placeholder="<?php echo __('Relate to'); ?>">
+									<?php foreach($GLOBALS['RELATES'] as $k=>$v){ ?>        
+										<option value="<?php echo $v['EasycaseRelate']['id'];?>"><?php echo $v['EasycaseRelate']['title'];?></option>
+										<?php } ?>
+									</select>
+								</div>
+							</div>
+							<div class="col-md-8">
+								<div id="tour_crt_linking" class="select_field_wrapper">
+									<select class="link-to-select form-control floating-label" placeholder="<?php echo __('Linking Task'); ?>" >
+									</select>
+								</div>
+							</div>
+						</div>
+						</div>
 						<!-- LABELS START -->
 						<div class="w_c task-field-16 task-field-all custom-task-fld parent-task-fld labl-rt">
 						<div id="custom_field_container"></div>
