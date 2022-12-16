@@ -294,7 +294,14 @@ if( $is_active_proj || (SES_TYPE==3)){
                                             <i class="material-icons cmn-icon-prop">&#xE192;</i><?php echo __('Time Entry');?>
                                         </a>
                                     </li>
-                                <?php } ?>                            
+                                <?php } ?> 
+                                <?php if($this->Format->isAllowed('Start Timer',$roleAccess)){ ?>
+                                    <li id="tour_start_timer">
+                                        <a href="javascript:void(0)" onclick="setSessionStorage('Quick Links','Start Timer');openTimer()">
+                                            <i class="material-icons cmn-icon-prop">&#xE425;</i><?php echo __('Start Timer');?>
+                                        </a>
+                                    </li>
+                                <?php } ?>                             
                                 <?php } ?>  
 								<?php //if(SES_TYPE < 3){?>
 								<?php //} ?>

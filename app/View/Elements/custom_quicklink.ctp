@@ -100,7 +100,20 @@
 					<?php } ?>
 					<?php } ?>
 					<?php } ?>
-				<?php } ?>				
+				<?php } ?>	
+				<?php if($lowered_name == "start timer"){?>
+					<?php if(in_array($v['id'], $checked_ql)) {?>
+						 <?php if($this->Format->isAllowed('Start Timer',$roleAccess)){ ?>
+						 	<?php if($GLOBALS['Userlimitation']['subscription_id'] != CURRENT_EXPIRED_PLAN){ ?>
+						<li id="tour_start_timer">
+							<a href="javascript:void(0)" onclick="setSessionStorage('Quick Links','Start Timer');openTimer()">
+								<i class="material-icons cmn-icon-prop">&#xE425;</i><?php echo __('Start Timer');?>
+							</a>
+						</li>
+					<?php } ?>
+					<?php } ?>
+					<?php } ?>
+				<?php } ?>			
 				
 				<?php if($lowered_name == "hours spent"){?>
 					<?php if(in_array($v['id'], $checked_ql)) {?>

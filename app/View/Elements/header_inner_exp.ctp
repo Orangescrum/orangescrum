@@ -661,7 +661,7 @@ if( $is_active_proj || (SES_TYPE==3)){
                                                                             $user_used = round($used_storage/1024);
                                                                             $user_used_label = 'GB';
                                                                     }*/
-                                                                $user_used_label = 'GB';
+                                                               /* $user_used_label = 'GB';
                                                             ?>
                                                                 <span id="used_storage"><b><?php echo round($used_storage/1024);?></b> </span><?php echo $user_used_label; ?>
                                                         <?php } ?>
@@ -676,7 +676,7 @@ if( $is_active_proj || (SES_TYPE==3)){
                                                                 </p>
                                                                 </div>
                                                 <?php } ?>
-                                            <?php } ?>
+                                            <?php } ?> 
                                             <?php if (!$user_subscription['is_cancel'] && ($user_subscription['subscription_id'] == CURRENT_FREE_PLAN || $user_subscription['subscription_id'] == CURRENT_EXPIRED_PLAN) && $user_subscription['lifetime_free'] !=1 && SES_TYPE == 1 && SES_COMP != 5303 && SES_COMP != 8728 && SES_COMP != 15602 && SES_COMP != 17945 && SES_COMP != 20414) {
                                                 $t_dt = date("Y-m-d H:i:s", strtotime($user_subscription['created'] . ' +' . FREE_TRIAL_PERIOD . 'days'));
                                                 if ($user_subscription['extend_trial'] != 0) {

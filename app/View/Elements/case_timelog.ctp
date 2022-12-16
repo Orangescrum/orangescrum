@@ -63,10 +63,11 @@
 			</div>
 			<% }else{ %>
             <% if((typeof is_active != 'undefined' && is_active) || (typeof is_active == 'undefined' && logtimes.is_active != '' && logtimes.is_active == 1)) { %>
-			<div class="col-lg-4 padnon logmore-btn">
+                <div class="col-lg-4 padnon logmore-btn">
                 <?php if($this->Format->isAllowed('Start Timer',$roleAccess)){ ?>
 				<% if(logtimes.csLgndRep ==3 ) { %>
 				<% } else{ %>
+				<a class="<%=logtimes.page%> anchor log-more-time fr" onclick="setSessionStorage(<%= '\'Task Details Page\'' %>, <%= '\'Start Timer\'' %>);startTimer(<%= '\'' + logtimes.task_id + '\'' %>,<%= '\'' + escape(htmlspecialchars(logtimes.task_title,3)) + '\'' %>,<%= '\'' + logtimes.task_uniqId + '\'' %>,<%= '\'' + logtimes.project_uniqId + '\'' %>,<%= '\'' + escape(logtimes.project_name) + '\'' %>)"><i class="material-icons">&#xE425;</i><?php echo __('Start Timer');?></a>
 				<% } %>
 			<?php } ?>
             <?php if($this->Format->isAllowed('Manual Time Entry',$roleAccess)){ ?>

@@ -99,7 +99,12 @@
                 <?php if($this->Format->isAllowed('Start Timer',$roleAccess)){ ?>
 					<% if(is_inactive_case == 0 && is_active == 1) {%>
 				<% if(logtimes.csLgndRep ==3 ) { %>
-				<% } else{ %>				
+				<% } else{ %>
+					<div class="cursor link-icon ml-15">
+						<a class="<%=logtimes.page%> d-inline-block link-icon" id="tog_tm_st_timer" rel="tooltip" title="<?php echo __('Start Timer');?>" onclick="setSessionStorage(<%= '\'Task Details Page\'' %>, <%= '\'Start Timer\'' %>);startTimer(<%= '\'' + logtimes.task_id + '\'' %>,<%= '\'' + escape(htmlspecialchars(logtimes.task_title,3)) + '\'' %>,<%= '\'' + logtimes.task_uniqId + '\'' %>,<%= '\'' + logtimes.project_uniqId + '\'' %>,<%= '\'' + escape(logtimes.project_name) + '\'' %>)">
+						<i class="material-icons">alarm_on</i> <!-- Start Timer --></a>
+					</div>
+				
 				<% } %>
 				<% } %>
 			<?php } ?>

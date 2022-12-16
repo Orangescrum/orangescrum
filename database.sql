@@ -2485,6 +2485,7 @@ INSERT INTO `quicklink_submenus` (`id`, `quicklink_menu_id`, `name`, `menu_langu
 (2, 1, 'User', 8, NULL, 1, '2019-03-27 20:23:46'),
 (3, 1, 'Task', 10, NULL, 1, '2019-03-27 20:24:00'),
 (5, 1, 'Time Entry', 13, NULL, 1, '2019-03-27 20:24:26'),
+(7, 1, 'Start Timer', 15, NULL, 1, '2019-03-27 20:24:45'),
 (9, 2, 'Hours Spent', 17, NULL, 1, '2019-03-27 20:25:37'),
 (10, 2, 'Task Reports', 20, NULL, 1, '2019-03-27 20:25:52'),
 (11, 2, 'Weekly Usage', 22, NULL, 1, '2019-03-27 20:26:08'),

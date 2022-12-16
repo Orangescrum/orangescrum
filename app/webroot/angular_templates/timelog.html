@@ -306,6 +306,9 @@
 								<a href="javascript:void(0)" data-toggle="modal" data-target="#myModal" onclick="setSessionStorage('TileLog Listing','Time Log');createlog(0,'')" class="btn btn_cmn_efect cmn_bg btn-info cmn_size" ng-if="isAllowed('Manual Time Entry')">
 									<i class="material-icons cmn-icon-prop" style="font-size:16px;">&#xE192;</i> {{'Log Your Time' | translate}}
 								</a>
+                                <a href="javascript:void(0)" style="margin-left: 10px;" data-toggle="modal" data-target="#myModal" onclick="setSessionStorage('TileLog Listing','Start Timer');openTimer()" class="btn btn_cmn_efect cmn_bg btn-info cmn_size" ng-if="isAllowed('Start Timer')">
+									<i class="material-icons cmn-icon-prop" style="font-size:16px;">&#xE192;</i> {{'Start Your Timer' | translate}}
+								</a>
 							</span>
 						</div>
 						</td>
@@ -346,6 +349,16 @@
     </div>
 		<div class="crt_task_btn_btm timelog_cond_cls num_2">   
 				<span  class="hide_tlp_cross" title="<?php echo __('Close');?>" onclick="resetHoverEffect('timelog', this);">&times;</span>
+                <div class="pr">    
+                    <div class="os_plus ctg_btn">     
+                        <div class="ctask_ttip">                
+                            <span class="label label-default">{{'Start Timer' | translate}}</span>  
+                        </div>        
+                        <a href="javascript:void(0)" onclick="setSessionStorage('Time Log List View', 'Start Timer');openTimer();" ng-if="isAllowed('Start Timer')">     
+                            <i class="material-icons">&#xE425;</i>   
+                        </a>     
+                    </div>   
+                </div>  
          
         <div class="os_plus">    
             <div class="ctask_ttip"> 
