@@ -7296,6 +7296,15 @@ function archiveCase(id, cno, pid, dtlsid) {
 }
 
 function deleteCase(id, cno, pid, dtlsid, recurring) {
+    var tmdet = getCookie('timerDtls');
+    if (typeof tmdet != 'undefined') {
+        var tmCsDet = tmdet.split('|');
+        var taskautoid = tmCsDet[0];
+        if (id == taskautoid) {
+            showTopErrSucc('error', _("Task can not be deleted while timer is on"));
+            return false;
+        }
+    }
     var isSub = (typeof arguments[5] != 'undefined' && arguments[5] == 'sub') ? 1 : 0;
     var isDtlPop = (typeof arguments[6] != 'undefined' && arguments[6] == 'popdtl') ? 1 : 0;
     var confMesg = _("Are you sure you want to delete the task ?");
@@ -14181,6 +14190,17 @@ function DeleteAllCase(type) {
     if (chked == 0) {
         showTopErrSucc('error', _("Please check atleast one task to delete"));
         return false;
+    }
+    var tmdet = getCookie('timerDtls');
+    if (typeof tmdet != 'undefined') {
+        var tmCsDet = tmdet.split('|');
+        var taskautoid = tmCsDet[0];
+        for (var i in case_id) {
+            if (case_id[i] == taskautoid) {
+                showTopErrSucc('error', _("Task can not be deleted while timer is on"));
+                return false;
+            }
+        }
     }
     var project_id = $("#curr_sel_project_id").val();
     var isSub = (typeof arguments[5] != 'undefined' && arguments[5] == 'sub') ? 1 : 0;

@@ -728,7 +728,14 @@ var task_parent_ids = JSON.stringify(task_parent_ids);
                                         <a href="javascript:void(0);"><i class="material-icons">&#xE192;</i><?php echo __('Time Entry');?></a>
                                     </li>
                         <% } %>                                  
-                         <% } %>          
+                         <% } %>  
+						 <% if(isAllowed("Start Timer",projectUniqid)){ %>
+                                    <% if(caseLegend !=3 && caseTypeId != 10){ %>
+                                    <li onclick="setSessionStorage(<%= '\'Task List Page\'' %>, <%= '\'Start Timer\'' %>);startTimer(<%= '\'' + caseAutoId + '\'' %>,<%= '\'' + escape(htmlspecialchars(caseTitle,3)) + '\'' %>, <%= '\'' + caseUniqId + '\'' %>, <%= '\'' + projectUniqid + '\'' %>, <%= '\'' + escape(projectName) + '\'' %>); trackEventWithIntercom(<%= '\'timer\'' %>,<%= '\'\'' %>);">
+                                        <a href="javascript:void(0);"><i class="material-icons">&#xE425;</i><?php echo __('Start Timer');?></a>
+                                    </li>
+                                    <% } %>
+                          <% } %>        
                           
                                     <?php } ?>
                                     <?php if(SES_COMP == 4 && ($_SESSION['Auth']['User']['is_client'] == 0)) { ?>

@@ -20,12 +20,7 @@
 				<a href="javascript:void(0)" class="btn btn-sm btn_cmn_efect ellipsis-view fr" rel="tooltip" onclick="newProject('','','','',<?php echo $statusGroup['StatusGroup']['id'];?>);" title="<?php echo __("Create")." ".str_replace( 'Workflow', '', $statusGroup['StatusGroup']['name'])." ".__("Project");?>" style="max-width:165px;">
                    <?php echo __("Create")." ".str_replace( 'Workflow', '', $statusGroup['StatusGroup']['name'])." ".__("Project");?>              
                 </a>
-            <?php } ?>
-				<?php if($statusGroup['StatusGroup']['company_id']){ ?>
-                <a style="margin-right: 13px;" href="javascript:void(0)" class="btn btn-sm btn_cmn_efect fr" rel="tooltip" onclick="createStatusNew();" title="<?php echo __("Create New Status");?>">
-                   <?php echo __("Create New Status");?>              
-                </a>
-				<?php } ?>            
+            <?php } ?>          
             </div>
             <div class="cb"></div>
         </div>
@@ -44,15 +39,7 @@
            <?php  } ?>
         }
          
-	function createStatusNew(){
-		openPopup();
-		$('#label_title_sts').text(_('Create New Status'));
-		$('#createWorkFlowStatus').show();
-		$("#task_status_content").html('<div style="width:100%; padding:20px; text-align:center"><img src="<?php echo HTTP_ROOT.'img/loading2.gif'?>" alt="<?php echo __('Loading...')?>"></div>');
-		$.post("<?php echo HTTP_ROOT.'projects/crate_new_status'?>",{id:<?php echo $statusGroup['StatusGroup']['id'];?>},function(res){
-			$("#task_status_content").html(res);			
-		});
-	}	
+	
 	function deleteWfStatus(id){
 		if(confirm('<?php echo __("Are you sure you want to delete the Status?")?>')){
 			$.post('<?php echo HTTP_ROOT."projects/deleteWfStatus"?>',{id:id},function(res){
