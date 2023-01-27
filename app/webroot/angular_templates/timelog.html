@@ -225,7 +225,7 @@
                      <tr dir-paginate="value in records.logtimes.logs | itemsPerPage:20" total-items="totalItems" class="timelog-hover-block" data-id="log_prjuid_{{value.LogTime.log_id }}" data-puid="{{value.Project.uniq_id}}" on-finish-render="inittooltip()">       
                          <td><input type="checkbox" style="cursor:pointer" id="actionChkTlg{{value.LogTime.log_id }}" data-logid="{{value.LogTime.log_id }}" class="fl mglt chkOneTlg"></td>
                          <td>{{ value[0].start_datetime_v1 | moment:"format: 'MMM DD, YYYY'" }}</td>            
-                        <td id="log_usrNm_{{value.LogTime.log_id}}">{{value[0].user_name}}</td>  
+                        <td class="ellipsis-view" id="log_usrNm_{{value.LogTime.log_id}}">{{value[0].user_name}}</td>  
                         <td ng-if="records.pagename != 'taskdetails' && records.logtimes.project_uniqId == 'all'" id="log_prjNm_{{value.LogTime.log_id }}>" > 
                             {{ value[0].project_name }}
                         </td>
