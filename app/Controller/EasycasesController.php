@@ -8520,10 +8520,12 @@ class EasycasesController extends AppController
     public function move_task_to_project()
     {
         $this->layout = 'ajax';
+
         $project_id = $this->params->data['project_id'];
         $old_project_id = $this->params->data['old_project_id'];
         $cond = ' 1 ';
         $postdata = $this->data;
+        
         $this->loadModel('Project');
         // if(!$this->Project->compareProjectStatusgroup($old_project_id, $project_id)){
         // 	echo json_encode(array('success' => 0,'msg'=>__('Can not move task to a project having different status workflow.')));
@@ -8555,6 +8557,7 @@ class EasycasesController extends AppController
         } else {
             $case_no = $this->params->data['case_no'];
             $cond .= ' AND  case_no=' . $case_no . ' ';
+            
             if ($postdata['move_assignee'] && $postdata['move_assignee']==1) {
                 $this->move_assignee($caseId, $project_id, $old_project_id);
             }
@@ -8572,7 +8575,9 @@ class EasycasesController extends AppController
 
         //Getting all case ids which move to new project.
         $sql = "SELECT Easycase.id, Easycase.user_id, Easycase.type_id,Easycase.assign_to,GROUP_CONCAT(Easycase.id) as easycase_ids,Easycase.parent_task_id FROM easycases AS Easycase WHERE " . $cond . " AND project_id='" . $old_project_id . "' GROUP BY case_no";
+        
         $cases = $this->Easycase->query($sql);
+        
         /* Get the task status id of the new project */
         $status_group_id = $this->Project->find('first', array('conditions'=>array('Project.id'=>$project_id),'fields'=>'status_group_id'));
         if ($status_group_id['Project']['status_group_id'] == 0) {
@@ -8584,6 +8589,7 @@ class EasycasesController extends AppController
             $newLegend = $cusSts['CustomStatus']['status_master_id'];
             $newCustomStatus = $cusSts['CustomStatus']['id'];
         }
+        
         if (!empty($cases)) {
             $this->loadModel('Type');
             $this->loadModel('TypeCompany');
@@ -8593,6 +8599,7 @@ class EasycasesController extends AppController
             //get all children tasks to move in new project
             $easycase_ids = Hash::extract($cases, "{n}.Easycase.id");
             $childTasks = $this->Easycase->getSubTaskChild($easycase_ids, $old_project_id);
+            
             if (!empty($childTasks)) {
                 $child_case_no = Hash::extract($childTasks['data'], "{n}.Easycase.case_no");
                 $childCases = $this->Easycase->find('all', array(
@@ -8661,7 +8668,17 @@ class EasycasesController extends AppController
                         $prnt_task = $case['Easycase']['parent_task_id'];
                     }
                 }
-                if ($this->Easycase->updateAll(array('Easycase.project_id' => $project_id, 'Easycase.case_no' => $max_case, 'Easycase.is_recurring' => 0, 'Easycase.depends' => null, 'Easycase.children' => null,'Easycase.parent_task_id' => $prnt_task ,'Easycase.type_id'=>$ttp_id, 'Easycase.legend' => $newLegend, 'Easycase.custom_status_id' => $newCustomStatus), array('Easycase.id' => $casearr, 'Easycase.project_id' => $old_project_id))) {
+                    
+            if ($postdata['move_assignee'] && $postdata['move_assignee']==1) {
+                $updateParams = array('Easycase.project_id' => $project_id, 'Easycase.case_no' => $max_case, 'Easycase.is_recurring' => 0, 'Easycase.depends' => null, 'Easycase.children' => null,'Easycase.parent_task_id' => $prnt_task ,'Easycase.type_id'=>$ttp_id, 'Easycase.legend' => $newLegend, 'Easycase.custom_status_id' => $newCustomStatus);
+            }else{
+                $updateParams = array('Easycase.assign_to' => 0, 'Easycase.project_id' => $project_id, 'Easycase.case_no' => $max_case, 'Easycase.is_recurring' => 0, 'Easycase.depends' => null, 'Easycase.children' => null,'Easycase.parent_task_id' => $prnt_task ,'Easycase.type_id'=>$ttp_id, 'Easycase.legend' => $newLegend, 'Easycase.custom_status_id' => $newCustomStatus);
+            }
+            
+                if ($this->Easycase->updateAll($updateParams, array('Easycase.id' => $casearr, 'Easycase.project_id' => $old_project_id))) {
+                    //Update case files
+                
+                // if ($this->Easycase->updateAll(array('Easycase.project_id' => $project_id, 'Easycase.case_no' => $max_case, 'Easycase.is_recurring' => 0, 'Easycase.depends' => null, 'Easycase.children' => null,'Easycase.parent_task_id' => $prnt_task ,'Easycase.type_id'=>$ttp_id, 'Easycase.legend' => $newLegend, 'Easycase.custom_status_id' => $newCustomStatus), array('Easycase.id' => $casearr, 'Easycase.project_id' => $old_project_id))) {
                     //Update case files
                     $this->CaseFile->updateAll(array('CaseFile.project_id' => $project_id), array('CaseFile.easycase_id' => $casearr, 'CaseFile.project_id' => $old_project_id, 'CaseFile.company_id' => SES_COMP));
                     //Update case files drives
