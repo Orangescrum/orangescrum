@@ -75,8 +75,8 @@ class DATABASE_CONFIG {
 		'persistent' => false,
 'host' => 'localhost',
 'login' => 'root',
-'password' => 'prabhu',
-'database' => 'skinny_vs_selfhosted',
+'password' => '',
+'database' => '',
 		'prefix' => '',
 		//'encoding' => 'utf8',
 	);*/

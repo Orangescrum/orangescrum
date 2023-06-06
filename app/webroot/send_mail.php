@@ -4,13 +4,13 @@ require 'PHPMailer/PHPMailerAutoload.php';
 $mail = new PHPMailer;
 
 $mail->isSMTP();                                      // Set mailer to use SMTP
-$mail->Host = 'smtp.gmail.com';                       // Specify main and backup server
+$mail->Host = 'test.gmail.com';                       // Specify main and backup server
 $mail->SMTPAuth = true;                               // Enable SMTP authentication
 $mail->Username = '';                   // SMTP username
-$mail->Password = 'testingandola';               // SMTP password
+$mail->Password = '';               // SMTP password
 $mail->SMTPSecure = 'tls';                            // Enable encryption, 'ssl' also accepted
 $mail->Port = 587;                                    //Set the SMTP port number - 587 for authenticated TLS
-$mail->setFrom('', 'Anupam Das');     //Set who the message is to be sent from
+$mail->setFrom('', ' XXX XXX');     //Set who the message is to be sent from
 $mail->addReplyTo('', 'First Last');  //Set an alternative reply-to address
 $mail->addAddress('', 'Josh Adams');  // Add a recipient
 //$mail->addAddress('ellen@example.com');               // Name is optional
