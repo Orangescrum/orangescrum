@@ -391,7 +391,11 @@ class UsersController extends AppController {
                 }
                 //$this->send_to_sukinda($name, $email, $ip, $plan_id, 1, 0);
             }
-				$comp = null;
+	    $comp = null;
+	    $comp['Company']['logo'] = '';
+	    $comp['Company']['website'] = '';
+	    $now = new DateTime();
+	    $comp['Company']['user_last_login'] = $now->format('Y-m-d H:i:s');
             $comp['Company']['uniq_id'] = $this->Format->generateUniqNumber();
             $comp['Company']['seo_url'] = $this->Format->makeSeoUrl($seo_url);
             $comp['Company']['subscription_id'] = $subScription['Subscription']['id'];
@@ -431,7 +435,14 @@ class UsersController extends AppController {
                 exit;
             }
 
-            if ($sus_comp) {
+	    if ($sus_comp) {
+		$company_id = $this->Company->getLastInsertID();
+		define('SES_COMP', $company_id);
+		$activation_id = $this->Format->generateUniqNumber();
+		$usr['User']['update_email'] = '';
+		$usr['User']['update_random'] = '';
+		$usr['User']['google_id'] = '';
+		$usr['User']['sig'] = '';
                 $company_id = $this->Company->getLastInsertID();
                 $activation_id = $this->Format->generateUniqNumber();
                 $usr['User']['uniq_id'] = $this->Format->generateUniqNumber();
